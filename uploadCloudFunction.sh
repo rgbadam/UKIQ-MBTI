@@ -1,0 +1,1 @@
+"/Applications/wechatwebdevtools.app/Contents/MacOS/cli" cloud functions deploy --e joyments-6gxawsnwcfc1bdbc --n quickstartFunctions --r --project "/Users/ealham/Desktop/mbti-ug" --report_first --report

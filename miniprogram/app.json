@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/homepage/homepage",
+    "pages/test-result/test-result",
+    "pages/type-list/type-list",
+    "pages/user-center/user-center"
+  ],
+  "window": {
+    "backgroundColor": "#FFFFFF",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "MBTI Test",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "color": "#A2A9B0",
+    "selectedColor": "#07C160",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/homepage/homepage",
+        "text": "باشبەت",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/type-list/type-list",
+        "text": "خارەكتىرلەر",
+        "iconPath": "images/icons/types.png",
+        "selectedIconPath": "images/icons/types-active.png"
+      },
+      {
+        "pagePath": "pages/user-center/user-center",
+        "text": "كەمىنە",
+        "iconPath": "images/icons/usercenter.png",
+        "selectedIconPath": "images/icons/usercenter-active.png"
+      }
+    ]
+  }
+}

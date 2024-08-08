@@ -1,0 +1,11 @@
+<view class="result">
+  <span class="title">سىزنىڭ خارەكتىر تىپىڭىز</span>
+  <view class="result-box">
+    <view class="type">{{currentData.value}}</view>
+    <view class="info"><span class="bold">人格特点：</span>{{currentData.content}}</view>
+    <view class="info"><span class="bold">适合职业：</span>{{currentData.jobs}}</view>
+    <view class="info"><span class="bold">优点：</span>{{currentData.advantage}}</view>
+    <view class="info"><span class="bold">缺点：</span>{{currentData.disadvantage}}</view>
+    <view class="info"><span class="bold">友情和爱情：</span>{{currentData.friendship}}</view>
+  </view>
+</view>

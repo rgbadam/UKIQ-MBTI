@@ -1,0 +1,16 @@
+<view class="ui-box">
+  <view class="title">16 خىل MBTI خارەكتىر تىپلىرى</view>
+  <view class="list">
+    <view class="item" wx:for="{{result}}" wx:key="item">
+      <view class="name-box">
+        <span class="name">{{index + 1}}. {{item.name}} </span>
+        <span class="type">{{item.value}}</span>
+      </view>
+      <view class="des"><span class="bold">人格特点：</span>{{item.content}}</view>
+      <view class="des"><span class="bold">适合职业：</span>{{item.jobs}}</view>
+      <view class="des"><span class="bold">优点：</span>{{item.advantage}}</view>
+      <view class="des"><span class="bold">缺点：</span>{{item.disadvantage}}</view>
+      <view class="des"><span class="bold">友情和爱情：</span>{{item.friendship}}</view>
+    </view>
+  </view>
+</view>
