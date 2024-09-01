@@ -1,5 +1,5 @@
 <view class="result">
-  <span class="title">سىزنىڭ خارەكتىر تىپىڭىز</span>
+  <span class="title">{{ pageContent.title }}</span>
   <view class="result-box">
     <view class="type">{{currentData.value}}</view>
     <view class="info"><span class="bold">人格特点：</span>{{currentData.content}}</view>

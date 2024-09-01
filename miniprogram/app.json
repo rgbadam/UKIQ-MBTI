@@ -9,7 +9,6 @@
     "backgroundColor": "#FFFFFF",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#FFFFFF",
-    "navigationBarTitleText": "MBTI Test",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",

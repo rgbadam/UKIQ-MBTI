@@ -23,16 +23,22 @@
   background-color: #fff;
   padding: 10px;
   border-radius: 10px;
-  direction: rtl;
-  font-family: 'Alpsoft Jurnal';
 }
 
-.home-title {
-  font-size: 25px;
+.title {
   text-align: center;
   color: blueviolet;
   font-weight: bold;
+}
+
+.t-ug {
+  font-size: 27px;
   font-family: 'Uyghur Ruqqi';
+}
+
+.t-zh {
+  font-size: 23px;
+  font-family: 'Lucida Grande';
 }
 
 .sub-title {
@@ -43,15 +49,25 @@
   /* font-family: UKIJ Moy Qelem; */
 }
 
-.number {
-  margin-top: 25px;
-  margin-right: 10px;
-  font-size: 15px;
-  color: rgb(26, 7, 51);
-  font-family: 'Alpsoft Jurnal';
+.tool-bar {
+  margin: 25px 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.ui-list {
+.total-tab {
+  font-size: 15px;
+  color: rgb(63, 61, 66);
+}
+
+.lang-tab {
+  font-size: 15px;
+  color: rgb(7, 177, 64);
+  font-family: -apple-system, BlinkMacSystemFont;
+}
+
+.list {
   min-height: 200px;
   box-shadow: 3px 2px 20px 0 rgba(226,212,255,.40);
   padding-bottom: 5px;
@@ -61,10 +77,17 @@
   margin: 20px 15px;
 }
 
-.title {
-  font-size: 20px;
+.question {
   margin-bottom: 30px;
   padding-top: 15px;
+}
+
+.q-ug {
+  font-size: 20px;
+}
+
+.q-zh {
+  font-size: 18px;
 }
 
 .answer {
@@ -72,15 +95,22 @@
   background: #f4f3ff linear-gradient(270deg, #946ffa, #c9b1f9) 0 0 / var(--width) 100% no-repeat;
   border-radius: 4px;
   padding: 12px 15px;
-  font-size: 18px;
   line-height: 1.8;
   margin-bottom: 20px;
+}
+
+.a-ug {
+  font-size: 18px;
+}
+
+.a-zh {
+  font-size: 16px;
 }
 
 .active {
   background: #946ffa;
   color: #fff;
-  transition: all 0.3s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 .btn-box {
@@ -94,4 +124,14 @@
   justify-content: center;
   border-radius: 20px;
   margin: 20px auto;
+}
+
+.ug {
+  direction: rtl;
+  font-family: 'Alpsoft Jurnal';
+}
+
+.zh {
+  direction: ltr;
+  font-family: '黑体';
 }

@@ -1,14 +1,42 @@
-import questions from '../../data/question.js'
-const app = getApp()
+var languageUtil = require('../../utils/languageUtil.js')
 
 Page({
   data: {
+    done: false,
     currentIndex: 0,
     selectIndex: -1,
+    questionList: [],
     selectAnswerList: [],
     lastSelectValue: null,
-    done: false,
-    questionList: questions
+    pageContent: {},
+    isUg: true
+  },
+
+  onShow() {
+    this.initLanguage()
+    this.initStyle()
+  },
+
+  switchLanguage() {
+    languageUtil.changeLanguage()
+    this.initLanguage()
+    this.initStyle()
+  },
+
+  initLanguage() {
+    var langPackage = languageUtil.getLangPackage()
+    this.setData({ questionList: langPackage.questions })
+    this.setData({ pageContent: langPackage.pageTexts.homepage })
+    wx.setNavigationBarTitle({ title: langPackage.pageTexts.homepage.navBarTitle })
+  },
+
+  initStyle() {
+    if (wx.getStorageSync('languageType') == 0) {
+      this.setData({ isUg: true })
+    }
+    if (wx.getStorageSync('languageType') == 1) {
+      this.setData({ isUg: false })
+    }
   },
 
   onSelect(event) {
@@ -16,7 +44,7 @@ Page({
     const value = event.currentTarget.dataset.value;
     console.log("onSelect", index, value, this.data.currentIndex + 1)
     this.setData({ selectIndex: index })
-    if (this.data.currentIndex === questions.length - 1) {
+    if (this.data.currentIndex >= this.data.questionList.length - 1) {
       this.setData({ lastSelectValue: value })
       this.setData({ done: true })
     } else {
@@ -26,7 +54,7 @@ Page({
         this.setData({ selectIndex: -1 })
         this.data.currentIndex++;
         this.setData({ currentIndex: this.data.currentIndex })
-      }, 600)
+      }, 500)
     }
   },
 
@@ -55,7 +83,7 @@ Page({
     this.data.selectAnswerList.push(this.data.lastSelectValue);
     this.setData({ selectAnswerList: this.data.selectAnswerList })
     const result = this.handleResult(this.data.selectAnswerList);
-    app.globalData.mbti = result;
+    wx.setStorageSync('mbti', result)
     wx.redirectTo({
       url: '../test-result/test-result?type='+result,
     })

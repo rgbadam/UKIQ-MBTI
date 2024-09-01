@@ -1,7 +1,7 @@
 <view class="ui-box">
-  <view class="title">16 خىل MBTI خارەكتىر تىپلىرى</view>
+  <view class="title">{{ pageContent.title }}</view>
   <view class="list">
-    <view class="item" wx:for="{{result}}" wx:key="item">
+    <view class="item" wx:for="{{ resultList }}" wx:key="item">
       <view class="name-box">
         <span class="name">{{index + 1}}. {{item.name}} </span>
         <span class="type">{{item.value}}</span>

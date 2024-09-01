@@ -1,16 +1,17 @@
-<view class="home-box">
-  <view class="home-title">MBTI خارەكتىر سىنىقى </view>
-  <view class="sub-title" bind:tap="goTypeList">-- ئۆز خارەكتىرىڭىزنى چۈشىنىش نەقەدەر گۈزەل --</view>
-  <view class="number">
-    <view>جەمئىي {{ questionList.length }} سۇئال</view>
+<view class="home-box {{isUg?'ug':'zh'}}">
+  <view class="title {{isUg?'t-ug':'t-zh'}}">{{ pageContent.homeTitle }}</view>
+  <view class="sub-title {{isUg?'ug':'zh'}}" bind:tap="goTypeList">{{ pageContent.subTitle }}</view>
+  <view class="tool-bar">
+    <view class="total-tab">{{ pageContent.total }} {{ questionList.length }} {{ pageContent.quests }}</view>
+    <view class="lang-tab" bind:tap="switchLanguage">{{ pageContent.langSwitch }}</view>
   </view>
-  <view class="ui-list">
+  <view class="list">
     <view class="item">
-      <view class="title">{{ currentIndex + 1}}. {{questionList[currentIndex].question}}</view>
+      <view class="question {{isUg?'q-ug':'q-zh'}}">{{ currentIndex + 1}}. {{ questionList[currentIndex].question }}</view>
       <view class="options">
-        <view class="'answer', {{selectIndex === index ? 'active' : ''}}" wx:for="{{ questionList[currentIndex].options }}" wx:key="item" bind:tap="onSelect" data-index="{{index}}" data-value="{{item.value}}">{{ item.text }}</view>
+        <view class="answer {{ selectIndex === index ? 'active' : '' }} {{isUg?'a-ug':'a-zh'}}" wx:for="{{ questionList[currentIndex].options }}" wx:key="item" bind:tap="onSelect" data-index="{{ index }}" data-value="{{ item.value }}">{{ item.text }}</view>
       </view>
     </view>
   </view>
-  <view class="btn-box" bind:tap="onSubmit" wx:if="{{done}}">تامام</view>
+  <view class="btn-box {{isUg?'ug':'zh'}}" bind:tap="onSubmit" wx:if="{{done}}">{{ pageContent.submit }}</view>
 </view>

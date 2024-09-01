@@ -5,28 +5,28 @@
       <button open-type="chooseAvatar" bind:chooseavatar="avatarFunc">
         <image class="avatar" src="{{avatar}}"></image>
       </button> 
-      <view class="nickname">{{nickname}}</view>
-      <view class="mbti-type">{{mbti}}</view>
+      <view class="tips {{isUg?'t-ug':'t-zh'}}">{{ tips }}</view>
+      <view class="mbti" bind:tap="typeFunc">{{mbti}}</view>
     </view>
     <view class="settings">
       <view class="setting_item" bind:tap="FAQ">
         <view class="left">
           <image class="setting_icon" src="../../images/icons/question.svg" />
-          <view class="setting_text">دائىمىي سۇئاللار</view>
+          <view class="setting_text {{isUg?'ug':'zh'}}">{{ pageContent.faq }}</view>
         </view>
         <image class="arrow_icon" src="../../images/arrow.svg" />
       </view>
       <view class="setting_item" bind:tap="contactUs">
         <view class="left">
           <image class="setting_icon" src="../../images/icons/share.svg" />
-          <view class="setting_text">بىز ھەققىدە</view>
+          <view class="setting_text {{isUg?'ug':'zh'}}">{{ pageContent.aboutUs }}</view>
         </view>
         <image class="arrow_icon" src="../../images/arrow.svg" />
       </view>
       <view class="setting_item">
         <view class="left">
           <image class="setting_icon" src="../../images/icons/customer-service.svg" />
-          <button open-type="contact" class="contact-button">تەكلىپ پىكىر</button>
+          <button open-type="contact" class="contact-button {{isUg?'ug':'zh'}}">{{ pageContent.contactUs }}</button>
         </view>
         <image class="arrow_icon" src="../../images/arrow.svg" />
       </view>

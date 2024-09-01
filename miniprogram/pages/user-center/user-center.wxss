@@ -11,7 +11,6 @@
 .page_container {
   background-color: #f5f5f5;
   height: 100vh;
-  font-family: 'Alpsoft Jurnal';
 }
 
 .top_bg {
@@ -39,12 +38,21 @@
   border-radius: 50%;
 }
 
-.nickname {
+.tips {
   color: rgb(68, 10, 122);
-  font-size: 22px;
 }
 
-.mbti-type {
+.t-ug {
+  font-size: 22px;
+  font-family: 'Alpsoft Jurnal';
+}
+
+.t-zh {
+  font-size: 20px;
+  font-family: '黑体';
+}
+
+.mbti {
   margin-top: 20px;
   color: blueviolet;
   font-size: 25px;
@@ -64,7 +72,6 @@
   justify-content: space-between;
   padding: 30rpx 0rpx;
   border-bottom: 1rpx solid rgba(0, 0, 0, 0.08);
-  font-size: 35rpx;
 }
 
 .left {
@@ -92,7 +99,6 @@
   padding-left: 0rpx;
   width: 400rpx;
   font-weight: 400;
-  font-size: 35rpx;
   color: rgba(0, 0, 0, 0.9);
   line-height: 56rpx;
   text-align: left;
@@ -100,4 +106,14 @@
 
 .button-hover {
   background-color: transparent;
+}
+
+.ug {
+  font-size: 35rpx;
+  font-family: 'Alpsoft Jurnal';
+}
+
+.zh {
+  font-size: 33rpx;
+  font-family: '黑体';
 }
