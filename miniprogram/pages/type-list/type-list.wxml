@@ -1,16 +1,16 @@
-<view class="ui-box">
-  <view class="title">{{ pageContent.title }}</view>
+<view class="ui-box {{isUg?'ug':'zh'}}">
+  <view class="title {{isUg?'t-ug':'t-zh'}}">{{ pageContent.title }}</view>
   <view class="list">
     <view class="item" wx:for="{{ resultList }}" wx:key="item">
-      <view class="name-box">
+      <view class="name-box {{isUg?'n-ug':'n-zh'}}">
         <span class="name">{{index + 1}}. {{item.name}} </span>
         <span class="type">{{item.value}}</span>
       </view>
-      <view class="des"><span class="bold">人格特点：</span>{{item.content}}</view>
-      <view class="des"><span class="bold">适合职业：</span>{{item.jobs}}</view>
-      <view class="des"><span class="bold">优点：</span>{{item.advantage}}</view>
-      <view class="des"><span class="bold">缺点：</span>{{item.disadvantage}}</view>
-      <view class="des"><span class="bold">友情和爱情：</span>{{item.friendship}}</view>
+      <view class="des {{isUg?'d-ug':'d-zh'}}"><span class="bold">{{ pageContent.analysis }}: </span>{{item.content}}</view>
+      <view class="des {{isUg?'d-ug':'d-zh'}}"><span class="bold">{{ pageContent.career }}: </span>{{item.jobs}}</view>
+      <view class="des {{isUg?'d-ug':'d-zh'}}"><span class="bold">{{ pageContent.advantage }}: </span>{{item.advantage}}</view>
+      <view class="des {{isUg?'d-ug':'d-zh'}}"><span class="bold">{{ pageContent.disadvantage }}: </span>{{item.disadvantage}}</view>
+      <view class="des {{isUg?'d-ug':'d-zh'}}"><span class="bold">{{ pageContent.relationship }}: </span>{{item.friendship}}</view>
     </view>
   </view>
 </view>

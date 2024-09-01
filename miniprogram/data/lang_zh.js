@@ -28,12 +28,21 @@ const pageTexts = {
   },
   testResult: {
     navBarTitle: "测试结果",
-    title: "你的人格类型是"
+    analysis: "人格特点",
+    career: "适合职业",
+    advantage: "优点",
+    disadvantage: "缺点",
+    relationship: "友情和爱情"
   },
   typeList: {
-    navBarTitle: "MBTI-16型人格简介",
+    navBarTitle: "人格简介",
     tabBarTitle: "人格",
-    title: "16型职业人格"
+    title: "16型职业人格",
+    analysis: "人格特点",
+    career: "适合职业",
+    advantage: "优点",
+    disadvantage: "缺点",
+    relationship: "友情和爱情"
   },
   userCenter: {
     navBarTitle: "个人中心",
@@ -41,7 +50,7 @@ const pageTexts = {
     notTested: "还未测试你的MBTI人格",
     tested: "你的MBTI人格是",
     faq: "常见问题",
-    aboutUs: "关于我们",
+    aboutUs: "了解MBTI",
     contactUs: "联系我们"
   }
 }

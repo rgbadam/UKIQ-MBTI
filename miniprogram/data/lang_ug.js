@@ -28,12 +28,21 @@ const pageTexts = {
   },
   testResult: {
     navBarTitle: "سىناق نەتىجىسى",
-    title: "سىزنىڭ خارەكتىر تىپىڭىز"
+    analysis: "خارەكتىر ئالاھىدىلىكى",
+    career: "خىزمەت تەۋسىيەسى",
+    advantage: "ئارتۇقچىلىق",
+    disadvantage: "ئاجىزلىق",
+    relationship: "مۇھەببەت ۋە دوستلۇق"
   },
   typeList: {
     navBarTitle: "خارەكتىرلەر",
     tabBarTitle: "خارەكتىرلەر",
-    title: "16 خىل MBTI خارەكتىر تىپلىرى"
+    title: "16 خىل MBTI خارەكتىر تىپلىرى",
+    analysis: "خارەكتىر ئالاھىدىلىكى",
+    career: "خىزمەت تەۋسىيەسى",
+    advantage: "ئارتۇقچىلىق",
+    disadvantage: "ئاجىزلىق",
+    relationship: "مۇھەببەت ۋە دوستلۇق"
   },
   userCenter: {
     navBarTitle: "كەمىنە",
@@ -41,7 +50,7 @@ const pageTexts = {
     notTested: "تېخى خارەكتىرىڭىزنى سىناپ كۆرمەپسىز",
     tested: "سىزنىڭ خارەكتىر تىپىڭىز",
     faq: "دائىمىي سۇئاللار",
-    aboutUs: "بىز ھەققىدە",
+    aboutUs: "ھەققىدە MBTI",
     contactUs: "تەكلىپ پىكىر"
   }
 }

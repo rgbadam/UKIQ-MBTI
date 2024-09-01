@@ -16,6 +16,9 @@ Page({
     if(wx.getStorageSync('mbti')) {
       this.setData({ mbti: wx.getStorageSync('mbti') })
     }
+    if(wx.getStorageSync('avatar')) {
+      this.setData({ avatar: wx.getStorageSync('avatar') })
+    }
   },
 
   initLanguage() {
@@ -38,28 +41,30 @@ Page({
   avatarFunc(e) {
     const { avatarUrl } = e.detail 
     this.setData({ avatar: avatarUrl })
+    wx.setStorageSync('avatar', avatarUrl)
   },
 
   typeFunc() {
     wx.navigateTo({
-      url: '../test-result/test-result?type=' + mbti,
+      url: '../test-result/test-result?type=' + wx.getStorageSync('mbti'),
     })
   },
 
   FAQ() {
-    wx.showModal({ content: 'Developing...', showCancel: false })
-    // wx.navigateTo({ url: '../question/question' })
+    // wx.showModal({ content: 'Developing...', showCancel: false })
+    wx.navigateTo({ url: '../question/question' })
   },
 
-  contactUs() {
-    wx.showModal({ content: 'Developing...', showCancel: false })
-    // wx.navigateTo({ url: '../contact/contact' })
+  aboutMbti() {
+    wx.navigateTo({ url: '../about-mbti/about-mbti' })
   },
 
   onShareAppMessage(){
+    if(this.data.isUg) return { title: 'MBTI خارەكتىر سىنىقى' }
     return { title: 'MBTI人格测试' }
   },
   onShareTimeline(){
-    return { title: 'MBTI人格测试 - 终于被理解的感觉真好' }
+    if(this.data.isUg) return { title: 'MBTI - ئۆز خارەكتىرىنى چۈشىنىش' }
+    return { title: 'MBTI人格 - 终于被理解的感觉真好' }
   }
 });

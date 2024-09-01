@@ -1,22 +1,10 @@
-var languageUtil = require('../../utils/languageUtil.js')
-
 Page({
   data: {
     isUg: true,
-    resultList: [],
-    pageContent: {}
   },
 
   onShow() {
-    this.initLanguage()
     this.initStyle()
-  },
-
-  initLanguage() {
-    var langPackage = languageUtil.getLangPackage()
-    this.setData({ resultList: langPackage.results })
-    this.setData({ pageContent: langPackage.pageTexts.typeList })
-    wx.setNavigationBarTitle({ title: langPackage.pageTexts.typeList.navBarTitle })
   },
 
   initStyle() {

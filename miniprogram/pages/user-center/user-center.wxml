@@ -16,9 +16,9 @@
         </view>
         <image class="arrow_icon" src="../../images/arrow.svg" />
       </view>
-      <view class="setting_item" bind:tap="contactUs">
+      <view class="setting_item" bind:tap="aboutMbti">
         <view class="left">
-          <image class="setting_icon" src="../../images/icons/share.svg" />
+          <image class="setting_icon" src="../../images/icons/setting.svg" />
           <view class="setting_text {{isUg?'ug':'zh'}}">{{ pageContent.aboutUs }}</view>
         </view>
         <image class="arrow_icon" src="../../images/arrow.svg" />

@@ -3,7 +3,9 @@
     "pages/homepage/homepage",
     "pages/test-result/test-result",
     "pages/type-list/type-list",
-    "pages/user-center/user-center"
+    "pages/user-center/user-center",
+    "pages/about-mbti/about-mbti",
+    "pages/question/question"
   ],
   "window": {
     "backgroundColor": "#FFFFFF",
