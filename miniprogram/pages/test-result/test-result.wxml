@@ -1,11 +1,11 @@
 <view class="result">
   <view class="result-box">
-    <view class="type">{{ currentData.value }}</view>
-    <view class="info {{isUg?'ug':'zh'}}"><span class="bold">{{ pageContent.analysis }}: </span>{{ currentData.content }}</view>
-    <view class="info {{isUg?'ug':'zh'}}"><span class="bold">{{ pageContent.career }}: </span>{{ currentData.jobs }}</view>
-    <view class="info {{isUg?'ug':'zh'}}"><span class="bold">{{ pageContent.advantage }}: </span>{{ currentData.advantage }}</view>
-    <view class="info {{isUg?'ug':'zh'}}"><span class="bold">{{ pageContent.disadvantage }}: </span>{{ currentData.disadvantage }}</view>
-    <view class="info {{isUg?'ug':'zh'}}"><span class="bold">{{ pageContent.relationship }}: </span>{{ currentData.friendship }}</view>
+    <view class="type {{isUg?'t-ug':'t-zh'}}">{{ currentData.name }}\t{{ currentData.value }}</view>
+    <view class="info {{isUg?'ug':'zh'}}"><span class="bold">{{ pageContent.analysis }}:\t</span>{{ currentData.content }}</view>
+    <view class="info {{isUg?'ug':'zh'}}"><span class="bold">{{ pageContent.career }}:\t</span>{{ currentData.jobs }}</view>
+    <view class="info {{isUg?'ug':'zh'}}"><span class="bold">{{ pageContent.advantage }}:\t</span>{{ currentData.advantage }}</view>
+    <view class="info {{isUg?'ug':'zh'}}"><span class="bold">{{ pageContent.disadvantage }}:\t</span>{{ currentData.disadvantage }}</view>
+    <view class="info {{isUg?'ug':'zh'}}"><span class="bold">{{ pageContent.relationship }}:\t</span>{{ currentData.friendship }}</view>
   </view>
   <view class="pics" wx:if="{{picUrl}}"><image src="{{ picUrl }}" mode=""/></view>
 </view>

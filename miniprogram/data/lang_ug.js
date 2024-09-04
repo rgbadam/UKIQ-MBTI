@@ -20,7 +20,7 @@ const pageTexts = {
     navBarTitle: "خارەكتىر MBTI",
     tabBarTitle: "باشبەت",
     homeTitle: "MBTI خارەكتىر سىنىقى ",
-    subTitle: "-- ئۆز خارەكتىرىڭىزنى چۈشىنىش نەقەدەر گۈزەل --",
+    subTitle: "-- ئۆز خارەكتىرىنى چۈشىنىش نەقەدەر گۈزەل --",
     total: "جەمئىي",
     quests: "سۇئال",
     langSwitch: "中/ئۇ",

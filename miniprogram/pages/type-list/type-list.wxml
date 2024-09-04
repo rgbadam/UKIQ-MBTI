@@ -1,16 +1,15 @@
 <view class="ui-box {{isUg?'ug':'zh'}}">
-  <view class="title {{isUg?'t-ug':'t-zh'}}">{{ pageContent.title }}</view>
+  <view class="{{isUg?'t-ug':'t-zh'}}">{{ pageContent.title }}</view>
   <view class="list">
     <view class="item" wx:for="{{ resultList }}" wx:key="item">
-      <view class="name-box {{isUg?'n-ug':'n-zh'}}">
-        <span class="name">{{index + 1}}. {{item.name}} </span>
-        <span class="type">{{item.value}}</span>
+      <view class="{{isUg?'n-ug':'n-zh'}}">
+        <view>{{item.name}}\t{{item.value}}</view>
       </view>
-      <view class="des {{isUg?'d-ug':'d-zh'}}"><span class="bold">{{ pageContent.analysis }}: </span>{{item.content}}</view>
-      <view class="des {{isUg?'d-ug':'d-zh'}}"><span class="bold">{{ pageContent.career }}: </span>{{item.jobs}}</view>
-      <view class="des {{isUg?'d-ug':'d-zh'}}"><span class="bold">{{ pageContent.advantage }}: </span>{{item.advantage}}</view>
-      <view class="des {{isUg?'d-ug':'d-zh'}}"><span class="bold">{{ pageContent.disadvantage }}: </span>{{item.disadvantage}}</view>
-      <view class="des {{isUg?'d-ug':'d-zh'}}"><span class="bold">{{ pageContent.relationship }}: </span>{{item.friendship}}</view>
+      <view class="des {{isUg?'d-ug':'d-zh'}}"><span class="bold">{{ pageContent.analysis }}:\t</span>{{item.content}}</view>
+      <view class="des {{isUg?'d-ug':'d-zh'}}"><span class="bold">{{ pageContent.career }}:\t</span>{{item.jobs}}</view>
+      <view class="des {{isUg?'d-ug':'d-zh'}}"><span class="bold">{{ pageContent.advantage }}:\t</span>{{item.advantage}}</view>
+      <view class="des {{isUg?'d-ug':'d-zh'}}"><span class="bold">{{ pageContent.disadvantage }}:\t</span>{{item.disadvantage}}</view>
+      <view class="des {{isUg?'d-ug':'d-zh'}}"><span class="bold">{{ pageContent.relationship }}:\t</span>{{item.friendship}}</view>
     </view>
   </view>
 </view>

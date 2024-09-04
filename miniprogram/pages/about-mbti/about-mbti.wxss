@@ -19,29 +19,44 @@ page {
 }
 
 .about-ug {
-  font-size: 36rpx;
+  font-size: 39rpx;
   font-weight: 500;
   text-align: center;
-  margin: 30rpx 0rpx 50rpx;
+  margin: 30rpx 0rpx 90rpx;
+  font-family: 'Shirkhan Yumilaq';
 }
 
 .title {
   margin: 10rpx 0 20rpx;
 }
 
-.sub-title {
+.type-name {
   font-weight: 500;
-  margin: 60rpx 0 10rpx;
+  margin-top: 20rpx;
+}
+
+.type-desc {
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
 }
 
 .content {
   font-size: 30rpx;
-  text-indent: 1rem;
+}
+
+.type-name-ug {
+  font-weight: 550;
+  margin-top: 20rpx;
+}
+
+.type-desc-ug {
+  font-size: 24rpx;
+  margin-bottom: 20rpx;
+  font-family: 'shirkhan yumilaq';
 }
 
 .content-ug {
   font-size: 33rpx;
-  text-indent: 1rem;
   text-align: justify;
 }
 
@@ -64,7 +79,7 @@ page {
 .ug {
   direction: rtl;
   font-size: 34rpx;
-  font-family: 'Alpsoft Jurnal';
+  font-family: 'Alpsoft Qara';
 }
 
 .zh {

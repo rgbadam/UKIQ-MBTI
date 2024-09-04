@@ -1,6 +1,6 @@
 <view class="home-box {{isUg?'ug':'zh'}}">
   <view class="title {{isUg?'t-ug':'t-zh'}}">{{ pageContent.homeTitle }}</view>
-  <view class="sub-title {{isUg?'ug':'zh'}}" bind:tap="goTypeList">{{ pageContent.subTitle }}</view>
+  <view class="sub-title" bind:tap="goTypeList">{{ pageContent.subTitle }}</view>
   <view class="tool-bar">
     <view class="total-tab">{{ pageContent.total }} {{ questionList.length }} {{ pageContent.quests }}</view>
     <view class="lang-tab" bind:tap="switchLanguage">{{ pageContent.langSwitch }}</view>

@@ -6,7 +6,7 @@
 
 .ug {
   direction: rtl;
-  font-family: 'Alpsoft Jurnal';
+  font-family: 'Alpsoft qara';
 }
 
 .zh {
@@ -15,16 +15,17 @@
 }
 
 .title {
-  text-align: center;
-  direction: rtl;
 }
 
 .t-ug {
   font-size: 22px;
+  text-align: center;
+  font-family: 'Shirkhan Yumilaq';
 }
 
 .t-zh {
   font-size: 20px;
+  text-align: center;
 }
 
 .list {
@@ -33,31 +34,30 @@
 
 .item {
   height: auto;
-  overflow: hidden;
   padding: 15px;
   margin: 10px 0px;
+  overflow: hidden;
   border-radius: 10px;
   box-shadow: 3px 2px 20px 0 rgba(216, 197, 253, 0.4);
 }
 
 .n-ug {
-  font-size: 20px;
+  font-size: 18px;
+  margin-top: 10px;
+  text-align: center;
+  color: blueviolet;
+  font-family: 'Shirkhan egme';
 }
 
 .n-zh {
   font-size: 18px;
-}
-
-.type, .name {
-  font-weight: bold;
-}
-
-.type {
+  margin-top: 10px;
+  text-align: center;
   color: blueviolet;
 }
 
 .des {
-  margin: 20px 0px;
+  margin: 15px 0px;
   line-height: 30px;
   text-align: justify;
 }

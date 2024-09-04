@@ -6,6 +6,7 @@
 
 .result-box {
   margin: 20px 0px;
+  padding: 0 10px;
 }
 
 .type {
@@ -14,6 +15,17 @@
   font-size: 20px;
   margin-bottom: 20px;
   text-align: center;
+}
+
+.t-ug {
+  direction: rtl;
+  font-size: 22px;
+  font-family: 'Shirkhan egme';
+}
+
+.t-zh {
+  direction: ltr;
+  font-size: 18px;
 }
 
 .info {
