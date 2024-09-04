@@ -45,7 +45,7 @@ page {
 }
 
 .type-name-ug {
-  font-weight: 550;
+  font-weight: 600;
   margin-top: 20rpx;
 }
 
@@ -86,4 +86,17 @@ page {
   direction: ltr;
   font-size: 31rpx;
   font-family: '黑体';
+}
+
+.pics {
+  width: 350px;
+  height: 240px;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 15px;
+}
+
+image {
+  height: 100%;
+  width: 100%;
 }

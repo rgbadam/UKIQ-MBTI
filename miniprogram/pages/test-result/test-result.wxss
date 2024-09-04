@@ -53,7 +53,7 @@ image {
 .ug {
   font-size: 18px;
   direction: rtl;
-  font-family: 'Alpsoft Jurnal';
+  font-family: 'Alpsoft Qara';
 }
 
 .zh {

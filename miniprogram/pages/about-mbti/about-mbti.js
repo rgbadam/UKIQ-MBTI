@@ -1,6 +1,7 @@
 Page({
   data: {
     isUg: true,
+    picUrl: "https://6a6f-joyments-6gxawsnwcfc1bdbc-1325589715.tcb.qcloud.la/PopOut/MBTI/MBTI.jpg"
   },
 
   onShow() {
