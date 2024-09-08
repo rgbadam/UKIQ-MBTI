@@ -3,7 +3,7 @@ var languageUtil = require('../../utils/languageUtil.js')
 Page({
   data: {
     isUg: true,
-    failFont: false,
+    loadFont: false,
     resultList: [],
     pageContent: {}
   },
@@ -14,10 +14,10 @@ Page({
   },
 
   onReady() {
-    if(wx.getStorageSync('failFont')) {
-      this.setData({ failFont: true })
+    if(wx.getStorageSync('loadFont')) {
+      this.setData({ loadFont: true })
     } else {
-      this.setData({ failFont: false })
+      this.setData({ loadFont: false })
     }
   },
 

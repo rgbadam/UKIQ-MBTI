@@ -9,6 +9,7 @@
   text-align: center;
   color: blueviolet;
   font-weight: bold;
+  margin-top: 20px;
 }
 
 .fontText .t-ug {
@@ -41,11 +42,10 @@
 
 .fontPic .title {
   display: block;
-  margin: 0 auto;
+  margin: 30px auto 6px;
 }
 
 .fontPic .t-ug {
-  margin-bottom: 14px;
   width: 240px;
   height: 42px;
 }
@@ -64,6 +64,7 @@
 .fontPic .s-ug {
   width: 290px;
   height: 22px;
+  margin-top: 14px;
 }
 
 .fontPic .s-zh {

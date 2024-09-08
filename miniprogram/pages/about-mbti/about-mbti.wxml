@@ -1,9 +1,9 @@
 <view class="about-mbti">
   <view class="zh" wx:if="{{!isUg}}">
-    <view class="fontText" wx:if="{{!failFont}}">
+    <view class="fontText" wx:if="{{loadFont}}">
       <view class="about">关于MBTI</view>
     </view>
-    <view class="fontPic" wx:if="{{failFont}}">
+    <view class="fontPic" wx:if="{{!loadFont}}">
       <image class="about" src="../../images/fontPic/about-zh.png" />
     </view>
     <view class="title">MBTI是一种广泛使用的人格类型指标。MBTI将人格分为16种类型，这些类型由四个维度的组合构成。</view>
@@ -25,10 +25,10 @@
     <view class="reminder">Tips: 每题考虑的时间建议不要超过10秒钟</view>
   </view>
   <view class="ug" wx:if="{{isUg}}">
-    <view class="fontText" wx:if="{{!failFont}}">
+    <view class="fontText" wx:if="{{loadFont}}">
       <view class="about-ug">MBTI ھەققىدە</view>
     </view>
-    <view class="fontPic" wx:if="{{failFont}}">
+    <view class="fontPic" wx:if="{{!loadFont}}">
       <image class="about-ug" src="../../images/fontPic/about-ug.png" />
     </view>
     <view class="title"> MBTI بولسا كۆپ قوللىنىلىدىغان خارەكتىر كۆرسەتكۈچ. MBTI كۆرسەتكۈچى كىشىلەرنىڭ خارەكتىرىنى 16 خىل تىپقا بۆلىدۇ. بۇ تىپلار تۆت خىل ئۆلچەمنىڭ بىرىكمىسىدىن تەشكىل تاپقان.</view>

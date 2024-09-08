@@ -8,10 +8,10 @@ Page({
   },
 
   onReady() {
-    if(wx.getStorageSync('failFont')) {
-      this.setData({ failFont: true })
+    if(wx.getStorageSync('loadFont')) {
+      this.setData({ loadFont: true })
     } else {
-      this.setData({ failFont: false })
+      this.setData({ loadFont: false })
     }
   },
 

@@ -1,9 +1,9 @@
 <view class="home-box {{isUg?'ug':'zh'}}">
-  <view class="fontText" wx:if="{{!failFont}}">
+  <view class="fontText" wx:if="{{loadFont}}">
     <view class="title {{isUg?'t-ug':'t-zh'}}">{{ pageContent.homeTitle }}</view>
     <view class="sub-title {{isUg?'s-ug':'s-zh'}}" bind:tap="goTypeList">{{ pageContent.subTitle }}</view>
   </view>
-  <view class="fontPic" wx:if="{{failFont}}">
+  <view class="fontPic" wx:if="{{!loadFont}}">
     <image class="title {{isUg?'t-ug':'t-zh'}}" src="{{pageContent.homeTitlePic}}" />
     <image class="sub-title {{isUg?'s-ug':'s-zh'}}" src="{{pageContent.subTitlePic}}" />
   </view>

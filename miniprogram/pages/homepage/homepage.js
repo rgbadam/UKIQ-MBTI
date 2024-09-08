@@ -4,7 +4,7 @@ Page({
   data: {
     isUg: true,
     done: false,
-    failFont: false,
+    loadFont: false,
     pageContent: {},
     currentIndex: 0,
     selectIndex: -1,
@@ -16,13 +16,15 @@ Page({
   onShow() {
     this.initLanguage()
     this.initStyle()
+    this.xxx()
   },
   
-  onReady() {
-    if(wx.getStorageSync('failFont')) {
-      this.setData({ failFont: true })
+  xxx() {
+    console.log('loadFont', wx.getStorageSync('loadFont'));
+    if(wx.getStorageSync('loadFont')) {
+      this.setData({ loadFont: true })
     } else {
-      this.setData({ failFont: false })
+      this.setData({ loadFont: false })
     }
   },
 

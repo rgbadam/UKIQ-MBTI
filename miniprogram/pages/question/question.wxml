@@ -1,9 +1,9 @@
 <view class="question">
   <view class="zh" wx:if="{{!isUg}}">
-    <view class="fontText" wx:if="{{!failFont}}">
+    <view class="fontText" wx:if="{{loadFont}}">
       <view class="faq">常见问题</view>
     </view>
-    <view class="fontPic" wx:if="{{failFont}}">
+    <view class="fontPic" wx:if="{{!loadFont}}">
       <image class="faq" src="../../images/fontPic/faq-zh.png" />
     </view>
     <view class="title">1. 如何进行MBTI测试？</view>
@@ -25,10 +25,10 @@
     <view class="butt">PopOut · MBTI人格测试</view>
   </view>
   <view class="ug" wx:if="{{isUg}}">
-    <view class="fontText" wx:if="{{!failFont}}">
+    <view class="fontText" wx:if="{{loadFont}}">
       <view class="faq-ug">دائىمىي سۇئاللار</view>
     </view>
-    <view class="fontPic" wx:if="{{failFont}}">
+    <view class="fontPic" wx:if="{{!loadFont}}">
       <image class="faq-ug" src="../../images/fontPic/faq-ug.png" />
     </view>
     <view class="title-ug">1. MBTI خارەكتىر سىنىقىنى قانداق قىلىدۇ؟</view>
