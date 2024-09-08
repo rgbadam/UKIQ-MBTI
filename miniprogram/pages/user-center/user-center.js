@@ -44,10 +44,12 @@ Page({
     wx.setStorageSync('avatar', avatarUrl)
   },
 
-  typeFunc() {
-    wx.navigateTo({
-      url: '../test-result/test-result?type=' + wx.getStorageSync('mbti'),
-    })
+  myTypeClick() {
+    if (this.data.mbti == '') {
+      wx.switchTab({ url: '/pages/homepage/homepage' })
+    } else {
+      wx.navigateTo({ url: '../test-result/test-result?type=' + wx.getStorageSync('mbti') })
+    }
   },
 
   FAQ() {

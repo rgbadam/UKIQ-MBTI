@@ -2,28 +2,44 @@ page {
   width: 100%;
   height: 100%;
   align-items: center;
+  background-color: #fff;
 }
 
 .about-mbti {
   width: 90%;
   color: #333;
-  line-height: 50rpx;
+  line-height: 26px;
   padding: 30rpx 0 50rpx;
 }
 
-.about {
-  font-size: 34rpx;
+.fontText .about {
+  font-size: 21px;
   font-weight: 500;
   text-align: center;
-  margin: 30rpx 0rpx 50rpx;
+  margin: 15px 0 46px;
+  font-family: '创粗圆';
 }
 
-.about-ug {
-  font-size: 39rpx;
+.fontText .about-ug {
+  font-size: 20px;
   font-weight: 500;
   text-align: center;
-  margin: 30rpx 0rpx 90rpx;
+  margin: 15px 0 46px;
   font-family: 'Shirkhan Yumilaq';
+}
+
+.fontPic .about {
+  width: 88px;
+  height: 24px;
+  display: block;
+  margin: 15px auto 46px;
+}
+
+.fontPic .about-ug {
+  width: 150px;
+  height: 30px;
+  display: block;
+  margin: 15px auto 46px;
 }
 
 .title {
@@ -32,65 +48,66 @@ page {
 
 .type-name {
   font-weight: 500;
-  margin-top: 20rpx;
+  margin-top: 10px;
 }
 
 .type-desc {
-  font-size: 28rpx;
-  margin-bottom: 20rpx;
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-family: '创粗圆';
 }
 
 .content {
-  font-size: 30rpx;
+  font-size: 15px;
 }
 
 .type-name-ug {
   font-weight: 600;
-  margin-top: 20rpx;
+  margin-top: 10px;
 }
 
 .type-desc-ug {
-  font-size: 24rpx;
-  margin-bottom: 20rpx;
+  font-size: 12px;
+  margin-bottom: 10px;
   font-family: 'shirkhan yumilaq';
 }
 
 .content-ug {
-  font-size: 33rpx;
+  font-size: 17px;
   text-align: justify;
 }
 
 .info {
-  margin: 40rpx 0;
+  margin: 20px 0;
 }
 
 .reminder {
   color: #666;
-  margin: 40rpx 0;
-  font-size: 27rpx;
+  margin: 20px 0;
+  font-size: 14px;
 }
 
 .reminder-ug {
   color: #666;
-  margin: 40rpx 0;
-  font-size: 29rpx;
+  margin: 20px 0;
+  font-size: 15px;
 }
 
 .ug {
   direction: rtl;
-  font-size: 34rpx;
+  font-size: 17px;
   font-family: 'Alpsoft Qara';
 }
 
 .zh {
   direction: ltr;
-  font-size: 31rpx;
+  font-size: 16px;
   font-family: '黑体';
 }
 
 .pics {
-  width: 350px;
-  height: 240px;
+  width: 100%;
+  height: 465rpx;
   overflow: hidden;
   margin: 0 auto;
   border-radius: 15px;

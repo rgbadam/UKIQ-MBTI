@@ -1,6 +1,12 @@
 <view class="home-box {{isUg?'ug':'zh'}}">
-  <view class="title {{isUg?'t-ug':'t-zh'}}">{{ pageContent.homeTitle }}</view>
-  <view class="sub-title" bind:tap="goTypeList">{{ pageContent.subTitle }}</view>
+  <view class="fontText" wx:if="{{!failFont}}">
+    <view class="title {{isUg?'t-ug':'t-zh'}}">{{ pageContent.homeTitle }}</view>
+    <view class="sub-title {{isUg?'s-ug':'s-zh'}}" bind:tap="goTypeList">{{ pageContent.subTitle }}</view>
+  </view>
+  <view class="fontPic" wx:if="{{failFont}}">
+    <image class="title {{isUg?'t-ug':'t-zh'}}" src="{{pageContent.homeTitlePic}}" />
+    <image class="sub-title {{isUg?'s-ug':'s-zh'}}" src="{{pageContent.subTitlePic}}" />
+  </view>
   <view class="tool-bar">
     <view class="total-tab">{{ pageContent.total }} {{ questionList.length }} {{ pageContent.quests }}</view>
     <view class="lang-tab" bind:tap="switchLanguage">{{ pageContent.langSwitch }}</view>

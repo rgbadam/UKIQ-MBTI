@@ -5,8 +5,8 @@
       <button open-type="chooseAvatar" bind:chooseavatar="avatarFunc">
         <image class="avatar" src="{{avatar}}"></image>
       </button> 
-      <view class="tips {{isUg?'t-ug':'t-zh'}}">{{ tips }}</view>
-      <view class="mbti" bind:tap="typeFunc">{{mbti}}</view>
+      <view class="tips {{isUg?'t-ug':'t-zh'}}" bind:tap="myTypeClick">{{ tips }}</view>
+      <view class="mbti" bind:tap="myTypeClick">{{mbti}}</view>
     </view>
     <view class="settings">
       <view class="setting_item" bind:tap="FAQ">

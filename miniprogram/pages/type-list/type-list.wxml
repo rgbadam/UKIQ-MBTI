@@ -1,5 +1,10 @@
 <view class="ui-box {{isUg?'ug':'zh'}}">
-  <view class="{{isUg?'t-ug':'t-zh'}}">{{ pageContent.title }}</view>
+  <view class="fontText" wx:if="{{!failFont}}">
+    <view class="{{isUg?'t-ug':'t-zh'}}">{{ pageContent.title }}</view>
+  </view>
+  <view class="fontPic" wx:if="{{failFont}}">
+    <image class="{{isUg?'t-ug':'t-zh'}}" src="{{pageContent.titlePic}}" />
+  </view>
   <view class="list">
     <view class="item" wx:for="{{ resultList }}" wx:key="item">
       <view class="{{isUg?'n-ug':'n-zh'}}">

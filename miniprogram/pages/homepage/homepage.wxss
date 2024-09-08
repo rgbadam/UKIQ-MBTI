@@ -1,33 +1,74 @@
 .home-box {
   height: 100%;
   background-color: #fff;
-  padding: 10px;
+  padding: 20rpx;
   border-radius: 10px;
 }
 
-.title {
+.fontText .title {
   text-align: center;
   color: blueviolet;
   font-weight: bold;
 }
 
-.t-ug {
+.fontText .t-ug {
   font-size: 36px;
   font-family: 'Shirkhan Asman';
 }
 
-.t-zh {
-  font-size: 23px;
-  font-family: 'Lucida Grande';
+.fontText .t-zh {
+  font-size: 34px;
+  line-height: 63px;
+  font-family: '浪漫情书体';
 }
 
-.sub-title {
+.fontText .sub-title {
   text-align: center;
-  margin: 10px 0 70px;
-  font-size: 17px;
+  margin: 10px 0 135rpx;
   color: blueviolet;
   opacity: 0.8;
+}
+
+.fontText .s-ug {
+  font-size: 17px;
   font-family: 'Alpsoft-Qolyazma5';
+}
+
+.fontText .s-zh {
+  font-size: 17px;
+  font-family: '温暖童稚体';
+}
+
+.fontPic .title {
+  display: block;
+  margin: 0 auto;
+}
+
+.fontPic .t-ug {
+  margin-bottom: 14px;
+  width: 240px;
+  height: 42px;
+}
+
+.fontPic .t-zh {
+  width: 230px;
+  height: 42px;
+}
+
+.fontPic .sub-title {
+  opacity: 0.8;
+  display: block;
+  margin: 10px auto 135rpx;
+}
+
+.fontPic .s-ug {
+  width: 290px;
+  height: 22px;
+}
+
+.fontPic .s-zh {
+  width: 220px;
+  height: 26px;
 }
 
 .tool-bar {

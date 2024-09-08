@@ -7,6 +7,14 @@ Page({
     this.initStyle()
   },
 
+  onReady() {
+    if(wx.getStorageSync('failFont')) {
+      this.setData({ failFont: true })
+    } else {
+      this.setData({ failFont: false })
+    }
+  },
+
   initStyle() {
     if (wx.getStorageSync('languageType') == 0) {
       this.setData({ isUg: true })

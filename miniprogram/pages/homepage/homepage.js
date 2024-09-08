@@ -2,19 +2,28 @@ var languageUtil = require('../../utils/languageUtil.js')
 
 Page({
   data: {
+    isUg: true,
     done: false,
+    failFont: false,
+    pageContent: {},
     currentIndex: 0,
     selectIndex: -1,
     questionList: [],
     selectAnswerList: [],
     lastSelectValue: null,
-    pageContent: {},
-    isUg: true
   },
 
   onShow() {
     this.initLanguage()
     this.initStyle()
+  },
+  
+  onReady() {
+    if(wx.getStorageSync('failFont')) {
+      this.setData({ failFont: true })
+    } else {
+      this.setData({ failFont: false })
+    }
   },
 
   switchLanguage() {

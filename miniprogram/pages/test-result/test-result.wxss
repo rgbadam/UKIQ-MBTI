@@ -25,7 +25,9 @@
 
 .t-zh {
   direction: ltr;
-  font-size: 18px;
+  font-size: 24px;
+  margin-bottom: 30px;
+  font-family: '酷乐潮玩体';
 }
 
 .info {

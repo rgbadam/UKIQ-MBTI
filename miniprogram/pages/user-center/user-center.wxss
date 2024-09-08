@@ -19,7 +19,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  translate: 0 -30px;
+  translate: 0 -58rpx;
 }
 
 .avatar {
@@ -38,8 +38,9 @@
 }
 
 .t-zh {
-  font-size: 20px;
-  font-family: '黑体';
+  font-size: 22px;
+  margin-bottom: 5px;
+  font-family: '创粗圆';
 }
 
 .mbti {
@@ -53,7 +54,7 @@
   padding: 0 40rpx;
   display: flex;
   flex-direction: column;
-  gap: 10rpx;
+  /* gap: 10rpx; */
 }
 
 .setting_item {
@@ -71,8 +72,8 @@
 }
 
 .setting_icon {
-  width: 40rpx;
-  height: 40rpx;
+  width: 20px;
+  height: 20px;
 }
 
 .setting_text {
@@ -80,17 +81,17 @@
 }
 
 .arrow_icon {
-  width: 30rpx;
-  height: 30rpx;
+  width: 15px;
+  height: 15px;
 }
 
 .contact-button {
   box-sizing: border-box;
-  padding-left: 0rpx;
+  padding-left: 0px;
   width: 400rpx;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.9);
-  line-height: 56rpx;
+  line-height: 29px;
   text-align: left;
 }
 
@@ -99,11 +100,11 @@
 }
 
 .ug {
-  font-size: 33rpx;
+  font-size: 17px;
   font-family: 'Alpsoft Qara';
 }
 
 .zh {
-  font-size: 31rpx;
+  font-size: 16px;
   font-family: '黑体';
 }
