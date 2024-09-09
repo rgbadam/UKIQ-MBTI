@@ -64,6 +64,7 @@
 
 .n-zh {
   font-size: 19px;
+  font-weight: bold;
   margin: 10px 0 20px;
   text-align: center;
   color: blueviolet;

@@ -52,6 +52,20 @@ image {
   width: 100%;
 }
 
+.share {
+  color: #666;
+  margin: 20px 0;
+  font-size: 14px;
+  font-family: '黑体';
+}
+
+.share-ug {
+  color: #666;
+  margin: 20px 0;
+  font-size: 15px;
+  font-family: 'Alpsoft Qara';
+}
+
 .ug {
   font-size: 18px;
   direction: rtl;

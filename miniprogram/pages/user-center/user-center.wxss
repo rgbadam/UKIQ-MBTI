@@ -88,7 +88,7 @@
 .contact-button {
   box-sizing: border-box;
   padding-left: 0px;
-  width: 400rpx;
+  width: 580rpx;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.9);
   line-height: 29px;
@@ -97,6 +97,15 @@
 
 .button-hover {
   background-color: transparent;
+}
+
+.butt {
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 1px;
+  position: relative;
+  bottom: 50px;
+  color: #ddd;
 }
 
 .ug {

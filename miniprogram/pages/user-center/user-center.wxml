@@ -9,6 +9,13 @@
       <view class="mbti" bind:tap="myTypeClick">{{mbti}}</view>
     </view>
     <view class="settings">
+      <view class="setting_item" bind:tap="aboutMbti">
+        <view class="left">
+          <image class="setting_icon" src="../../images/icons/setting.svg" />
+          <view class="setting_text {{isUg?'ug':'zh'}}">{{ pageContent.aboutUs }}</view>
+        </view>
+        <image class="arrow_icon" src="../../images/arrow.svg" />
+      </view>
       <view class="setting_item" bind:tap="FAQ">
         <view class="left">
           <image class="setting_icon" src="../../images/icons/question.svg" />
@@ -16,10 +23,10 @@
         </view>
         <image class="arrow_icon" src="../../images/arrow.svg" />
       </view>
-      <view class="setting_item" bind:tap="aboutMbti">
+      <view class="setting_item">
         <view class="left">
-          <image class="setting_icon" src="../../images/icons/setting.svg" />
-          <view class="setting_text {{isUg?'ug':'zh'}}">{{ pageContent.aboutUs }}</view>
+          <image class="setting_icon" src="../../images/icons/share.svg" />
+          <button open-type="share" class="contact-button {{isUg?'ug':'zh'}}">{{ pageContent.share }}</button>
         </view>
         <image class="arrow_icon" src="../../images/arrow.svg" />
       </view>
@@ -32,4 +39,5 @@
       </view>
     </view>
   </view>
+  <view class="butt">PopOut · MBTI</view>
 </view>

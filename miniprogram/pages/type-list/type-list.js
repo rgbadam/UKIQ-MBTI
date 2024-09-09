@@ -37,12 +37,10 @@ Page({
     }
   },
 
-  onShareAppMessage(){
-    if(this.data.isUg) return { title: 'MBTI خارەكتىر سىنىقى' }
-    return { title: 'MBTI人格测试' }
+  onShareAppMessage() {
+    return { title: this.data.isUg ? "MBTI · خارەكتىر سىنىقى" : "MBTI · 人格测试" }
   },
-  onShareTimeline(){
-    if(this.data.isUg) return { title: 'MBTI - ئۆز خارەكتىرىنى چۈشىنىش' }
-    return { title: 'MBTI人格 - 终于被理解的感觉真好' }
+  onShareTimeline() {
+    return { title: this.data.isUg ? "MBTI - ئۆز خارەكتىرىنى چۈشىنىش" : "MBTI人格 - 终于被理解的感觉真好" }
   }
 })

@@ -17,7 +17,7 @@ const results = [
 
 const pageTexts = {
   homepage: {
-    navBarTitle: "MBTI人格",
+    navBarTitle: "MBTI",
     tabBarTitle: "首页",
     homeTitle: "MBTI人格测试",
     homeTitlePic: '../../images/fontPic/homeTitle-zh.png',
@@ -34,7 +34,8 @@ const pageTexts = {
     career: "适合职业",
     advantage: "优点",
     disadvantage: "缺点",
-    relationship: "友情和爱情"
+    relationship: "友情和爱情",
+    shareText: "🔮 分享好友也来测测～"
   },
   typeList: {
     navBarTitle: "人格简介",
@@ -52,8 +53,9 @@ const pageTexts = {
     tabBarTitle: "我的",
     notTested: "还未测试你的MBTI人格",
     tested: "你的MBTI人格",
-    faq: "常见问题",
     aboutUs: "了解MBTI",
+    faq: "常见问题",
+    share: "分享好友",
     contactUs: "联系我们"
   }
 }

@@ -24,12 +24,18 @@ Page({
     }
   },
 
-  onShareAppMessage(){
-    if(this.data.isUg) return { title: 'MBTI خارەكتىر سىنىقى' }
-    return { title: 'MBTI人格测试' }
+  onShareAppMessage() {
+    return {
+      title: this.data.isUg ? "MBTI · خارەكتىر سىنىقى" : "MBTI · 人格测试",
+      path: "/pages/homepage/homepage",
+      imageUrl: "https://6a6f-joyments-6gxawsnwcfc1bdbc-1325589715.tcb.qcloud.la/PopOut/MBTI/logo.jpg"
+    }
   },
-  onShareTimeline(){
-    if(this.data.isUg) return { title: 'MBTI - ئۆز خارەكتىرىنى چۈشىنىش' }
-    return { title: 'MBTI人格 - 终于被理解的感觉真好' }
+  onShareTimeline() {
+    return {
+      title: this.data.isUg ? "MBTI - ئۆز خارەكتىرىنى چۈشىنىش" : "MBTI人格 - 终于被理解的感觉真好",
+      path: "/pages/homepage/homepage",
+      imageUrl: "https://6a6f-joyments-6gxawsnwcfc1bdbc-1325589715.tcb.qcloud.la/PopOut/MBTI/logo.jpg"
+    }
   }
 })

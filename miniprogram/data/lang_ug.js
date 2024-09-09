@@ -17,7 +17,7 @@ const results = [
 
 const pageTexts = {
   homepage: {
-    navBarTitle: "خارەكتىر MBTI",
+    navBarTitle: "MBTI",
     tabBarTitle: "باشبەت",
     homeTitle: "MBTI خارەكتىر سىنىقى ",
     homeTitlePic: '../../images/fontPic/homeTitle-ug.png',
@@ -34,7 +34,8 @@ const pageTexts = {
     career: "خىزمەت تەۋسىيەسى",
     advantage: "ئارتۇقچىلىق",
     disadvantage: "ئاجىزلىق",
-    relationship: "مۇھەببەت ۋە دوستلۇق"
+    relationship: "مۇھەببەت ۋە دوستلۇق",
+    shareText: "دوستۇممۇ سىناپ باقسۇنچۇ 🔮"
   },
   typeList: {
     navBarTitle: "خارەكتىرلەر",
@@ -52,9 +53,10 @@ const pageTexts = {
     tabBarTitle: "كەمىنە",
     notTested: "تېخى خارەكتىرىڭىزنى سىناپ كۆرمەپسىز",
     tested: "سىزنىڭ خارەكتىر تىپىڭىز",
-    faq: "دائىمىي سۇئاللار",
     aboutUs: "ھەققىدە MBTI",
-    contactUs: "تەكلىپ پىكىر"
+    faq: "دائىمىي سۇئاللار",
+    share: "ھەمبەھرلەش",
+    contactUs: "تەكلىپ-پىكىر"
   }
 }
 

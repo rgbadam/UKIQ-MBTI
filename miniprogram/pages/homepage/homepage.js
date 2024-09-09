@@ -16,11 +16,10 @@ Page({
   onShow() {
     this.initLanguage()
     this.initStyle()
-    this.xxx()
+    this.loadFont()
   },
   
-  xxx() {
-    console.log('loadFont', wx.getStorageSync('loadFont'));
+  loadFont() {
     if(wx.getStorageSync('loadFont')) {
       this.setData({ loadFont: true })
     } else {
@@ -63,9 +62,9 @@ Page({
         this.data.selectAnswerList.push(value);
         this.setData({ selectAnswerList: this.data.selectAnswerList })
         this.setData({ selectIndex: -1 })
-        this.data.currentIndex++;
         this.setData({ currentIndex: this.data.currentIndex })
       }, 500)
+      this.data.currentIndex++;
     }
   },
 
@@ -106,11 +105,11 @@ Page({
     })
   },
 
-  onShareAppMessage(){
-    if(this.data.isUg) return { title: 'MBTI خارەكتىر سىنىقى' }
-    return { title: 'MBTI人格测试' }
+  onShareAppMessage() {
+    if(this.data.isUg) return { title: 'MBTI · خارەكتىر سىنىقى' }
+    return { title: 'MBTI · 人格测试' }
   },
-  onShareTimeline(){
+  onShareTimeline() {
     if(this.data.isUg) return { title: 'MBTI - ئۆز خارەكتىرىنى چۈشىنىش' }
     return { title: 'MBTI人格 - 终于被理解的感觉真好' }
   }

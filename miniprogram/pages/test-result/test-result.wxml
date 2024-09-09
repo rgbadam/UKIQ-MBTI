@@ -7,5 +7,6 @@
     <view class="info {{isUg?'ug':'zh'}}"><span class="bold">{{ pageContent.disadvantage }}:\t</span>{{ currentData.disadvantage }}</view>
     <view class="info {{isUg?'ug':'zh'}}"><span class="bold">{{ pageContent.relationship }}:\t</span>{{ currentData.friendship }}</view>
   </view>
-  <view class="pics" wx:if="{{picUrl}}"><image src="{{ picUrl }}" mode=""/></view>
+  <view class="pics"><image src="{{ picUrl }}" /></view>
+  <button class="{{isUg?'share-ug':'share'}}" open-type="share">{{ pageContent.shareText }}</button>
 </view>
