@@ -9,33 +9,46 @@
       <view class="mbti" bind:tap="myTypeClick">{{mbti}}</view>
     </view>
     <view class="settings">
-      <view class="setting_item" bind:tap="aboutMbti">
-        <view class="left">
-          <image class="setting_icon" src="../../images/icons/setting.svg" />
-          <view class="setting_text {{isUg?'ug':'zh'}}">{{ pageContent.aboutUs }}</view>
+      <view class="settings_group">
+        <view class="setting_item" bind:tap="aboutMbti">
+          <view class="left">
+            <view class="icon_wrapper purple">
+              <image class="setting_icon" src="../../images/icons/setting.svg" />
+            </view>
+            <view class="setting_text {{isUg?'ug':'zh'}}">{{ pageContent.aboutUs }}</view>
+          </view>
+          <image class="arrow_icon" src="../../images/arrow.svg" />
         </view>
-        <image class="arrow_icon" src="../../images/arrow.svg" />
-      </view>
-      <view class="setting_item" bind:tap="FAQ">
-        <view class="left">
-          <image class="setting_icon" src="../../images/icons/question.svg" />
-          <view class="setting_text {{isUg?'ug':'zh'}}">{{ pageContent.faq }}</view>
+        
+        <view class="setting_item" bind:tap="FAQ">
+          <view class="left">
+            <view class="icon_wrapper blue">
+              <image class="setting_icon" src="../../images/icons/question.svg" />
+            </view>
+            <view class="setting_text {{isUg?'ug':'zh'}}">{{ pageContent.faq }}</view>
+          </view>
+          <image class="arrow_icon" src="../../images/arrow.svg" />
         </view>
-        <image class="arrow_icon" src="../../images/arrow.svg" />
-      </view>
-      <view class="setting_item">
-        <view class="left">
-          <image class="setting_icon" src="../../images/icons/share.svg" />
-          <button open-type="share" class="contact-button {{isUg?'ug':'zh'}}">{{ pageContent.share }}</button>
+
+        <view class="setting_item">
+          <view class="left">
+            <view class="icon_wrapper green">
+              <image class="setting_icon" src="../../images/icons/share.svg" />
+            </view>
+            <button open-type="share" class="contact-button {{isUg?'ug':'zh'}}">{{ pageContent.share }}</button>
+          </view>
+          <image class="arrow_icon" src="../../images/arrow.svg" />
         </view>
-        <image class="arrow_icon" src="../../images/arrow.svg" />
-      </view>
-      <view class="setting_item">
-        <view class="left">
-          <image class="setting_icon" src="../../images/icons/customer-service.svg" />
-          <button open-type="contact" class="contact-button {{isUg?'ug':'zh'}}">{{ pageContent.contactUs }}</button>
-        </view>
-        <image class="arrow_icon" src="../../images/arrow.svg" />
+
+        <navigator target="miniProgram" app-id="wx3f59cbafe3b37dcd" class="setting_item">
+          <view class="left">
+            <view class="icon_wrapper pink">
+              <image class="setting_icon" src="../../images/icons/link.svg" />
+            </view>
+            <view class="setting_text {{isUg?'ug':'zh'}}">{{ pageContent.jumpApp }}</view>
+          </view>
+          <image class="arrow_icon" src="../../images/arrow.svg" />
+        </navigator>
       </view>
     </view>
   </view>

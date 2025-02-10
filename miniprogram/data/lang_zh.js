@@ -25,7 +25,7 @@ const pageTexts = {
     subTitlePic: '../../images/fontPic/subTitle-zh.png',
     total: "共",
     quests: "题",
-    langSwitch: "ئۇ/中",
+    langSwitch: "ئۇ",
     submit: "提交"
   },
   testResult: {
@@ -56,7 +56,7 @@ const pageTexts = {
     aboutUs: "了解MBTI",
     faq: "常见问题",
     share: "分享好友",
-    contactUs: "联系我们"
+    jumpApp: "更多好玩"
   }
 }
 

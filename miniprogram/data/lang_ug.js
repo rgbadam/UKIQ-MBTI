@@ -25,7 +25,7 @@ const pageTexts = {
     subTitlePic: '../../images/fontPic/subTitle-ug.png',
     total: "جەمئىي",
     quests: "سۇئال",
-    langSwitch: "中/ئۇ",
+    langSwitch: "中",
     submit: "تامام"
   },
   testResult: {
@@ -56,7 +56,7 @@ const pageTexts = {
     aboutUs: "ھەققىدە MBTI",
     faq: "دائىمىي سۇئاللار",
     share: "ھەمبەھرلەش",
-    contactUs: "تەكلىپ-پىكىر"
+    jumpApp: "ئىلھام بۇلىقى"
   }
 }
 

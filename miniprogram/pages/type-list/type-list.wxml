@@ -1,4 +1,27 @@
 <view class="ui-box {{isUg?'ug':'zh'}}">
+  <view class="selector-wrapper">
+    <view class="type-selector">
+      <view class="selector-group">
+        <view class="letter-group">
+          <view class="letter {{eiType === 'E' ? 'active' : ''}}" bindtap="selectEI" data-type="E">E</view>
+          <view class="letter {{eiType === 'I' ? 'active' : ''}}" bindtap="selectEI" data-type="I">I</view>
+        </view>
+        <view class="letter-group">
+          <view class="letter {{snType === 'S' ? 'active' : ''}}" bindtap="selectSN" data-type="S">S</view>
+          <view class="letter {{snType === 'N' ? 'active' : ''}}" bindtap="selectSN" data-type="N">N</view>
+        </view>
+        <view class="letter-group">
+          <view class="letter {{tfType === 'T' ? 'active' : ''}}" bindtap="selectTF" data-type="T">T</view>
+          <view class="letter {{tfType === 'F' ? 'active' : ''}}" bindtap="selectTF" data-type="F">F</view>
+        </view>
+        <view class="letter-group">
+          <view class="letter {{jpType === 'J' ? 'active' : ''}}" bindtap="selectJP" data-type="J">J</view>
+          <view class="letter {{jpType === 'P' ? 'active' : ''}}" bindtap="selectJP" data-type="P">P</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
   <view class="fontText" wx:if="{{loadFont}}">
     <view class="{{isUg?'t-ug':'t-zh'}}">{{ pageContent.title }}</view>
   </view>
