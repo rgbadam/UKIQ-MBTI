@@ -1,0 +1,66 @@
+<view class="container">
+  <!-- Loading State -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">يۈكلىنىۋاتىدۇ...</text>
+  </view>
+
+  <block wx:else>
+    <!-- Header -->
+    <view class="header favorites-header">
+      <view class="header-title">
+        <text class="title-text">ساقلىۋالغانلىرىم</text>
+        <text class="subtitle-text">جەمئىي {{favoriteNames.length}} ئىسىم</text>
+      </view>
+      <view class="header-actions" wx:if="{{favoriteNames.length > 0}}">
+        <view class="action-button" bindtap="toggleSortOrder">
+          <text class="action-icon">{{sortOrder === 'time' ? '⌚' : 'ئا'}}</text>
+          <text class="action-text">{{sortOrder === 'time' ? 'ۋاقىت بويىچە' : 'ئېلىپبە بويىچە'}}</text>
+        </view>
+        <view class="action-button" bindtap="toggleGenderFilter">
+          <text class="action-icon">{{genderFilter === 'all' ? '👥' : (genderFilter === 'male' ? '♂' : '♀')}}</text>
+          <text class="action-text">{{genderFilter === 'all' ? 'بارلىق' : (genderFilter === 'male' ? 'ئوغۇل' : 'قىز')}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Names Section -->
+    <view class="names-container">
+      <view class="name-card" 
+            wx:for="{{displayNames}}" 
+            wx:key="_id"
+            bindtap="navigateToDetail"
+            data-id="{{item._id}}">
+        <view class="name-content">
+          <view class="avatar-container {{gender}}-avatar">
+            <image class="avatar" src="/images/illust/{{gender}}.png" mode="aspectFit" />
+          </view>
+          <view class="name-details">
+            <view class="name-title">{{item.nameUyghur}}</view>
+            <view class="name-subtitle">{{item.nameLatin}} {{item.nameChinese}}</view>
+          </view>
+          <view class="dot-menu">
+            <view class="dot"></view>
+            <view class="dot"></view>
+            <view class="dot"></view>
+          </view>
+        </view>
+        <view class="name-options">
+          <text class="name-meaning">{{item.meaning}}</text>
+          <text class="save-time">{{item.saveTimeText}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- No Favorites Message -->
+    <view class="no-favorites" wx:if="{{favoriteNames.length === 0}}">
+      <view class="no-favorites-icon">❤️</view>
+      <text class="no-favorites-title">ھازىرچە ھېچقانداق ئىسىم ساقلانمىدى</text>
+      <text class="no-favorites-text">ئىسىملەرنى ساقلاش ئۈچۈن يۈرەك بەلگىسىنى بېسىڭ</text>
+      <view class="start-button" bindtap="navigateToSearch">
+        <text class="button-text">ئىسىم ئىزدەش</text>
+        <text class="button-icon">→</text>
+      </view>
+    </view>
+  </block>
+</view> 

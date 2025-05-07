@@ -1,0 +1,287 @@
+/* pages/names/favorites/favorites.wxss */
+@import "../common-css.wxss";
+
+.container {
+  padding: 0;
+  font-family: 'alpsoft tuz';
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  display: flex;
+  direction: ltr;
+  flex-direction: column;
+}
+
+/* Loading State */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 20rpx;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 6rpx solid #f3f3f3;
+  border-top: 6rpx solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Header */
+.header {
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  position: relative;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  border-radius: 0 0 40rpx 40rpx;
+  box-shadow: 0 15rpx 30rpx rgba(231, 76, 60, 0.2);
+  padding-top: calc(env(safe-area-inset-top));
+  /* For development only */
+  /* padding: 100rpx 0 0; */
+}
+
+.header-title {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 30rpx;
+}
+
+.title-text {
+  color: #fff;
+  font-size: 35rpx;
+  display: block;
+  padding: 15rpx 0;
+  text-align: center;
+  letter-spacing: 1rpx;
+  font-family: "Shirkhan Egme";
+  background: linear-gradient(to right, #ffffff, #e0e6ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+.subtitle-text {
+  font-size: 28rpx;
+  opacity: 0.9;
+}
+
+.header-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 12rpx 20rpx;
+  border-radius: 30rpx;
+  transition: all 0.3s ease;
+}
+
+.action-button:active {
+  transform: scale(0.95);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.action-icon {
+  font-size: 28rpx;
+}
+
+.action-text {
+  font-size: 24rpx;
+}
+
+
+/* No Favorites */
+.no-favorites {
+  padding: 100rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.no-favorites-icon {
+  font-size: 80rpx;
+  margin-bottom: 30rpx;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.no-favorites-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15rpx;
+}
+
+.no-favorites-text {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 40rpx;
+}
+
+.start-button {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  padding: 20rpx 40rpx;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+  color: #fff;
+  box-shadow: 0 4rpx 15rpx rgba(231, 76, 60, 0.3);
+  transition: all 0.3s ease;
+}
+
+.start-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2rpx 8rpx rgba(231, 76, 60, 0.2);
+}
+
+.button-text {
+  font-size: 28rpx;
+}
+
+.button-icon {
+  font-size: 28rpx;
+} 
+
+/* Names Container - New Style */
+.names-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 50rpx;
+  margin-top: calc(env(safe-area-inset-top) + 120rpx);
+  position: relative;   
+  z-index: 1;
+}
+
+.name-card {
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx 30rpx;
+  background-color: white;
+  border-radius: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.name-card:active {
+  transform: scale(0.98);
+}
+
+.name-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.avatar-container {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 25rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.male-avatar {
+  background-color: #E1EEFF;
+}
+
+.female-avatar {
+  background-color: #FFF0F7;
+}
+
+.avatar {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.name-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.name-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  color: #333;
+  font-family: "Shirkhan Egme";
+}
+
+.name-subtitle {
+  font-size: 28rpx;
+  color: #777;
+  font-family: sans-serif, Arial, Helvetica, '黑体';
+}
+
+.name-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6rpx;
+  height: 100%;
+}
+
+.name-meaning {
+  font-size: 28rpx;
+  color: #777;
+}
+
+.save-time {
+  font-size: 28rpx;
+  color: #777;
+}
+
+.dot-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6rpx;
+  height: 100%;
+}
+
+.dot {
+  width: 8rpx;
+  height: 8rpx;
+  background-color: #999;
+  border-radius: 50%;
+}

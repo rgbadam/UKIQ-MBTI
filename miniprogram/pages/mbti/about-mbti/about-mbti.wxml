@@ -1,0 +1,54 @@
+<view class="about-mbti">
+  <view class="zh" wx:if="{{!isUg}}">
+    <view class="fontText" wx:if="{{loadFont}}">
+      <view class="about">关于MBTI</view>
+    </view>
+    <view class="fontPic" wx:if="{{!loadFont}}">
+      <image class="about" src="../../../images/fontPic/about-zh.png" />
+    </view>
+    <view class="title">MBTI是一种广泛使用的人格类型指标。MBTI将人格分为16种类型，这些类型由四个维度的组合构成。</view>
+    <view class="info">这四个维度分别是：</view>
+    <view class="type-name">Ⅰ. 能量来源</view>
+    <view class="type-desc">外向(Extraversion) vs 内向(Introversion)</view>
+    <view class="content">外向型从外部世界和他人互动中获得能量，而内向型则通过独处和内在思考来恢复能量。</view>
+    <view class="type-name">Ⅱ. 信息获取</view>
+    <view class="type-desc">感觉(Sensing) vs 直觉(iNtuition)</view>
+    <view class="content">感觉型倾向于关注具体的、现实的细节，而直觉型则更注重抽象概念和未来可能性。</view>
+    <view class="type-name">Ⅲ. 决策方式</view>
+    <view class="type-desc">思考(Thinking) vs 感受(Feeling)</view>
+    <view class="content">思考型倾向于基于逻辑和客观分析做决定，而感受型则更多地考虑个人价值观和他人感受。</view>
+    <view class="type-name">Ⅳ. 生活方式</view>
+    <view class="type-desc">判断(Judging) vs 知觉(Perceiving)</view>
+    <view class="content">判断型喜欢计划和结构，而知觉型则更喜欢灵活性和保持选择的开放性。</view>
+    <view class="info">每个人在这四个维度上都有自己的偏好，这些偏好的组合形成了16种不同的人格类型，每种类型都用四个字母来表示。</view>
+    <view class="info">需要注意的是，MBTI虽然广泛使用，但也受到一些批评，如缺乏科学严谨性等。它应该被视为了解自己和他人的一种工具，而不是绝对的分类。</view>
+    <view class="reminder">Tips: 每题考虑的时间建议不要超过10秒钟</view>
+  </view>
+  <view class="ug" wx:if="{{isUg}}">
+    <view class="fontText" wx:if="{{loadFont}}">
+      <view class="about-ug">MBTI ھەققىدە</view>
+    </view>
+    <view class="fontPic" wx:if="{{!loadFont}}">
+      <image class="about-ug" src="../../../images/fontPic/about-ug.png" />
+    </view>
+    <view class="title"> MBTI بولسا كۆپ قوللىنىلىدىغان خارەكتىر كۆرسەتكۈچ. MBTI كۆرسەتكۈچى كىشىلەرنىڭ خارەكتىرىنى 16 خىل تىپقا بۆلىدۇ. بۇ تىپلار تۆت خىل ئۆلچەمنىڭ بىرىكمىسىدىن تەشكىل تاپقان.</view>
+    <view class="info">بۇ تۆت خىل ئۆلچەم تۆۋەندىكىچە:</view>
+    <view class="type-name-ug">Ⅰ. مەنبەيى قۇۋۋەت\t</view>
+    <view class="type-desc-ug">تاش مىجەز (Extraversion) ۋە ئىچ مىجەز (Introversion)</view>
+    <view class="content-ug">تاش مىجەزلەر تاشقى دۇنيا ۋە باشقىلار بىلەن ئالاقە قىلىشتىن ئېنېرگىيىگە ئېرىشىدۇ. ئىچ مىجەزلەر بولسا ئۆزىنىڭ ئىچكى دۇنياسىدىن ۋە تەپەككۇر قىلىشتىن قۇۋۋەت ئالىدۇ.</view>
+    <view class="type-name-ug">Ⅱ. مەنبەيى ئاڭلام\t</view>
+    <view class="type-desc-ug">تۇيغۇ (Sensing) ۋە سەزگۈ (iNtuition)</view>
+    <view class="content-ug">سەزگۈ تىپىدىكىلەر ھەقىقىي، ئەمەلىي ۋە كونكرېت ئىشلارغا ئەھمىيەت بېرىدۇ. تۇيغۇ تىپىدىكىلەر ئابستراكت چۈشەنچىلەر ۋە كەلگۈسىدىكى ئىمكانىيەتلەرگە بەكرەك ئەھمىيەت بېرىدۇ.</view>
+    <view class="type-name-ug">Ⅲ. تەرزى قارار\t</view>
+    <view class="type-desc-ug">چۈشىنىش (Thinking) ۋە ھېس قىلىش (Feeling)</view>
+    <view class="content-ug">چۈشىنىش تىپىدىكىلەر لوگىكا ۋە ئوبيېكتىپ ئانالىز ئاساسىدا قارار چىقىرىشقا مايىل. ھېس قىلىش تىپىدىكىلەر ئۆزىنىڭ ھېسسىياتىنى ۋە باشقىلارنىڭ ھېس-تۇيغۇلىرىنى كۆپرەك نەزەردە تۇتىدۇ.</view>
+    <view class="type-name-ug">Ⅳ. تەرزى ياشام\t</view>
+    <view class="type-desc-ug">كېسىم (Judging) ۋە ئىدراك (Perceiving)</view>
+    <view class="content-ug">كېسىمچان كىشىلەر ئىشلارنى پىلانلىق ئېلىپ مېڭىشقا ئامراق. ئىدراكىي كىشىلەر ئىشلارنى ئۆز يولىغا قويۇپ بېرىپ، ئەركىن قارار چىقىرىشقا ئامراق.</view>
+    <view class="info">ھەر كىشى بۇ تۆت ئۆلچەمدە پەرقلىنىشى مۇمكىن، بۇ پەرقلەر قوشۇلۇپ جەمئىي 16 خىل خارەكتىر تىپىنى تەشكىل قىلىدۇ، ھەر بىر خارەكتىر تىپى تۆت دانە لاتىن ھەرىپى بىلەن ئىپادىلىنىدۇ.</view>
+    <view class="info">شۇنىڭغا ئېتىبار بېرىش كېرەككى، MBTI كۆرسەتكۈچى گەرچە كەڭ قوللىنىلىۋاتقان بولسىمۇ، يەنىلا قىسمەن تەنقىدلەر مەۋجۇد، مەسىلەن ئىلمىي جەھەتتىكى پەخەسلىكى دېگەندەك. شۇڭا بۇ كۆرسەتكۈچنى مۇقەررەر خارەكتىر ئۆلچىگۈچ دەپ ئەمەس، بەلكى ئۆزىنى ۋە باشقىلارنى چۈشىنىشكە ئىشلىتىلىدىغان قورال دەپ بىلىش كېرەك.</view>
+    <view class="reminder-ug">Tips: ھەر بىر سۇئال ئۈچۈن ئىمكانقەدەر 10 سېكۇنىت تەۋسىيەدۇر</view>
+  </view>
+  <view class="pics"><image src="{{ picUrl }}" /></view>
+</view>
+

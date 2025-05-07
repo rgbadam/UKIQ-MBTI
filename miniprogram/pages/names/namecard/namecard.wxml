@@ -1,0 +1,47 @@
+<view class="container">
+  <!-- Custom Navigation Bar -->
+  <view class="custom-nav">
+    <view class="back-btn" bindtap="navigateBack">
+      <image class="back-icon" src="/images/icons/goback.svg" mode="aspectFit" />
+    </view>
+  </view>
+
+  <!-- Main Content Section -->
+  <view class="main-content">
+    <!-- Illustration Section -->
+    <view class="illustration-wrapper">
+      <image class="gender-illust" src="{{nameData.gender == 'male' ? '/images/illust/male.png' : '/images/illust/female.png'}}" mode="aspectFill"/>
+    </view>
+
+    <!-- Name Section -->
+    <view class="name-section">
+      <text class="name-uyghur">{{nameData.nameUyghur}}</text>
+      <view class="sub-names">
+        <text class="name-latin">{{nameData.nameLatin}}</text>
+        <text class="name-chinese">{{nameData.nameChinese}}</text>
+      </view>
+    </view>
+
+    <!-- Description Section -->
+    <view class="description-section">
+      <view class="meaning-card">
+        <text class="description-text">{{nameData.description}}</text>
+      </view>
+    </view>
+
+    <!-- Actions Section -->
+    <view class="actions-section">
+      <view class="action-group">
+        <view class="action-btn" bindtap="toggleFavorite">
+          <image class="action-icon" src="{{isFavorite ? '/images/icons/liked.svg' : '/images/icons/like.svg'}}" mode="aspectFit" />
+        </view>
+        <view class="action-btn copy" bindtap="copyName">
+          <image class="action-icon" src="/images/icons/copy.svg" mode="aspectFit" />
+        </view>
+        <view class="action-btn share" bindtap="shareName">
+          <image class="action-icon" src="/images/icons/share-r.svg" mode="aspectFit" />
+        </view>
+      </view>
+    </view>
+  </view>
+</view> 

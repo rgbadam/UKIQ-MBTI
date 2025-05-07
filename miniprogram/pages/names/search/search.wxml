@@ -1,0 +1,67 @@
+<view class="container">
+  <!-- Navbar Section -->
+  <view class="navbar {{isFocused ? 'navbar-move' : ''}}">
+    <view class="back-btn" bindtap="navigateBack">
+      <image class="back-icon" src="/images/icons/goback-s.svg" mode="aspectFit" />
+    </view>
+    <view class="nav-title {{isFocused ? 'nav-title-show' : ''}}">ئىسىم ئىزدەش</view>
+    <view style="width: 90rpx;"></view>
+  </view>
+
+  <!-- Search Bar Section -->
+  <view class="search-section">
+    <view class="search-title {{isFocused ? 'title-hide' : ''}}">ئۇيغۇرچە ياكى خەنزۇچە ياكى لاتىنچە</view>
+    <view class="search-bar {{isFocused ? 'focused' : ''}}">
+      <!-- Clear Icon (Left) -->
+      <view class="icon-container clear-container">
+        <image class="clear-icon {{!searchText ? 'hide' : ''}}" src="/images/icons/clear.svg" mode="aspectFit" bindtap="clearSearch"></image>
+      </view>
+      
+      <!-- Input (Middle) -->
+      <input 
+        class="search-input"
+        bindfocus="onSearchFocus"
+        bindblur="onSearchBlur"
+        bindinput="onSearchInput"
+        value="{{searchText}}"
+      />
+
+      <!-- Search Icon (Right) -->
+      <view class="icon-container search-container">
+        <image class="search-icon" src="/images/icons/search.svg" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- Results Section -->
+  <view class="results-container {{isFocused ? 'results-move' : ''}}">
+    <!-- Loading indicator -->
+    <view class="loading-container" wx:if="{{loading}}">
+      <view class="spinner"></view>
+    </view>
+
+    <!-- Names Section -->
+    <view class="names-container" wx:if="{{!loading}}">
+      <view class="name-card" 
+            wx:for="{{displayNames}}" 
+            wx:key="_id"
+            bindtap="navigateToDetail"
+            data-id="{{item._id}}">
+        <view class="avatar-container {{item.gender}}-avatar">
+          <view class="avatar-letter">
+            {{item.nameUyghur[0] === 'ئ' ? item.nameUyghur[0] + item.nameUyghur[1] : item.nameUyghur[0]}}
+          </view>
+        </view>
+        <view class="name-details">
+          <view class="name-title">{{item.nameUyghur}}</view>
+          <view class="name-subtitle">{{item.nameLatin}} {{item.nameChinese}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- No Names Message -->
+    <view class="no-names" wx:if="{{displayNames.length === 0 && !loading}}">
+      <text>ھېچقانداق ئىسىم تېپىلمىدى</text>
+    </view>
+  </view>
+</view> 

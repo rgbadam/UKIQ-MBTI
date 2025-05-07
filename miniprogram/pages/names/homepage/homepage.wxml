@@ -1,0 +1,135 @@
+<view class="container">
+  <!-- Loading State -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <view class="spinner"></view>
+  </view>
+
+  <block wx:else>
+    <!-- Navbar Section -->
+    <view class="navbar">
+      <icon class="nav-search" type="search" size="16" color="#ffffff" bindtap="navigateToSearch" />
+      <view class="nav-title">ئىسىملار قامۇسى</view>
+      <view style="width: 100rpx;"></view>
+    </view>
+
+    <!-- Stacked Card Section -->
+    <view class="card-stack">
+      <!-- prevPrev卡片（最左边） -->
+      <view class="name-card-wrapper prev-prev-card" animation="{{animationPrevPrev}}">
+        <view class="name-card {{prevPrevCard.gender === 'male' ? 'male-card' : 'female-card'}}">
+          <view class="name-card-content">
+            <text class="name-text">{{prevPrevCard.nameUyghur || ''}}</text>
+            <text class="name-latin">{{prevPrevCard.nameLatin || ''}}</text>
+            <view class="meaning-container">
+              <text class="name-meaning">{{prevPrevCard.meaning || ''}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 上一个（左）-->
+      <view class="name-card-wrapper prev-card" animation="{{animationPrev}}">
+        <view class="name-card {{prevCard.gender === 'male' ? 'male-card' : 'female-card'}}">
+          <view class="name-card-content">
+            <text class="name-text">{{prevCard.nameUyghur || ''}}</text>
+            <text class="name-latin">{{prevCard.nameLatin || ''}}</text>
+            <view class="meaning-container">
+              <text class="name-meaning">{{prevCard.meaning || ''}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 当前卡片 -->
+      <view class="name-card-wrapper current-card"
+            bindtouchstart="handleTouchStart"
+            bindtouchmove="handleTouchMove"
+            bindtouchend="handleTouchEnd"
+            animation="{{animationCurrent}}">
+        
+        <view class="name-card {{currentCard.gender === 'male' ? 'male-card' : 'female-card'}}" bindtap="navigateToDetail" data-id="{{currentCard._id}}">
+          <view class="card-decoration"></view>
+          <view class="name-card-content">
+            <text class="name-text">{{currentCard.nameUyghur || ''}}</text>
+            <text class="name-latin">{{currentCard.nameLatin || ''}}</text>
+            <view class="meaning-container">
+              <text class="name-meaning">{{currentCard.meaning || ''}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 下一个（右）-->
+      <view class="name-card-wrapper next-card" animation="{{animationNext}}">
+        <view class="name-card {{nextCard.gender === 'male' ? 'male-card' : 'female-card'}}">
+          <view class="card-decoration"></view>
+          <view class="name-card-content">
+            <text class="name-text">{{nextCard.nameUyghur || ''}}</text>
+            <text class="name-latin">{{nextCard.nameLatin || ''}}</text>
+            <view class="meaning-container">
+              <text class="name-meaning">{{nextCard.meaning || ''}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- nextNext卡片（最右边） -->
+      <view class="name-card-wrapper next-next-card" animation="{{animationNextNext}}">
+        <view class="name-card {{nextNextCard.gender === 'male' ? 'male-card' : 'female-card'}}">
+          <view class="name-card-content">
+            <text class="name-text">{{nextNextCard.nameUyghur || ''}}</text>
+            <text class="name-latin">{{nextNextCard.nameLatin || ''}}</text>
+            <view class="meaning-container">
+              <text class="name-meaning">{{nextNextCard.meaning || ''}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Categories Section -->
+    <view class="categories-section">
+      <view class="categories-grid">
+        <view class="category-card male" bindtap="navigateToCategory" data-category="male">
+          <view class="card-inner">
+            <view class="card-decoration"></view>
+            <text class="category-icon">♂</text>
+            <text class="category-title">ئوغۇل</text>
+            <text class="category-description">ئوغۇل بالىلار ئىسىملىرى</text>
+            <view class="card-pattern"></view>
+          </view>
+        </view>
+        
+        <view class="category-card female" bindtap="navigateToCategory" data-category="female">
+          <view class="card-inner">
+            <view class="card-decoration"></view>
+            <text class="category-icon">♀</text>
+            <text class="category-title">قىز</text>
+            <text class="category-description">قىز بالىلار ئىسىملىرى</text>
+            <view class="card-pattern"></view>
+          </view>
+        </view>
+        
+        <view class="category-card alphabet" bindtap="navigateToCategory" data-category="alphabet">
+          <view class="card-inner">
+            <view class="card-decoration"></view>
+            <text class="category-icon">ئا</text>
+            <text class="category-title">ئېلىپبە</text>
+            <text class="category-description">ھەرپ بويىچە كۆرۈش</text>
+            <view class="card-pattern"></view>
+          </view>
+        </view>
+        
+        <view class="category-card favorite" bindtap="navigateToCategory" data-category="favorite">
+          <view class="card-inner">
+            <view class="card-decoration"></view>
+            <text class="category-icon">♥</text>
+            <text class="category-title">ساقلانمام</text>
+            <text class="category-description">سىز ساقلىغان ئىسىملار</text>
+            <view class="card-pattern"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,80 @@
+<view class="container {{gender}} {{theme === 'dark' ? 'dark' : ''}}">
+  <!-- Loading State -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <view class="spinner"></view>
+  </view>
+
+  <block wx:else>
+    <!-- Navbar Section -->
+    <view class="navbar {{gender}}-navbar {{theme === 'dark' ? 'dark' : ''}}">
+      <icon class="nav-search" type="search" size="16" color="{{theme === 'dark' ? '#e0e0e0' : '#424242'}}" bindtap="navigateToSearch" />
+      <view class="nav-title">{{gender === 'male' ? 'ئوغۇل بالا ئىسىملىرى' : 'قىز بالا ئىسىملىرى'}}</view>
+      <view style="width: 100rpx;"></view>
+    </view>
+
+    <!-- Function Area -->
+    <view class="fun-area">
+      <image class="bg-image" src="/images/illust/{{gender}}-bg.png" mode="aspectFill"/>
+      <view class="function-buttons">
+        <block wx:if="{{theme === 'light'}}">
+          <view class="function-btn theme-btn" bindtap="thmeFunc">
+            <image class="btn-icon" src="/images/icons/darkmode.svg" mode="aspectFit" />
+          </view>
+          <view class="function-btn language-btn" bindtap="langFunc">
+            <image class="btn-icon globe-{{cardLang}}" src="/images/icons/language.svg" mode="aspectFit" />
+          </view>
+          <view class="function-btn sort-btn" bindtap="sortFunc">
+            <image class="btn-icon" src="/images/icons/sort.svg" mode="aspectFit" />
+          </view>
+        </block>
+        <block wx:if="{{theme === 'dark'}}">
+          <view class="function-btn theme-btn" bindtap="thmeFunc">
+            <image class="btn-icon" src="/images/icons/lightmode.svg" mode="aspectFit" />
+          </view>
+          <view class="function-btn language-btn" bindtap="langFunc">
+            <image class="btn-icon globe-{{cardLang}}" src="/images/icons/language-d.svg" mode="aspectFit" />
+          </view>
+          <view class="function-btn sort-btn" bindtap="sortFunc">
+            <image class="btn-icon" src="/images/icons/sort-d.svg" mode="aspectFit" />
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- Names Section -->
+    <view class="names-container">
+      <view class="name-card" 
+            wx:for="{{names}}" 
+            wx:key="_id"
+            bindtap="navigateToDetail"
+            data-id="{{item._id}}">
+        <view class="avatar-container {{gender}}-avatar">
+          <text class="avatar-letter {{animating ? 'fadeSwitch' : ''}}">
+            <block wx:if="{{cardLang === 'uyghur'}}">{{item.nameUyghur[0] === 'ئ' ? item.nameUyghur[0] + item.nameUyghur[1] : item.nameUyghur[0]+ ''}}</block>
+            <block wx:if="{{cardLang === 'latin'}}">{{item.nameLatin[0]}}</block>
+            <block wx:if="{{cardLang === 'chinese'}}">{{item.nameChinese[0]}}</block>
+          </text>
+        </view>
+        <view class="name-details">
+          <block wx:if="{{cardLang === 'uyghur'}}">
+            <view class="name-title ug {{animating ? 'fadeSwitch' : ''}}">{{item.nameUyghur}}</view>
+            <view class="name-subtitle lc {{animating ? 'fadeSwitch' : ''}}">{{item.nameLatin}} {{item.nameChinese}}</view>
+          </block>
+          <block wx:if="{{cardLang === 'latin'}}">
+            <view class="name-title lt {{animating ? 'fadeSwitch' : ''}}">{{item.nameLatin}}</view>
+            <view class="name-subtitle cu {{animating ? 'fadeSwitch' : ''}}">{{item.nameChinese}} {{item.nameUyghur}}</view>
+          </block>
+          <block wx:if="{{cardLang === 'chinese'}}">
+            <view class="name-title ch {{animating ? 'fadeSwitch' : ''}}">{{item.nameChinese}}</view>
+            <view class="name-subtitle ul {{animating ? 'fadeSwitch' : ''}}">{{item.nameUyghur}} {{item.nameLatin}}</view>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <!-- Blank Section -->
+    <view class="no-names" wx:if="{{names.length === 0}}">
+      <text>ھېچقانداق ئىسىم تېپىلمىدى</text>
+    </view>
+  </block>
+</view> 

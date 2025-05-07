@@ -1,0 +1,34 @@
+<view class="container">
+  <view class="navbar">
+    <view class="back-btn" bindtap="navigateBack">
+      <image class="back-icon" src="/images/icons/goback-s.svg" mode="aspectFit" />
+    </view>
+    <view class="nav-title">ئېلىپبە بويىچە ئىزدەش</view>
+    <view style="width: 90rpx;"></view>
+  </view>
+
+  <view class="content-wrapper" bindtouchstart="touchStart" bindtouchmove="touchMove">
+    <view class="features {{featuresClass}}">
+      <view class="illust {{illustClass}}">
+        <view class="image-wrapper">
+          <image src="/images/illust/magiccube.png" mode="aspectFit"></image>
+          <view class="image-glow"></view>
+        </view>
+      </view>
+    </view>
+
+    <view class="alphabet-grid {{gridClass}}">
+      <view class="letter-card {{isFold ? cardClass : ''}} {{getLevelClass(letterCounts[letter])}}"
+            wx:for="{{alphabet}}" 
+            wx:for-item="letter" 
+            wx:key="*this"
+            bindtap="selectLetter"
+            data-letter="{{letter}}">
+        <view class="letter-content">
+          <text class="letter">{{letter}}</text>
+          <text class="count">{{letterCounts[letter] || 0}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
