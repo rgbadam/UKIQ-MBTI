@@ -194,7 +194,7 @@
 
 .c-fold {
   padding: 5rpx;
-  box-shadow: 0 8px 24px rgba(107, 70, 193, 0.18);
+  box-shadow: 0 8px 24px rgba(107, 70, 193, 0.1);
 }
 
 .letter-card:active {

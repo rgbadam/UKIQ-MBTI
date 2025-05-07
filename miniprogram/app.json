@@ -11,7 +11,8 @@
     "pages/names/alphabet/alphabet",
     "pages/names/filtered/filtered",
     "pages/names/favorites/favorites",
-    "pages/names/search/search"
+    "pages/names/search/search",
+    "pages/names/lettercard/lettercard"
   ],
   "window": {
     "backgroundColor": "#FFFFFF",

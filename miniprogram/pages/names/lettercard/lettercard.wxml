@@ -1,0 +1,54 @@
+<view class="lettercard">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="back-btn" bindtap="navigateBack">
+      <image class="back-icon" src="/images/icons/goback-s.svg" mode="aspectFit" />
+    </view>
+  </view>
+
+  <!-- 头像区 -->
+  <view class="letterbox-section">
+    <view class="circle-box">
+      <text class="letterbox-text">{{letter}}</text>
+    </view>
+    <view class="letterbox-desc">{{letter}} ھەرىپىدىن باشلىنىدىغان ئىسىملار</view>
+  </view>
+
+  <!-- 统计区 -->
+  <view class="stats-section">
+    <view class="stat-box">
+      <view class="stat-num">{{totalCount}}</view>
+      <view class="stat-label">بارلىق ئىسىملار</view>
+    </view>
+    <view class="stat-box">
+      <view class="stat-num">{{maleCount}}</view>
+      <view class="stat-label">ئوغۇل ئىسىم</view>
+    </view>
+    <view class="stat-box">
+      <view class="stat-num">{{femaleCount}}</view>
+      <view class="stat-label">قىز ئىسىم</view>
+    </view>
+  </view>
+
+  <!-- 名字列表区 -->
+  <view class="names-card">
+    <view class="names-container">
+      <view class="name-card" 
+            wx:for="{{names}}" 
+            wx:key="_id"
+            bindtap="navigateToDetail"
+            data-id="{{item._id}}">
+        <view class="avatar-container {{item.gender}}-avatar">
+          <view class="avatar-letter">{{item.nameUyghur[0] === 'ئ' ? item.nameUyghur[0] + item.nameUyghur[1] : item.nameUyghur[0]}}</view>
+        </view>
+        <view class="name-details">
+          <view class="name-title">{{item.nameUyghur}}</view>
+          <view class="name-subtitle">{{item.nameLatin}} {{item.nameChinese}}</view>
+        </view>
+      </view>
+      <view class="no-names" wx:if="{{names.length === 0 && !loading}}">
+        <text>بۇ ھەرپتىن باشلىنىدىغان ئىسىم يوق</text>
+      </view>
+    </view>
+  </view>
+</view>
