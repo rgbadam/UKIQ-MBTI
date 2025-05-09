@@ -1,4 +1,3 @@
-// pages/names/favorites/favorites.js
 const { mockAPI } = require('../../../utils/mockData');
 
 Page({
@@ -17,6 +16,13 @@ Page({
   onShow: function() {
     // Refresh favorites when user returns to this page
     this.loadFavorites();
+  },
+
+  // Add back button navigation
+  navigateBack: function() {
+    wx.navigateBack({
+      delta: 1
+    });
   },
 
   loadFavorites: function() {
@@ -99,7 +105,7 @@ Page({
     });
   },
 
-  removeFavorite: function(e) {
+  unfavorite: function(e) {
     const nameId = e.currentTarget.dataset.id;
     
     // Get current favorites

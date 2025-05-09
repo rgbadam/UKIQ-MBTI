@@ -52,7 +52,6 @@
   font-size: 35rpx;
   padding: 15rpx 0;
   text-align: center;
-  letter-spacing: 1rpx;
   font-family: "Shirkhan Egme";
   position: relative;
   text-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);

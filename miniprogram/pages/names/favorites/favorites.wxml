@@ -1,65 +1,79 @@
-<view class="container">
+<!-- Decorative Background Elements -->
+<view class="decorative-bg">
+  <view class="gradient-circle circle-1"></view>
+  <view class="gradient-circle circle-2"></view>
+  <view class="gradient-circle circle-3"></view>
+  <view class="gradient-wave"></view>
+</view>
+
+<view class="creative-bg"></view>
+
+<view class="favorites-page">
   <!-- Loading State -->
   <view class="loading-container" wx:if="{{loading}}">
-    <view class="loading-spinner"></view>
+    <view class="spinner"></view>
     <text class="loading-text">يۈكلىنىۋاتىدۇ...</text>
   </view>
 
   <block wx:else>
-    <!-- Header -->
-    <view class="header favorites-header">
-      <view class="header-title">
-        <text class="title-text">ساقلىۋالغانلىرىم</text>
-        <text class="subtitle-text">جەمئىي {{favoriteNames.length}} ئىسىم</text>
+    <!-- Navbar -->
+    <view class="navbar">
+      <view class="back-btn" bindtap="navigateBack">
+        <image class="back-icon" src="/images/icons/goback-s.svg" mode="aspectFit" />
       </view>
-      <view class="header-actions" wx:if="{{favoriteNames.length > 0}}">
-        <view class="action-button" bindtap="toggleSortOrder">
-          <text class="action-icon">{{sortOrder === 'time' ? '⌚' : 'ئا'}}</text>
-          <text class="action-text">{{sortOrder === 'time' ? 'ۋاقىت بويىچە' : 'ئېلىپبە بويىچە'}}</text>
+    </view>
+
+    <!-- Header Actions -->
+    <view class="header-actions">
+      <view class="stats-section">
+        <view class="stats-badge">
+          <view class="stats-number">{{favoriteNames.length}}</view>
+          <view class="stats-label">ساقلىۋالغان ئىسىم</view>
         </view>
-        <view class="action-button" bindtap="toggleGenderFilter">
-          <text class="action-icon">{{genderFilter === 'all' ? '👥' : (genderFilter === 'male' ? '♂' : '♀')}}</text>
-          <text class="action-text">{{genderFilter === 'all' ? 'بارلىق' : (genderFilter === 'male' ? 'ئوغۇل' : 'قىز')}}</text>
+      </view>
+      <view class="filters-section">
+        <view class="action-btn" bindtap="toggleSortOrder">
+          <image class="action-icon" src="{{sortOrder === 'time' ? '/images/icons/time-order.svg' : '/images/icons/alphabet-order.svg'}}" mode="aspectFit" />
+          <view class="action-text">{{sortOrder === 'time' ? 'ۋاقىت' : 'ئېلىپبە'}}</view>
+        </view>
+        <view class="action-btn" bindtap="toggleGenderFilter">
+          <image class="action-icon" src="{{genderFilter === 'all' ? '/images/icons/gender-both.svg' : (genderFilter === 'male' ? '/images/icons/gender-male.svg' : '/images/icons/gender-female.svg')}}" mode="aspectFit" />
+          <view class="action-text">{{genderFilter === 'all' ? 'بارلىق' : (genderFilter === 'male' ? 'ئوغۇل' : 'قىز')}}</view>
         </view>
       </view>
     </view>
 
-    <!-- Names Section -->
+    <!-- Names List -->
     <view class="names-container">
       <view class="name-card" 
             wx:for="{{displayNames}}" 
             wx:key="_id"
             bindtap="navigateToDetail"
             data-id="{{item._id}}">
-        <view class="name-content">
-          <view class="avatar-container {{gender}}-avatar">
-            <image class="avatar" src="/images/illust/{{gender}}.png" mode="aspectFit" />
-          </view>
-          <view class="name-details">
-            <view class="name-title">{{item.nameUyghur}}</view>
-            <view class="name-subtitle">{{item.nameLatin}} {{item.nameChinese}}</view>
-          </view>
-          <view class="dot-menu">
-            <view class="dot"></view>
-            <view class="dot"></view>
-            <view class="dot"></view>
-          </view>
+        <view class="avatar-container {{item.gender}}-avatar">
+          <text class="avatar-letter">{{item.nameUyghur[0] === 'ئ' ? item.nameUyghur[0] + item.nameUyghur[1] : item.nameUyghur[0]}}</text>
         </view>
-        <view class="name-options">
-          <text class="name-meaning">{{item.meaning}}</text>
-          <text class="save-time">{{item.saveTimeText}}</text>
+        <view class="name-details">
+          <view class="name-title">{{item.nameUyghur}}</view>
+          <view class="name-subtitle">{{item.nameLatin}} {{item.nameChinese}}</view>
+        </view>
+        <view class="name-actions">
+          <text class="save-time {{item.gender}}-time">{{item.saveTimeText}}</text>
+          <view class="unfavorite-btn" catchtap="unfavorite" data-id="{{item._id}}">
+            <image class="unfavorite-icon" src="/images/icons/unlike.svg" mode="aspectFit" />
+          </view>
         </view>
       </view>
     </view>
 
-    <!-- No Favorites Message -->
-    <view class="no-favorites" wx:if="{{favoriteNames.length === 0}}">
-      <view class="no-favorites-icon">❤️</view>
-      <text class="no-favorites-title">ھازىرچە ھېچقانداق ئىسىم ساقلانمىدى</text>
-      <text class="no-favorites-text">ئىسىملەرنى ساقلاش ئۈچۈن يۈرەك بەلگىسىنى بېسىڭ</text>
-      <view class="start-button" bindtap="navigateToSearch">
-        <text class="button-text">ئىسىم ئىزدەش</text>
-        <text class="button-icon">→</text>
+    <!-- Empty State -->
+    <view class="empty-state" wx:if="{{favoriteNames.length === 0}}">
+      <view class="empty-icon">❤️</view>
+      <text class="empty-title">ھازىرچە ھېچقانداق ئىسىم ساقلانمىدى</text>
+      <text class="empty-subtitle">ئىسىملەرنى ساقلاش ئۈچۈن يۈرەك بەلگىسىنى بېسىڭ</text>
+      <view class="search-btn" bindtap="navigateToSearch">
+        <text class="btn-text">ئىسىم ئىزدەش</text>
+        <text class="btn-arrow">→</text>
       </view>
     </view>
   </block>
