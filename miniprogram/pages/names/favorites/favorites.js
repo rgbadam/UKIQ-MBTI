@@ -5,8 +5,8 @@ Page({
     loading: true,
     favoriteNames: [],
     displayNames: [],
-    sortOrder: 'time', // 'time' or 'alphabet'
-    genderFilter: 'all' // 'all', 'male', or 'female'
+    sortOrder: 'time',
+    genderFilter: 'all'
   },
 
   onLoad: function() {
@@ -14,24 +14,18 @@ Page({
   },
 
   onShow: function() {
-    // Refresh favorites when user returns to this page
     this.loadFavorites();
   },
 
-  // Add back button navigation
   navigateBack: function() {
-    wx.navigateBack({
-      delta: 1
-    });
+    wx.navigateBack({delta: 1})
   },
 
   loadFavorites: function() {
     this.setData({ loading: true });
     
-    // Get favorites from storage
     const favorites = wx.getStorageSync('favoriteNames') || [];
     
-    // Get full name details for each favorite
     const favoriteNames = favorites.map(fav => {
       const nameDetails = mockAPI.getNameById(fav._id);
       return {
@@ -53,12 +47,13 @@ Page({
     const now = new Date().getTime();
     const diff = now - timestamp;
     
-    // Convert to minutes, hours, days
     const minutes = Math.floor(diff / 60000);
     const hours = Math.floor(diff / 3600000);
     const days = Math.floor(diff / 86400000);
     
-    if (minutes < 60) {
+    if (minutes < 5) {
+      return 'تېخى باياتىن';
+    } else if (minutes < 60) {
       return `${minutes} مىنۇت بۇرۇن`;
     } else if (hours < 24) {
       return `${hours} سائەت بۇرۇن`;
@@ -70,12 +65,10 @@ Page({
   filterAndSortNames: function() {
     let names = [...this.data.favoriteNames];
     
-    // Apply gender filter
     if (this.data.genderFilter !== 'all') {
       names = names.filter(name => name.gender === this.data.genderFilter);
     }
     
-    // Apply sort order
     if (this.data.sortOrder === 'time') {
       names.sort((a, b) => b.saveTime - a.saveTime);
     } else {
@@ -105,26 +98,16 @@ Page({
     });
   },
 
-  unfavorite: function(e) {
+  removeFavorite: function(e) {
     const nameId = e.currentTarget.dataset.id;
     
-    // Get current favorites
     let favorites = wx.getStorageSync('favoriteNames') || [];
     
-    // Remove the name
     favorites = favorites.filter(fav => fav._id !== nameId);
     
-    // Save updated favorites
     wx.setStorageSync('favoriteNames', favorites);
     
-    // Update the display
     this.loadFavorites();
-    
-    wx.showToast({
-      title: 'ئۆچۈرۈلدى',
-      icon: 'success',
-      duration: 1500
-    });
   },
 
   navigateToDetail: function(e) {

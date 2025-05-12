@@ -1,4 +1,4 @@
-<view class="container">
+<view class="search-page">
   <!-- Navbar Section -->
   <view class="navbar {{isFocused ? 'navbar-move' : ''}}">
     <view class="back-btn" bindtap="navigateBack">
@@ -37,7 +37,13 @@
   <view class="results-container {{isFocused ? 'results-move' : ''}}">
     <!-- Loading indicator -->
     <view class="loading-container" wx:if="{{loading}}">
-      <view class="spinner"></view>
+      <view class="loading-content">
+        <view class="loading-spinner">
+          <view class="spinner-circle"></view>
+          <view class="spinner-circle"></view>
+          <view class="spinner-circle"></view>
+        </view>
+      </view>
     </view>
 
     <!-- Names Section -->
@@ -59,9 +65,10 @@
       </view>
     </view>
 
-    <!-- No Names Message -->
+    <!-- No Names -->
     <view class="no-names" wx:if="{{displayNames.length === 0 && !loading}}">
-      <text>ھېچقانداق ئىسىم تېپىلمىدى</text>
+      <image class="no-match-image" src="/images/illust/no-match.svg" mode="aspectFit"></image>
+      <text class="no-match-text">مۇناسىۋەتلىك ئىسىم تېپىلمىدى</text>
     </view>
   </view>
 </view> 

@@ -12,7 +12,6 @@
   <!-- Loading State -->
   <view class="loading-container" wx:if="{{loading}}">
     <view class="spinner"></view>
-    <text class="loading-text">يۈكلىنىۋاتىدۇ...</text>
   </view>
 
   <block wx:else>
@@ -28,7 +27,7 @@
       <view class="stats-section">
         <view class="stats-badge">
           <view class="stats-number">{{favoriteNames.length}}</view>
-          <view class="stats-label">ساقلىۋالغان ئىسىم</view>
+          <view class="stats-label">ياقتۇرغان ئىسىملار</view>
         </view>
       </view>
       <view class="filters-section">
@@ -59,7 +58,7 @@
         </view>
         <view class="name-actions">
           <text class="save-time {{item.gender}}-time">{{item.saveTimeText}}</text>
-          <view class="unfavorite-btn" catchtap="unfavorite" data-id="{{item._id}}">
+          <view class="unfavorite-btn" catchtap="removeFavorite" data-id="{{item._id}}">
             <image class="unfavorite-icon" src="/images/icons/unlike.svg" mode="aspectFit" />
           </view>
         </view>
@@ -68,12 +67,11 @@
 
     <!-- Empty State -->
     <view class="empty-state" wx:if="{{favoriteNames.length === 0}}">
-      <view class="empty-icon">❤️</view>
-      <text class="empty-title">ھازىرچە ھېچقانداق ئىسىم ساقلانمىدى</text>
-      <text class="empty-subtitle">ئىسىملەرنى ساقلاش ئۈچۈن يۈرەك بەلگىسىنى بېسىڭ</text>
+      <image class="empty-image" src="/images/illust/no-match.svg" mode="aspectFit"></image>
+      <text class="empty-title">ساقلىۋالغان ئىسىم يوق</text>
+      <text class="empty-subtitle">ئىسىملارنى ساقلاش ئۈچۈن يۈرەك بەلگىسىنى بېسىڭ</text>
       <view class="search-btn" bindtap="navigateToSearch">
-        <text class="btn-text">ئىسىم ئىزدەش</text>
-        <text class="btn-arrow">→</text>
+        <text class="btn-text">ئىسىملار ئامبىرى</text>
       </view>
     </view>
   </block>

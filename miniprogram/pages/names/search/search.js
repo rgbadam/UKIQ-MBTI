@@ -7,17 +7,12 @@ Page({
     allNames: [],
     displayNames: [],
     loading: true,
-    favoriteIds: [],
     isFocused: false,
     searchText: ''
   },
 
   onLoad: function() {
     this.loadData();
-  },
-
-  onShow: function() {
-    this.getFavorites();
   },
 
   loadData: function() {
@@ -31,13 +26,6 @@ Page({
       allNames,
       displayNames: allNames,
       loading: false
-    });
-  },
-
-  getFavorites: function() {
-    const favorites = wx.getStorageSync('favoriteNames') || [];
-    this.setData({
-      favoriteIds: favorites.map(fav => fav._id)
     });
   },
 

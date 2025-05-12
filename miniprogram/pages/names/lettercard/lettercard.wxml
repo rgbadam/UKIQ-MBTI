@@ -32,7 +32,18 @@
 
   <!-- 名字列表区 -->
   <view class="names-card">
-    <view class="names-container">
+    <!-- Loading indicator -->
+    <view class="loading-container" wx:if="{{loading}}">
+      <view class="loading-content">
+        <view class="loading-spinner">
+          <view class="spinner-circle"></view>
+          <view class="spinner-circle"></view>
+          <view class="spinner-circle"></view>
+        </view>
+      </view>
+    </view>
+
+    <view class="names-container" wx:if="{{!loading}}">
       <view class="name-card" 
             wx:for="{{names}}" 
             wx:key="_id"
@@ -46,9 +57,10 @@
           <view class="name-subtitle">{{item.nameLatin}} {{item.nameChinese}}</view>
         </view>
       </view>
-      <view class="no-names" wx:if="{{names.length === 0 && !loading}}">
-        <text>بۇ ھەرپتىن باشلىنىدىغان ئىسىم يوق</text>
-      </view>
+    </view>
+    <view class="no-names" wx:if="{{names.length === 0 && !loading}}">
+      <image class="no-match-image" src="/images/illust/no-match.svg" mode="aspectFit"></image>
+      <text class="no-match-text">مۇناسىۋەتلىك ئىسىم تېپىلمىدى</text>
     </view>
   </view>
 </view>

@@ -213,15 +213,26 @@
 }
 
 .no-names {
-  padding: 60rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx 40rpx 100rpx;
+  min-height: 30vh;
+}
+
+.no-match-image {
+  width: 420rpx;
+  height: 420rpx;
+}
+
+.no-match-text {
+  font-size: 32rpx;
+  color: #666;
+  font-family: "Alpsoft Qara";
   text-align: center;
-  color: #5a546a;
-  font-size: 28rpx;
-  margin: 60rpx auto 0;
-  background-color: #fbfafc;
-  border-radius: 20rpx;
-  border: 1rpx solid rgba(233, 230, 236, 0.8);
-  max-width: 80%;
+  opacity: 0.85;
+  padding: 0 40rpx;
 }
 
 @keyframes scaleIn {
@@ -241,5 +252,60 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+/* Loading Animation */
+.loading-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 40rpx;
+  z-index: 10;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+}
+
+.spinner-circle {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background-color: #4f6ef7;
+  opacity: 0.8;
+  animation: bounce 0.6s infinite alternate;
+}
+
+.spinner-circle:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.spinner-circle:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-20rpx);
   }
 }
