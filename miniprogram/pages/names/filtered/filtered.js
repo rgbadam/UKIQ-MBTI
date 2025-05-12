@@ -2,26 +2,23 @@ const { mockAPI } = require('../../../utils/mockData');
 
 Page({
   data: {
-    gender: 'male',
     names: [],
     loading: true,
-    favoriteIds: [],
+    animating: false,
     theme: 'light',
-    cardLang: 'uyghur',
+    gender: 'male',
     sortOrder: 'asc',
-    animating: false
+    cardLang: 'uyghur',
   },
 
   onLoad: function(options) {
     if (options.gender) {
-      this.setData({
-        gender: options.gender
-      });
+      this.setData({ gender: options.gender });
     }
     
-    // Load saved theme and language
     const savedTheme = wx.getStorageSync('theme') || 'light';
     const savedLang = wx.getStorageSync('cardLang') || 'uyghur';
+
     this.setData({ 
       theme: savedTheme,
       cardLang: savedLang
@@ -30,27 +27,17 @@ Page({
     this.loadNamesByGender();
   },
 
-  onShow: function() {
-    this.getFavorites();
-  },
-
   loadNamesByGender: function() {
     this.setData({ loading: true });
     
     const names = mockAPI.getNamesByGender(this.data.gender);
     
-    // Sort names initially
     const sortedNames = this.sortNames(names, this.data.sortOrder);
     
     this.setData({
       names: sortedNames,
       loading: false
     });
-  },
-
-  getFavorites: function() {
-    const favorites = wx.getStorageSync('favoriteNames') || [];
-    this.setData({ favoriteIds: favorites.map(fav => fav._id) });
   },
   
   navigateToDetail: function(e) {
@@ -62,7 +49,7 @@ Page({
     wx.navigateTo({ url: '../search/search?gender=' + this.data.gender });
   },
   
-  thmeFunc() {
+  themeFunc() {
     const newTheme = this.data.theme === 'light' ? 'dark' : 'light';
     this.setData({ theme: newTheme });
     wx.setStorageSync('theme', newTheme);
@@ -73,35 +60,13 @@ Page({
     const currentIndex = langOptions.indexOf(this.data.cardLang);
     const nextIndex = (currentIndex + 1) % langOptions.length;
     
-    // Start animation
     this.setData({ animating: true });
     
-    // Wait for slide-out animation
     setTimeout(() => {
-      // Change language
-      this.setData({
-        cardLang: langOptions[nextIndex]
-      });
+      this.setData({ cardLang: langOptions[nextIndex] });
       wx.setStorageSync('cardLang', langOptions[nextIndex]);
-      
-      // End animation
-      setTimeout(() => {
-        this.setData({ animating: false });
-      }, 50);
+      setTimeout(() => { this.setData({ animating: false }) }, 50);
     }, 150);
-  },
-  
-  // Helper function to sort names
-  sortNames: function(names, order) {
-    const namesToSort = [...names];
-    return namesToSort.sort((a, b) => {
-      const nameA = this.data.cardLang === 'uyghur' ? a.nameUyghur :
-                    this.data.cardLang === 'latin' ? a.nameLatin : a.nameChinese;
-      const nameB = this.data.cardLang === 'uyghur' ? b.nameUyghur :
-                    this.data.cardLang === 'latin' ? b.nameLatin : b.nameChinese;
-      
-      return order === 'asc' ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
-    });
   },
   
   sortFunc: function() {
@@ -126,6 +91,18 @@ Page({
         this.setData({ animating: false });
       }, 50);
     }, 150);
+  },
+
+  sortNames: function(names, order) {
+    const namesToSort = [...names];
+    return namesToSort.sort((a, b) => {
+      const nameA = this.data.cardLang === 'uyghur' ? a.nameUyghur :
+                    this.data.cardLang === 'latin' ? a.nameLatin : a.nameChinese;
+      const nameB = this.data.cardLang === 'uyghur' ? b.nameUyghur :
+                    this.data.cardLang === 'latin' ? b.nameLatin : b.nameChinese;
+      
+      return order === 'asc' ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+    });
   },
 
   onShareAppMessage: function() {

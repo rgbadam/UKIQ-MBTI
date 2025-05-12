@@ -17,25 +17,25 @@
       <image class="bg-image" src="/images/illust/{{gender}}-bg.png" mode="aspectFill"/>
       <view class="function-buttons">
         <block wx:if="{{theme === 'light'}}">
-          <view class="function-btn theme-btn" bindtap="thmeFunc">
+          <view class="function-btn theme-btn" bindtap="themeFunc">
             <image class="btn-icon" src="/images/icons/darkmode.svg" mode="aspectFit" />
           </view>
           <view class="function-btn language-btn" bindtap="langFunc">
             <image class="btn-icon globe-{{cardLang}}" src="/images/icons/language.svg" mode="aspectFit" />
           </view>
           <view class="function-btn sort-btn" bindtap="sortFunc">
-            <image class="btn-icon" src="/images/icons/sort.svg" mode="aspectFit" />
+            <image class="btn-icon {{sortOrder === 'desc' ? 'flip' : ''}}" src="/images/icons/sort.svg" mode="aspectFit" />
           </view>
         </block>
         <block wx:if="{{theme === 'dark'}}">
-          <view class="function-btn theme-btn" bindtap="thmeFunc">
+          <view class="function-btn theme-btn" bindtap="themeFunc">
             <image class="btn-icon" src="/images/icons/lightmode.svg" mode="aspectFit" />
           </view>
           <view class="function-btn language-btn" bindtap="langFunc">
             <image class="btn-icon globe-{{cardLang}}" src="/images/icons/language-d.svg" mode="aspectFit" />
           </view>
           <view class="function-btn sort-btn" bindtap="sortFunc">
-            <image class="btn-icon" src="/images/icons/sort-d.svg" mode="aspectFit" />
+            <image class="btn-icon {{sortOrder === 'desc' ? 'flip' : ''}}" src="/images/icons/sort-d.svg" mode="aspectFit" />
           </view>
         </block>
       </view>
@@ -74,7 +74,8 @@
 
     <!-- Blank Section -->
     <view class="no-names" wx:if="{{names.length === 0}}">
-      <text>ھېچقانداق ئىسىم تېپىلمىدى</text>
+      <image class="no-match-image" src="/images/illust/no-match.svg" mode="aspectFit"></image>
+      <text class="no-match-text">ھېچقانداق ئىسىم تېپىلمىدى</text>
     </view>
   </block>
 </view> 

@@ -1,4 +1,4 @@
-.container {
+.detail-page {
   min-height: 100vh;
   color: white;
   background: #1e1e2e;
@@ -46,7 +46,7 @@
 /* Main Content */
 .main-content {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,6 +120,8 @@
 }
 
 .meaning-card {
+  min-width: 500rpx;
+  min-height: 60rpx;
   direction: rtl;
   text-align: justify;
   background: rgba(255, 255, 255, 0.06);
@@ -137,8 +139,9 @@
 /* Actions Section */
 .actions-section {
   width: 100%;
-  position: absolute;
-  bottom: 70rpx;
+  position: relative;
+  margin-top: auto;
+  padding-bottom: 70rpx;
   display: flex;
   justify-content: center;
 }

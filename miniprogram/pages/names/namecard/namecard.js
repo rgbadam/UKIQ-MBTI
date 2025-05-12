@@ -14,7 +14,6 @@ Page({
   },
 
   onShow: function() {
-    // Check favorite status when returning to this page
     if (this.data.nameData) {
       this.checkFavoriteStatus(this.data.nameData._id);
     }
@@ -28,7 +27,7 @@ Page({
       this.checkFavoriteStatus(nameId);
     } else {
       wx.showToast({
-        title: 'ئىسىم تېپىلمىدى',
+        title: '无匹配信息',
         icon: 'error',
         duration: 2000
       });
@@ -48,36 +47,21 @@ Page({
     const nameId = this.data.nameData._id;
     const name = this.data.nameData.nameUyghur;
     
-    // Get current favorites
     let favorites = wx.getStorageSync('favoriteNames') || [];
     const index = favorites.findIndex(item => item._id === nameId);
     
     if (index === -1) {
-      // Add to favorites
       favorites.push({
         _id: nameId,
         name: name,
         date: new Date().getTime()
       });
-      wx.showToast({
-        title: 'ساقلاندى',
-        icon: 'success',
-        duration: 1500
-      });
     } else {
-      // Remove from favorites
       favorites.splice(index, 1);
-      wx.showToast({
-        title: 'ئۆچۈرۈلدى',
-        icon: 'none',
-        duration: 1500
-      });
     }
     
-    // Save updated favorites
     wx.setStorageSync('favoriteNames', favorites);
     
-    // Update favorite status
     this.setData({ isFavorite: !this.data.isFavorite });
   },
 
@@ -89,7 +73,7 @@ Page({
       data: textToCopy,
       success: () => {
         wx.showToast({
-          title: 'كۆچۈرۈلدى',
+          title: '已复制',
           icon: 'success',
           duration: 1500
         });
