@@ -11,7 +11,7 @@
     <view class="circle-box">
       <text class="letterbox-text">{{letter}}</text>
     </view>
-    <view class="letterbox-desc">{{letter}} ھەرىپىدىن باشلىنىدىغان ئىسىملار</view>
+    <view class="letterbox-desc">{{letter}} ھەرىپىدىن باشلانغان ئىسىملار</view>
   </view>
 
   <!-- 统计区 -->

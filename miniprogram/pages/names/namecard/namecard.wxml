@@ -35,12 +35,12 @@
         <view class="action-btn" bindtap="toggleFavorite">
           <image class="action-icon" src="{{isFavorite ? '/images/icons/liked.svg' : '/images/icons/like.svg'}}" mode="aspectFit" />
         </view>
-        <view class="action-btn copy" bindtap="copyName">
+        <view class="action-btn" bindtap="copyName">
           <image class="action-icon" src="/images/icons/copy.svg" mode="aspectFit" />
         </view>
-        <view class="action-btn share" bindtap="shareName">
+        <button class="action-btn" open-type="share">
           <image class="action-icon" src="/images/icons/share-r.svg" mode="aspectFit" />
-        </view>
+        </button>
       </view>
     </view>
   </view>

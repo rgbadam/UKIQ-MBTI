@@ -125,8 +125,16 @@ Page({
 
   onShareAppMessage: function() {
     return {
-      title: 'مېنىڭ ياخشى كۆرگەن ئىسىملىرىم',
-      path: '/pages/names/favorites/favorites'
+      title: 'ئىسىملار قامۇسى · 起名小助手',
+      path: '/pages/names/homepage/homepage'
+    };
+  },
+
+  onShareTimeline: function() {
+    return {
+      title: 'ئىسىملار قامۇسى · 起名小助手',
+      path: '/pages/names/homepage/homepage',
+      imageUrl: '/images/illust/magiccube.png'
     };
   }
 }); 

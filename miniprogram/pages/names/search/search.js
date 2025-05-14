@@ -69,13 +69,6 @@ Page({
     });
   },
 
-  onShareAppMessage: function() {
-    return {
-      title: 'ئۇيغۇرچە بالا ئىسىملىرى ئىزدەش',
-      path: '/pages/names/search/search'
-    };
-  },
-
   onSearchFocus: function() {
     this.setData({ isFocused: true });
   },
@@ -92,5 +85,20 @@ Page({
 
   navigateBack: function() {
     wx.navigateBack();
+  },
+
+  onShareAppMessage: function() {
+    return {
+      title: 'ئىسىملار قامۇسى · 起名小助手',
+      path: '/pages/names/homepage/homepage'
+    };
+  },
+
+  onShareTimeline: function() {
+    return {
+      title: 'ئىسىملار قامۇسى · 起名小助手',
+      path: '/pages/names/homepage/homepage',
+      imageUrl: '/images/illust/magiccube.png'
+    };
   }
 }); 

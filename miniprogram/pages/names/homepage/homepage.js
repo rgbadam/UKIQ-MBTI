@@ -151,29 +151,33 @@ Page({
     this.setData({
       touchStartX: e.touches[0].clientX,
       touchStartY: e.touches[0].clientY,
-      swiping: true,
+      swiping: false,
       swipeDirection: ''
     });
   },
 
   handleTouchMove: function(e) {
-    if (!this.data.swiping || this.data.animating) return;
+    if (this.data.animating) return;
     
     const touchMoveX = e.touches[0].clientX;
     const touchMoveY = e.touches[0].clientY;
     const diffX = touchMoveX - this.data.touchStartX;
     const diffY = touchMoveY - this.data.touchStartY;
     
-    // 如果垂直滑动大于水平滑动，不处理
-    if (Math.abs(diffY) > Math.abs(diffX)) return;
+    if (Math.abs(diffY) > Math.abs(diffX)) {
+      this.setData({ swiping: false });
+      return;
+    }
     
-    const maxOffset = 240; // 最大滑动距离增加，让滑动感更自然
+    if (Math.abs(diffX) > 10) {
+      this.setData({ swiping: true });
+    }
+    
+    if (!this.data.swiping) return;
+    
+    const maxOffset = 240;
     const offset = Math.max(-maxOffset, Math.min(maxOffset, diffX));
-    
-    // 使用更平滑的曲线计算滑动比例
     const swipeDirection = offset < 0 ? 'left' : (offset > 0 ? 'right' : '');
-    
-    // 使用更平滑的渐变曲线
     const moveRatio = Math.pow(Math.abs(offset) / maxOffset, 0.7);
     
     this.applySwipeAnimations(offset, moveRatio);
@@ -184,50 +188,47 @@ Page({
     });
   },
   
-  // 滑动动画逻辑 - 优化版
   applySwipeAnimations: function(offset, moveRatio) {
     const { prevPrev, prev, current, next, nextNext } = ANIMATION_CONFIG.initialPosition;
     const options = { duration: 0 };
     
-    // 优化当前卡片动画，增加微妙缩放和阴影效果
     const currentPos = {
       x: offset,
-      z: moveRatio * 10, // 增加Z轴移动，增强3D效果
-      scale: 1 - moveRatio * 0.03, // 更微妙的缩放变化
-      rotate: offset / 25, // 更柔和的旋转角度
+      z: moveRatio * 10,
+      scale: 1 - moveRatio * 0.03,
+      rotate: offset / 25,
       opacity: 1
     };
     this.setCardAnimation(this.animationCurrent, currentPos, options);
     
-    // 前一张卡片动画 - 优化版
     if (offset > 0) {
       // 向右滑动时，prev卡片向前移动，更平滑的过渡
       const prevPos = {
-        x: prev.x + offset * 0.7, // 增加比例，让卡片跟随更快
-        z: prev.z + moveRatio * 140, // 增加Z轴差异
-        scale: prev.scale + moveRatio * 0.18, // 更明显的缩放
-        rotate: prev.rotate + moveRatio * 5, // 调整旋转角度
-        opacity: prev.opacity + moveRatio * 0.3 // 更明显的透明度变化
+        x: prev.x + offset * 0.7,
+        z: prev.z + moveRatio * 140,
+        scale: prev.scale + moveRatio * 0.18,
+        rotate: prev.rotate + moveRatio * 5,
+        opacity: prev.opacity + moveRatio * 0.3
       };
       this.setCardAnimation(this.animationPrev, prevPos, options);
       
       // prevPrev卡片逐渐显示 - 改进版
       const prevPrevPos = {
         x: prevPrev.x + offset * 0.4,
-        z: prevPrev.z + moveRatio * 60, // 增加深度
+        z: prevPrev.z + moveRatio * 60,
         scale: prevPrev.scale + moveRatio * 0.12,
-        rotate: prevPrev.rotate - moveRatio * 1, // 轻微反向旋转增加层次感
-        opacity: moveRatio * 0.9 // 更高的不透明度
+        rotate: prevPrev.rotate - moveRatio * 1,
+        opacity: moveRatio * 0.9
       };
       this.setCardAnimation(this.animationPrevPrev, prevPrevPos, options);
     } else {
       // 向左滑动时前一张卡片后退 - 改进过渡
       const prevPos = {
-        x: prev.x - Math.abs(offset) * 0.3, // 增加比例
-        z: prev.z - moveRatio * 40, // 更明显地向后
-        scale: prev.scale - moveRatio * 0.04, // 轻微缩小强调远离
-        rotate: prev.rotate - moveRatio * 1, // 轻微旋转
-        opacity: prev.opacity - moveRatio * 0.25 // 更清晰的淡出
+        x: prev.x - Math.abs(offset) * 0.3,
+        z: prev.z - moveRatio * 40,
+        scale: prev.scale - moveRatio * 0.04,
+        rotate: prev.rotate - moveRatio * 1,
+        opacity: prev.opacity - moveRatio * 0.25
       };
       this.setCardAnimation(this.animationPrev, prevPos, options);
       
@@ -242,35 +243,34 @@ Page({
       this.setCardAnimation(this.animationPrevPrev, prevPrevPos, options);
     }
     
-    // 后一张卡片动画 - 优化版
     if (offset < 0) {
       // 向左滑动时，next卡片向前移动 - 改进过渡
       const nextPos = {
-        x: next.x + offset * 0.7, // 增加比例，让卡片跟随更快
-        z: next.z + moveRatio * 140, // 增加Z轴差异
-        scale: next.scale + moveRatio * 0.18, // 更明显的缩放
-        rotate: next.rotate - moveRatio * 5, // 调整旋转角度
-        opacity: next.opacity + moveRatio * 0.3 // 更明显的透明度变化
+        x: next.x + offset * 0.7,
+        z: next.z + moveRatio * 140,
+        scale: next.scale + moveRatio * 0.18,
+        rotate: next.rotate - moveRatio * 5,
+        opacity: next.opacity + moveRatio * 0.3
       };
       this.setCardAnimation(this.animationNext, nextPos, options);
       
       // nextNext卡片逐渐显示 - 改进版
       const nextNextPos = {
         x: nextNext.x + offset * 0.4,
-        z: nextNext.z + moveRatio * 60, // 增加深度
+        z: nextNext.z + moveRatio * 60,
         scale: nextNext.scale + moveRatio * 0.12,
-        rotate: nextNext.rotate + moveRatio * 1, // 轻微反向旋转增加层次感
-        opacity: moveRatio * 0.9 // 更高的不透明度
+        rotate: nextNext.rotate + moveRatio * 1,
+        opacity: moveRatio * 0.9
       };
       this.setCardAnimation(this.animationNextNext, nextNextPos, options);
     } else {
       // 向右滑动时后一张卡片后退 - 改进过渡
       const nextPos = {
-        x: next.x + Math.abs(offset) * 0.3, // 增加比例
-        z: next.z - moveRatio * 40, // 更明显地向后
-        scale: next.scale - moveRatio * 0.04, // 轻微缩小强调远离
-        rotate: next.rotate + moveRatio * 1, // 轻微旋转
-        opacity: next.opacity - moveRatio * 0.25 // 更清晰的淡出
+        x: next.x + Math.abs(offset) * 0.3,
+        z: next.z - moveRatio * 40,
+        scale: next.scale - moveRatio * 0.04,
+        rotate: next.rotate + moveRatio * 1,
+        opacity: next.opacity - moveRatio * 0.25
       };
       this.setCardAnimation(this.animationNext, nextPos, options);
       
@@ -299,7 +299,6 @@ Page({
     
     const diffX = this.data.touchMoveX - this.data.touchStartX;
     
-    // 根据滑动距离决定是切换卡片还是恢复位置
     if (diffX < -this.data.swipeThreshold) {
       // 向左滑，显示下一张
       this.navigateToNextCard();
@@ -330,7 +329,6 @@ Page({
     
     this.setData({ animating: true });
     
-    // 使用简单的单阶段动画，卡片平滑滑动
     this.setupSimpleCardAnimation(direction);
     
     // 动画完成后更新索引
@@ -505,10 +503,10 @@ Page({
   },
 
   onShareAppMessage: function() {
-    return { title: 'ئىسىملار قامۇسى' };
+    return { title: 'ئىسىملار قامۇسى · 起名小助手' };
   },
 
   onShareTimeline: function() {
-    return { title: 'ئىسىملار قامۇسى' };
+    return { title: 'ئىسىملار قامۇسى · 起名小助手', imageUrl: '/images/illust/magiccube.png' };
   }
 })

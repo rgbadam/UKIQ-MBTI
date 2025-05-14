@@ -107,8 +107,15 @@ Page({
 
   onShareAppMessage: function() {
     return {
-      title: this.data.gender === 'male' ? 'ئوغۇل بالا ئىسىملىرى' : 'قىز بالا ئىسىملىرى',
+      title: this.data.gender === 'male' ? 'ئوغۇل بالا ئىسىملىرى · 起名小助手' : 'قىز بالا ئىسىملىرى · 起名小助手',
       path: `/pages/filtered/filtered?gender=${this.data.gender}`
+    };
+  },
+
+  onShareTimeline: function() {
+    return {
+      title: this.data.gender === 'male' ? 'ئوغۇل بالا ئىسىملىرى · 起名小助手' : 'قىز بالا ئىسىملىرى · 起名小助手',
+      imageUrl: this.data.gender === 'male' ? '/images/illust/male-bg.png' : '/images/illust/female-bg.png'
     };
   }
 }); 

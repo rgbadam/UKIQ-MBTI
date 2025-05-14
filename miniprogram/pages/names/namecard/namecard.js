@@ -1,4 +1,3 @@
-// pages/names/namecard/namecard.js
 const { mockAPI } = require('../../../utils/mockData');
 
 Page({
@@ -43,6 +42,10 @@ Page({
     this.setData({ isFavorite });
   },
 
+  navigateBack: function() {
+    wx.navigateBack();
+  },
+
   toggleFavorite: function() {
     const nameId = this.data.nameData._id;
     const name = this.data.nameData.nameUyghur;
@@ -67,7 +70,7 @@ Page({
 
   copyName: function() {
     const { nameUyghur, nameLatin, nameChinese } = this.data.nameData;
-    const textToCopy = `${nameUyghur}\n${nameLatin}\n${nameChinese}`;
+    const textToCopy = `${nameUyghur}\r\n${nameLatin}\r\n${nameChinese}`;
     
     wx.setClipboardData({
       data: textToCopy,
@@ -81,30 +84,19 @@ Page({
     });
   },
 
-  shareName: function() {
-    wx.showShareMenu({
-      withShareTicket: true,
-      menus: ['shareAppMessage', 'shareTimeline']
-    });
-  },
-
   onShareAppMessage: function() {
-    const { nameUyghur, _id } = this.data.nameData;
+    const { nameUyghur, nameLatin, nameChinese, _id } = this.data.nameData;
     return {
-      title: `${nameUyghur} - ئۇيغۇرچە ئىسىم`,
+      title: `${nameUyghur}｜${nameLatin}｜${nameChinese}`,
       path: `/pages/names/namecard/namecard?id=${_id}`
     };
   },
 
   onShareTimeline: function() {
-    const { nameUyghur, _id } = this.data.nameData;
+    const { nameUyghur, nameLatin, nameChinese, _id } = this.data.nameData;
     return {
-      title: `${nameUyghur} - ئۇيغۇرچە ئىسىم`,
-      query: `id=${_id}`
+      title: `${nameUyghur}｜${nameLatin}｜${nameChinese}`,
+      path: `/pages/names/namecard/namecard?id=${_id}`
     };
-  },
-
-  navigateBack: function() {
-    wx.navigateBack();
   }
 }); 

@@ -104,10 +104,18 @@ Page({
     })
   },
 
-  onShareAppMessage() {
+  onShareAppMessage: function() {
     return {
-      title: 'ئېلىپبە بويىچە ئىسىم ئىزدەش',
-      path: '/pages/names/alphabet/alphabet'
-    }
+      title: 'ئىسىملار قامۇسى · 起名小助手',
+      path: '/pages/names/homepage/homepage'
+    };
+  },
+
+  onShareTimeline: function() {
+    return {
+      title: 'ئىسىملار قامۇسى · 起名小助手',
+      path: '/pages/names/homepage/homepage',
+      imageUrl: '/images/illust/magiccube.png'
+    };
   }
 })

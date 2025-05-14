@@ -11,7 +11,6 @@ Page({
   },
 
   onLoad: function(options) {
-    // options.letter 传入的字母
     const letter = options.letter || '';
     this.setData({ letter });
     this.loadNames(letter);
@@ -48,5 +47,20 @@ Page({
     wx.navigateTo({
       url: `../namecard/namecard?id=${nameId}`
     });
+  },
+
+  onShareAppMessage: function() {
+    return {
+      title: `${this.data.letter} بىلەن باشلانغان ئىسىملار · 起名小助手`,
+      path: `/pages/names/lettercard/lettercard?letter=${this.data.letter}`
+    };
+  },
+
+  onShareTimeline: function() {
+    return {
+      title: `${this.data.letter} بىلەن باشلانغان ئىسىملار · 起名小助手`,
+      path: `/pages/names/lettercard/lettercard?letter=${this.data.letter}`,
+      imageUrl: '/images/illust/magiccube.png'
+    };
   }
 }); 
