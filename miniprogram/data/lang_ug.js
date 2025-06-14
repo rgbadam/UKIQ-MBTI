@@ -41,7 +41,6 @@ const pageTexts = {
     navBarTitle: "خارەكتىرلەر",
     tabBarTitle: "خارەكتىرلەر",
     title: "16 خىل MBTI خارەكتىر تىپلىرى",
-    titlePic: '../../../images/fontPic/title-ug.png',
     analysis: "خارەكتىر ئالاھىدىلىكى",
     career: "خىزمەت تەۋسىيەسى",
     advantage: "ئارتۇقچىلىق",
@@ -57,6 +56,18 @@ const pageTexts = {
     faq: "دائىمىي سۇئاللار",
     share: "ھەمبەھرلەش",
     jumpApp: "ئىلھام بۇلىقى"
+  },
+  discoverPage: {
+    navBarTitle: "خارەكتىر سىنىقى",
+    tabBarTitle: "MBTI",
+    langSwitch: "中",
+    getStarted: "سىناپ كۆرەي",
+    funcTitle: "- ئۆز خارەكتىرىنى چۈشىنىش نەقەدەر گۈزەل -",
+    typeList: "خارەكتىر تىپلىرى",
+    aboutMBTI: "ھەققىدە MBTI",
+    FAQ: "دائىمىي سۇئاللار",
+    testedText: "سىزنىڭ خارەكتىر تىپىڭىز",
+    notTestedText: "تېخى خارەكتىرىڭىزنى سىناپ كۆرمەپسىز"
   }
 }
 

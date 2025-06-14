@@ -27,7 +27,7 @@
   direction: ltr;
   font-size: 24px;
   margin-bottom: 30px;
-  font-family: '酷乐潮玩体';
+  font-family: '黑体';
 }
 
 .info {

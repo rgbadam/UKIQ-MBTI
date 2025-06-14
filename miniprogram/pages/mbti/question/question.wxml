@@ -1,10 +1,7 @@
 <view class="question">
   <view class="zh" wx:if="{{!isUg}}">
-    <view class="fontText" wx:if="{{loadFont}}">
+    <view class="fontText">
       <view class="faq">常见问题</view>
-    </view>
-    <view class="fontPic" wx:if="{{!loadFont}}">
-      <image class="faq" src="../../../images/fontPic/faq-zh.png" />
     </view>
     <view class="title">1. 如何进行MBTI测试？</view>
     <view class="content">您只需按照页面中的指引回答一系列询问您的偏好和行为方式的问题。每个题目考虑的时间建议不要超过10秒钟。</view>
@@ -25,11 +22,8 @@
     <view class="butt">PopOut · MBTI人格测试</view>
   </view>
   <view class="ug" wx:if="{{isUg}}">
-    <view class="fontText" wx:if="{{loadFont}}">
-      <view class="faq-ug">دائىمىي سۇئاللار</view>
-    </view>
-    <view class="fontPic" wx:if="{{!loadFont}}">
-      <image class="faq-ug" src="../../../images/fontPic/faq-ug.png" />
+    <view class="fontText">
+      <view class="faq">دائىمىي سۇئاللار</view>
     </view>
     <view class="title-ug">1. MBTI خارەكتىر سىنىقىنى قانداق قىلىدۇ؟</view>
     <view class="content">باشبەتتىكى سىزنىڭ مايىللىقىڭىز ۋە خارەكتىرىڭىزگە ئائىت سۇئاللارغا بىر-بىرلەپ جاۋاپ بەرسىڭىزلا بولىدۇ. ھەر بىر سۇئال ئۈچۈن ئىمكانقەدەر 10 سېكۇنت ئىچىدە جاۋاپ بېرىڭ.</view>

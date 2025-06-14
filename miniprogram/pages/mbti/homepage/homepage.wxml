@@ -1,18 +1,14 @@
 <view class="custom-nav">
   <view class="nav-content">
-    <view class="lang-switch" bind:tap="switchLanguage" style="{{isUg?'font-family: Alpsoft-Qolyazma5, 温暖童稚体;':'font-family: Alpsoft-Qolyazma5, 温暖童稚体; font-weight: 500;'}}">{{ pageContent.langSwitch }}</view>
+    <view class="lang-switch" bind:tap="switchLanguage">{{ pageContent.langSwitch }}</view>
     <view class="nav-title">{{ pageContent.navBarTitle }}</view>
   </view>
 </view>
 
 <view class="home-box {{isUg?'ug':'zh'}}">
-  <view class="fontText" wx:if="{{loadFont}}">
+  <view class="fontText">
     <view class="title {{isUg?'t-ug':'t-zh'}}">{{ pageContent.homeTitle }}</view>
     <view class="sub-title {{isUg?'s-ug':'s-zh'}}" bind:tap="goTypeList">{{ pageContent.subTitle }}</view>
-  </view>
-  <view class="fontPic" wx:if="{{!loadFont}}">
-    <image class="title {{isUg?'t-ug':'t-zh'}}" src="{{pageContent.homeTitlePic}}" />
-    <image class="sub-title {{isUg?'s-ug':'s-zh'}}" src="{{pageContent.subTitlePic}}" />
   </view>
   
   <view class="progress-container {{isUg?'ug':'zh'}}">

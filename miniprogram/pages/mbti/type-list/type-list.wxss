@@ -18,14 +18,14 @@
 .fontText .t-ug {
   font-size: 22px;
   text-align: center;
-  font-family: 'Shirkhan Yumilaq';
+  font-family: sans-serif, 'Alpsoft Jurnal', '黑体';
 }
 
 .fontText .t-zh {
   font-size: 27px;
   text-align: center;
   letter-spacing: 2px;
-  font-family: '酷乐潮玩体';
+  font-family: sans-serif, 'Alpsoft Jurnal', '黑体';
 }
 
 .fontPic .t-ug {
@@ -75,7 +75,6 @@
   margin: 0 0 15px;
   text-align: center;
   color: #6B4FBB;
-  font-family: '创粗圆';
 }
 
 .des {

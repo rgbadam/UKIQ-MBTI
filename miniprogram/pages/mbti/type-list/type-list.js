@@ -3,7 +3,6 @@ var languageUtil = require('../../../utils/languageUtil.js')
 Page({
   data: {
     isUg: true,
-    loadFont: false,
     resultList: [],
     pageContent: {},
     eiType: '',
@@ -16,14 +15,6 @@ Page({
   onShow() {
     this.initLanguage()
     this.initStyle()
-  },
-
-  onReady() {
-    if(wx.getStorageSync('loadFont')) {
-      this.setData({ loadFont: true })
-    } else {
-      this.setData({ loadFont: false })
-    }
   },
 
   initLanguage() {
@@ -40,13 +31,6 @@ Page({
     if (wx.getStorageSync('languageType') == 1) {
       this.setData({ isUg: false })
     }
-  },
-
-  onShareAppMessage() {
-    return { title: this.data.isUg ? "MBTI · خارەكتىر سىنىقى" : "MBTI · 人格测试" }
-  },
-  onShareTimeline() {
-    return { title: this.data.isUg ? "MBTI - ئۆز خارەكتىرىنى چۈشىنىش" : "MBTI人格 - 终于被理解的感觉真好" }
   },
 
   selectEI(e) {
@@ -119,5 +103,13 @@ Page({
         });
       }
     });
+  },
+
+  onShareAppMessage() {
+    return { title: this.data.isUg ? "MBTI · خارەكتىر سىنىقى" : "MBTI · 人格测试" }
+  },
+  
+  onShareTimeline() {
+    return { title: this.data.isUg ? "MBTI - ئۆز خارەكتىرىنى چۈشىنىش" : "MBTI人格 - 终于被理解的感觉真好" }
   }
 })

@@ -8,14 +8,6 @@ Page({
     this.initStyle()
   },
 
-  onReady() {
-    if(wx.getStorageSync('loadFont')) {
-      this.setData({ loadFont: true })
-    } else {
-      this.setData({ loadFont: false })
-    }
-  },
-
   initStyle() {
     if (wx.getStorageSync('languageType') == 0) {
       this.setData({ isUg: true })
@@ -28,15 +20,15 @@ Page({
   onShareAppMessage() {
     return {
       title: this.data.isUg ? "MBTI · خارەكتىر سىنىقى" : "MBTI · 人格测试",
-      path: "/pages/homepage/homepage",
-      imageUrl: "https://6a6f-joyments-6gxawsnwcfc1bdbc-1325589715.tcb.qcloud.la/PopOut/MBTI/logo.jpg"
+      path: "/pages/tabs/discover/discover",
+      imageUrl: "/images/illust/mbti.svg"
     }
   },
   onShareTimeline() {
     return {
       title: this.data.isUg ? "MBTI - ئۆز خارەكتىرىنى چۈشىنىش" : "MBTI人格 - 终于被理解的感觉真好",
-      path: "/pages/homepage/homepage",
-      imageUrl: "https://6a6f-joyments-6gxawsnwcfc1bdbc-1325589715.tcb.qcloud.la/PopOut/MBTI/logo.jpg"
+      path: "/pages/tabs/discover/discover",
+      imageUrl: "/images/illust/mbti.svg"
     }
   }
 })

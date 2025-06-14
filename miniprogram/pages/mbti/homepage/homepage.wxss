@@ -10,19 +10,18 @@
   color: #5B3DE3;
   font-weight: 700;
   margin-top: 50rpx;
-  letter-spacing: 2px;
   text-shadow: 0 2px 4px rgba(91, 61, 227, 0.1);
 }
 
 .fontText .t-ug {
   font-size: 36px;
-  font-family: 'Shirkhan Asman';
+  font-family: 'Shirkhan Egme';
 }
 
 .fontText .t-zh {
   font-size: 34px;
   line-height: 63px;
-  font-family: '浪漫情书体';
+  font-family: '黑体';
 }
 
 .fontText .sub-title {
@@ -35,12 +34,12 @@
 
 .fontText .s-ug {
   font-size: 17px;
-  font-family: 'Alpsoft-Qolyazma5';
+  font-family: 'Alpsoft Qara';
 }
 
 .fontText .s-zh {
   font-size: 17px;
-  font-family: '温暖童稚体';
+  font-family: '黑体';
 }
 
 .fontPic .title {
@@ -120,7 +119,7 @@
 .progress-text {
   font-size: 22rpx;
   color: #888888;
-  font-family: 'Alpsoft-Qolyazma5', '温暖童稚体';
+  font-family: Arial, Helvetica, sans-serif
 }
 
 .total-tab {
@@ -274,7 +273,7 @@
   align-items: center;
   gap: 6rpx;
   border: 1px solid rgba(91, 61, 227, 0.08);
-  font-family: 'Alpsoft-Qolyazma5', '温暖童稚体' !important;
+  font-family: 'Shirkhan Egme', '温暖童稚体' !important;
 }
 
 .lang-switch:active {

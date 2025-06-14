@@ -22,11 +22,8 @@
     </view>
   </view>
 
-  <view class="fontText" wx:if="{{loadFont}}">
+  <view class="fontText">
     <view class="{{isUg?'t-ug':'t-zh'}}">{{ pageContent.title }}</view>
-  </view>
-  <view class="fontPic" wx:if="{{!loadFont}}">
-    <image class="{{isUg?'t-ug':'t-zh'}}" src="{{pageContent.titlePic}}" />
   </view>
   <view class="list">
     <view class="item" wx:for="{{ resultList }}" wx:key="item">

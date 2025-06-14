@@ -1,0 +1,42 @@
+<view class="personal-page">
+  <view class="custom-nav">
+    <view class="gender-btn" bindtap="toggleGender">
+      <image class="gender-icon" src="/images/icons/language.svg" mode="aspectFit" />
+    </view>
+  </view>
+
+  <view class="profile-container">
+    <image class="profile-illust" src="{{gender==='male'?'/images/illust/male.png':'/images/illust/female.png'}}" mode="aspectFill" />
+    
+    <view class="profile-info">
+      <text class="profile-name">پاھ، {{gender==='male'?'يىگىت':'قىز'}}</text>
+      <text class="profile-sign">{{gender==='male'?'سەن نېمىدىگەن قامەتلىك':'سىز نېمىدىگەن گۈزەل'}}</text>
+    </view>
+
+    <view class="profile-icons">
+      <view class="profile-icon-block" style="background: linear-gradient(135deg, #FFE5E5, #FFB6B6);">
+        <image class="profile-icon" src="/images/icons/search.svg" />
+        <text class="profile-icon-label">ئەزالىق</text>
+      </view>
+      <view class="profile-icon-block" style="background: linear-gradient(135deg, #E5F6FF, #B6E3FF);">
+        <image class="profile-icon" src="/images/icons/share.svg" />
+        <text class="profile-icon-label">ئۈندىدار</text>
+      </view>
+      <view class="profile-icon-block" style="background: linear-gradient(135deg, #E5FFE5, #B6FFB6);">
+        <image class="profile-icon" src="/images/icons/FAQ.svg" />
+        <text class="profile-icon-label">سىنقانال</text>
+      </view>
+      <view class="profile-icon-block" style="background: linear-gradient(135deg, #F5E5FF, #D6B6FF);">
+        <image class="profile-icon" src="/images/icons/setting.svg" />
+        <text class="profile-icon-label">ئۇلانما</text>
+      </view>
+    </view>
+
+    <view class="profile-interests">
+      <text class="interests-title">ھەر ئىشتا بىر ھېكمەت بار</text>
+      <view class="ad-area">
+        <image class="ad-img" src="/images/illust/motivo.png" />
+      </view>
+    </view>
+  </view>
+</view>        

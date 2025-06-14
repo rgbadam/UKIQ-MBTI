@@ -38,10 +38,9 @@ const pageTexts = {
     shareText: "🔮 分享好友也来测测～"
   },
   typeList: {
-    navBarTitle: "人格简介",
+    navBarTitle: "人格类型",
     tabBarTitle: "人格",
     title: "16型职业人格",
-    titlePic: '../../../images/fontPic/title-zh.png',
     analysis: "人格特点",
     career: "适合职业",
     advantage: "优点",
@@ -57,6 +56,18 @@ const pageTexts = {
     faq: "常见问题",
     share: "分享好友",
     jumpApp: "更多好玩"
+  },
+  discoverPage: {
+    navBarTitle: "人格测试",
+    tabBarTitle: "MBTI",
+    langSwitch: "ئۇ",
+    getStarted: "开始测试",
+    funcTitle: "- 终于被理解的感觉真好 -",
+    typeList: "人格类型",
+    aboutMBTI: "了解MBTI",
+    FAQ: "常见问题",
+    testedText: "你的MBTI人格类型",
+    notTestedText: "还未测试你的MBTI人格"
   }
 }
 

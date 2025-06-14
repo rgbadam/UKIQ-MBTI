@@ -41,15 +41,15 @@ Page({
   onShareAppMessage() {
     return {
       title: this.data.isUg ? "MBTI · سىزمۇ سىناپ كۆرۈڭ" : "MBTI · 你也来测一测",
-      path: "/pages/homepage/homepage",
-      imageUrl: "https://6a6f-joyments-6gxawsnwcfc1bdbc-1325589715.tcb.qcloud.la/PopOut/MBTI/" + this.data.type + ".jpg"
+      path: "/pages/tabs/discover/discover",
+      imageUrl: "/images/illust/mbti.svg"
     }
   },
   onShareTimeline() {
     return {
       title: this.data.isUg ? "MBTI - ئۆز خارەكتىرىنى چۈشىنىش" : "MBTI人格 - 终于被理解的感觉真好",
-      path: "/pages/homepage/homepage",
-      imageUrl: "https://6a6f-joyments-6gxawsnwcfc1bdbc-1325589715.tcb.qcloud.la/PopOut/MBTI/" + this.data.type + ".jpg"
+      path: "/pages/tabs/discover/discover",
+      imageUrl: "/images/illust/mbti.svg"
     }
   }
 })

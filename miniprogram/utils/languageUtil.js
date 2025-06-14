@@ -11,10 +11,10 @@ const getLangPackage = function(){
 const changeLanguage = function(){
   if (wx.getStorageSync('languageType') == '' || wx.getStorageSync('languageType') == 0) {
     wx.setStorageSync('languageType', 1)
-    changeTabBarTitle('zh')
+    // changeTabBarTitle('zh')
   } else if (wx.getStorageSync('languageType') == 1) {
     wx.setStorageSync('languageType', 0)
-    changeTabBarTitle('ug')
+    // changeTabBarTitle('ug')
   }
 }
 
@@ -26,10 +26,14 @@ function changeTabBarTitle(langType) {
   })
   wx.setTabBarItem({
     index: 1,
-    "text": langPackage.pageTexts.typeList.tabBarTitle
+    "text": langPackage.pageTexts.discoverPage.tabBarTitle
   })
   wx.setTabBarItem({
     index: 2,
+    "text": langPackage.pageTexts.typeList.tabBarTitle
+  })
+  wx.setTabBarItem({
+    index: 3,
     "text": langPackage.pageTexts.userCenter.tabBarTitle
   })
 }

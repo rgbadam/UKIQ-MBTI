@@ -16,16 +16,8 @@ page {
   font-size: 21px;
   font-weight: 500;
   text-align: center;
-  margin: 15px 0 46px;
-  font-family: '创粗圆';
-}
-
-.fontText .about-ug {
-  font-size: 20px;
-  font-weight: 500;
-  text-align: center;
-  margin: 15px 0 46px;
-  font-family: 'Shirkhan Yumilaq';
+  margin: 5px 0 46px;
+  font-family: sans-serif, 'Shirkhan Egme', '黑体';
 }
 
 .fontPic .about {
@@ -54,22 +46,11 @@ page {
 .type-desc {
   font-size: 14px;
   margin-bottom: 10px;
-  font-family: '创粗圆';
+  font-family: sans-serif, 'Alpsoft Jurnal', '黑体';
 }
 
 .content {
   font-size: 15px;
-}
-
-.type-name-ug {
-  font-weight: 600;
-  margin-top: 10px;
-}
-
-.type-desc-ug {
-  font-size: 12px;
-  margin-bottom: 10px;
-  font-family: 'shirkhan yumilaq';
 }
 
 .content-ug {
