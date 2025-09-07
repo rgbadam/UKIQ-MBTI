@@ -1,0 +1,74 @@
+<view class="personal-page">
+  <t-navbar t-class-placeholder="t-navbar-placeholder" t-class-content="t-navbar-content" class="custom-navbar">
+    <view slot="left" class="nav-left">
+      <view class="lang-switcher">
+        <view class="slider {{lang === 'ug' ? 'right' : ''}}"></view>
+        <view class="lang-text {{lang === 'cn' ? 'active' : ''}}" bindtap="switchLanguage" data-lang="cn">中</view>
+        <view class="lang-text {{lang === 'ug' ? 'active' : ''}}" bindtap="switchLanguage" data-lang="ug">ئۇ</view>
+      </view>
+    </view>
+  </t-navbar>
+
+  <view class="profile-container">
+    <view class="profile-illust-container">
+      <image class="profile-illust" src="{{gender==='male'?'/images/illust/male.png':'/images/illust/female.png'}}" mode="aspectFill" />
+      <view class="profile-floating-dots"></view>
+    </view>
+    
+    <view class="profile-info">
+      <text class="profile-name">{{lang === 'cn' ? genderData.title_cn : genderData.title_ug}}</text>
+      <text class="profile-sign">{{lang === 'cn' ? genderData.subtitle_cn : genderData.subtitle_ug}}</text>
+    </view>
+
+    <view class="profile-funcs">
+      <view class="profile-funcs-row">
+        <view class="profile-func-block" bindtap="goProfile">
+          <image class="profile-icon" src="/images/icons/myinfo.svg" />
+          <text class="profile-func-label">{{pageText.myProfile}}</text>
+        </view>
+        <button open-type="share" class="share-button profile-func-block">
+          <image class="profile-icon" src="/images/icons/recommend.svg" />
+          <text class="profile-func-label">{{pageText.shareToFriend}}</text>
+        </button>
+      </view>
+      <view class="profile-funcs-row">
+        <navigator target="miniProgram" app-id="wx3f59cbafe3b37dcd" class="profile-func-block">
+          <image class="profile-icon" src="/images/icons/link.svg" />
+          <text class="profile-func-label">{{pageText.moreFun}}</text>
+        </navigator>
+        <view class="profile-func-block" bindtap="contactCoder">
+          <image class="profile-icon" src="/images/icons/contact.svg" />
+          <text class="profile-func-label">{{pageText.cooperation}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="quote-box">
+      <text class="text">{{pageText.quoteText}}</text>
+    </view>
+  </view>
+
+  <!-- 二维码弹窗 -->
+  <coder-popup
+    lang="{{lang}}"
+    visible="{{showCoderPopup}}"
+    bind:close="closeCoderBox"
+  />
+
+  <!-- 登录弹窗 -->
+  <login-popup
+    lang="{{lang}}"
+    visible="{{showLoginPopup}}"
+    bind:close="closeLoginBox"
+    bind:login-success="onLoginSuccess"
+    bind:login-fail="onLoginFail"
+  />
+  <gender-popup
+    lang="{{lang}}"
+    visible="{{showGenderPopup}}"
+    gender="{{gender}}"
+    genderData="{{genderData}}"
+    canClose="{{canCloseGenderBox}}"
+    bind:close="closeGenderBox"
+    bind:confirm="confirmGender"
+  />
+</view>        

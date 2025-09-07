@@ -1,0 +1,17 @@
+<t-popup visible="{{visible}}" bind:visible-change="onClose" placement="center">
+  <view class="qr-popup {{lang}}">
+    <view class="popup-close" bindtap="onClose">
+      <t-icon name="close" size="44rpx" />
+    </view>
+    <view class="qr-content">
+      <view>
+        <view class="qr-title">" rgbadam "</view>
+        <view class="qr-subtitle">{{lang === 'cn' ? '开发者｜设计师｜运营员' : 'پروگراممېر｜لايىھەلىگۈچى｜پىلانلىغۇچى'}}</view>
+      </view>
+      <view class="qr-image-wrapper">
+        <image class="qr-image" src="{{qrCode}}" show-menu-by-longpress mode="aspectFit"/>
+      </view>
+      <text class="qr-tips">{{lang === 'cn' ? '长按识别二维码添加微信' : 'ئىككىلىك كودنى ئۇزۇن بېسىپ تۇرۇپ قېتىۋېلىڭ'}}</text>
+    </view>
+  </view>
+</t-popup> 

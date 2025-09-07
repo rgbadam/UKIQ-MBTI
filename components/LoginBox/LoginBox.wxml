@@ -1,0 +1,17 @@
+<t-popup visible="{{visible}}" bind:visible-change="onVisibleChange" placement="center">
+  <view class="login-popup {{lang}}">
+    <view class="login-content">
+      <image class="login-logo" src="/images/illust/magiccube.png" mode="aspectFit"/>
+      <view class="login-title">{{lang === 'cn' ? '欢迎光临' : 'خەيىرلىك قەدەملەر'}}</view>
+      <view class="login-tip">{{lang === 'cn' ? '请授权完成登录' : 'تېخىمۇ كۆپ ئىقتىدارلار ئۈچۈن تىزىملىتىپ كىرىڭ'}}</view>
+      
+      <button class="login-btn {{isLoggingIn ? 'loading' : ''}}"
+              open-type="getPhoneNumber"
+              bind:getphonenumber="easyLogin"
+              disabled="{{isLoggingIn}}">
+        <t-loading size="44rpx" theme="circular" wx:if="{{isLoggingIn}}"/>
+        <block wx:else>{{lang === 'cn' ? '登录' : 'كىرىش'}}</block>
+      </button>
+    </view>
+  </view>
+</t-popup> 

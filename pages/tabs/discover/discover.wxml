@@ -1,0 +1,43 @@
+<view class="discover-container">
+  <t-navbar t-class-placeholder="t-navbar-placeholder" t-class-content="t-navbar-content" class="custom-navbar">
+    <view slot="left" class="nav-left">
+      <view class="lang-switcher">
+        <view class="slider {{lang === 'ug' ? 'right' : ''}}"></view>
+        <view class="lang-text {{lang === 'cn' ? 'active' : ''}}" bindtap="switchLanguage" data-lang="cn">中</view>
+        <view class="lang-text {{lang === 'ug' ? 'active' : ''}}" bindtap="switchLanguage" data-lang="ug">ئۇ</view>
+      </view>
+    </view>
+    <view slot="center" class="nav-title">{{ pageText.navBarTitle }}</view>
+  </t-navbar>
+
+  <view class="main-card">
+    <!-- Poster Section -->
+    <view class="poster" bindtap="getStarted">
+      <image src="/images/illust/mbti.svg" class="poster-image" mode="aspectFit" />
+    </view>
+    <view class="poster-button" bindtap="getStarted">{{ pageText.getStarted }}</view>
+
+    <!-- Function Section -->
+    <view class="func-title">{{ pageText.funcTitle }}</view>
+    <view class="func-options">
+      <view class="option-item" bindtap="jumpTypeList">
+        <image src="/images/icons/typeList.svg" class="option-icon" />
+        <view class="option-label">{{ pageText.typeList }}</view>
+      </view>
+      <view class="option-item" bindtap="jumpAboutMbti">
+        <image src="/images/icons/aboutMBTI.svg" class="option-icon" />
+        <view class="option-label">{{ pageText.aboutMBTI }}</view>
+      </view>
+      <view class="option-item" bindtap="jumpFAQ">
+        <image src="/images/icons/FAQ.svg" class="option-icon" />
+        <view class="option-label">{{ pageText.FAQ }}</view>
+      </view>
+    </view>
+
+    <!-- Result Section -->
+    <view class="result" bindtap="jumpResultPage">
+      <view class="result-title">{{ tips }}</view>
+      <view class="result-value">{{ mbti }}</view>
+    </view>
+  </view>
+</view>

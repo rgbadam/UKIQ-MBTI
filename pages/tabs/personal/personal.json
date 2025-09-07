@@ -1,0 +1,11 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "t-navbar": "tdesign-miniprogram/navbar/navbar",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-popup": "tdesign-miniprogram/popup/popup",
+    "gender-popup": "/components/GenderBox/GenderBox",
+    "login-popup": "/components/LoginBox/LoginBox",
+    "coder-popup": "/components/CoderBox/CoderBox"
+  }
+}

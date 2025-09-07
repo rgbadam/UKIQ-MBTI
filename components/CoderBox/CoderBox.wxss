@@ -1,0 +1,78 @@
+.qr-popup {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 48rpx 32rpx 40rpx;
+  width: 560rpx;
+  position: relative;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  font-family: sans-serif, '黑体', 'Alpsoft Esliye';
+}
+
+.popup-close {
+  position: absolute;
+  right: 24rpx;
+  top: 24rpx;
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  z-index: 9;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.popup-close:active {
+  background: rgba(0, 0, 0, 0.05);
+  transform: scale(0.9);
+}
+
+.qr-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32rpx;
+}
+
+.qr-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #555;
+  text-align: center;
+  margin-bottom: 15rpx;
+}
+
+.qr-subtitle {
+  font-size: 28rpx;
+  color: #999;
+  text-align: center;
+  margin-bottom: 24rpx;
+}
+
+.qr-image-wrapper {
+  background: #f9f9f9;
+  padding: 32rpx;
+  border-radius: 16rpx;
+  width: 400rpx;
+  height: 400rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+}
+
+.qr-tips {
+  font-size: 26rpx;
+  color: #666;
+  background: rgba(0, 82, 217, 0.05);
+  padding: 12rpx 24rpx;
+  border-radius: 24rpx;
+  text-align: center;
+} 

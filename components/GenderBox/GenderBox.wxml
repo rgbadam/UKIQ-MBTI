@@ -1,0 +1,91 @@
+<t-popup visible="{{visible}}" bind:visible-change="closePopup" placement="center">
+  <view class="close-button-container {{canClose ? 'show' : 'hide'}}">
+    <view class="close-button" bindtap="closePopup">
+      <view class="close-icon"></view>
+    </view>
+  </view>
+  
+  <view class="gender-popup {{lang}} {{showMore ? 'expanded' : ''}}">
+    <view class="gender-content">
+      <view class="title-container {{selectedGender ? 'hide' : ''}}">
+        <view class="gender-title">
+          {{lang === 'cn' ? '您的性别是？' : 'سالاھىيىتىڭىز قايسىدۇر؟'}}
+        </view>
+      </view>
+      
+      <view class="gender-options {{showMore ? 'compact' : ''}}">
+        <!-- 男性选项 -->
+        <view class="gender-option male {{selectedGender === 'male' ? 'selected' : ''}} {{showMore && nicknameType !== 'male' ? 'hidden' : ''}}" 
+              bindtap="selectGender" data-gender="male">
+          <view class="option-wrapper">
+            <view class="avatar-container">
+              <image class="gender-avatar" src="/images/illust/male.png" mode="aspectFit"/>
+            </view>
+            <view class="option-info">
+              <view class="option-label">{{lang === 'cn' ? '男生' : 'يىگىت'}}</view>
+            </view>
+            <view class="action-area">
+              <view class="more-hint {{!showMore && selectedGender === 'male' ? 'show' : ''}}" bindtap="showMore" data-type="male">
+                <t-icon name="chevron-down" size="20rpx" />
+              </view>
+              <view class="collapse-hint {{showMore && nicknameType === 'male' ? 'show' : ''}}" bindtap="hideMore">
+                <t-icon name="chevron-up" size="20rpx" />
+              </view>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 女性选项 -->
+        <view class="gender-option female {{selectedGender === 'female' ? 'selected' : ''}} {{showMore && nicknameType !== 'female' ? 'hidden' : ''}}" 
+              bindtap="selectGender" data-gender="female">
+          <view class="option-wrapper">
+            <view class="avatar-container">
+              <image class="gender-avatar" src="/images/illust/female.png" mode="aspectFit"/>
+            </view>
+            <view class="option-info">
+              <view class="option-label">{{lang === 'cn' ? '女生' : 'قىز'}}</view>
+            </view>
+            <view class="action-area">
+              <view class="more-hint {{!showMore && selectedGender === 'female' ? 'show' : ''}}" bindtap="showMore" data-type="female">
+                <t-icon name="chevron-down" size="20rpx" />
+              </view>
+              <view class="collapse-hint {{showMore && nicknameType === 'female' ? 'show' : ''}}" bindtap="hideMore">
+                <t-icon name="chevron-up" size="20rpx" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 更多选项区域 -->
+      <view class="more-options-section {{showMore ? 'show' : ''}}">        
+        <view class="title-grid">
+          <view 
+            wx:for="{{nicknameType === 'male' ? maleOptions : femaleOptions}}" 
+            wx:key="value"
+            class="title-item {{favGenderValue === item.value ? 'selected' : ''}}"
+            bindtap="selectTitle"
+            data-value="{{item.value}}"
+            data-label="{{lang === 'cn' ? item.label_cn : item.label_ug}}"
+          >
+            <view class="title-text">{{lang === 'cn' ? item.label_cn : item.label_ug}}</view>
+          </view>
+        </view>
+      </view>
+      
+      <view class="button-container {{selectedGender ? 'show' : ''}}">
+        <t-button 
+          block
+          theme="primary"
+          size="large"
+          class="confirm-btn"
+          bindtap="confirmGender"
+        >
+          <view class="button-text">
+            <text class="button-prefix">{{lang === 'cn' ? '我是' : 'مەن بىر '}}</text><text class="button-content">{{favGenderLabel || (selectedGender === 'male' ? (lang === 'cn' ? '男生' : 'يىگىت') : (lang === 'cn' ? '女生' : 'قىز'))}}</text>
+          </view>
+        </t-button>
+      </view>
+    </view>
+  </view>
+</t-popup> 
