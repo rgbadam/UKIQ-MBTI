@@ -74,6 +74,30 @@ const pageTexts = {
     moreFun: "更多好玩",
     cooperation: "我要合作",
     quoteText: "成功属于坚持到最后的人。"
+  },
+  profilePage: {
+    navBarTitle: "个人资料",
+    vipMember: "VIP 会员",
+    vipActiveDesc: "尊享专属特权服务",
+    vipInactiveDesc: "开通会员享受更多特权",
+    vipActivated: "尊贵会员",
+    vipNotActivated: "开通会员",
+    personalityType: "人格类型",
+    notTested: "未测试",
+    favorites: "收藏名数",
+    noFavorites: "暂无",
+    genderTitle: "身份称呼",
+    wechatNickname: "用户昵称",
+    nicknameNotSet: "未设置昵称",
+    phoneNumber: "手机号",
+    phoneNotBound: "暂未绑定",
+    userId: "UserID",
+    noUserId: "暂未登录",
+    switch: "更换",
+    edit: "编辑",
+    bind: "绑定",
+    copy: "复制",
+    logout: "退出登录"
   }
 }
 

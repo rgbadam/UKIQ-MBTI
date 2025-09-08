@@ -1,72 +1,72 @@
-<view class="profile-page">
-  <!-- VIP状态卡片 -->
+<view class="profile-page {{lang === 'ug' ? 'rtl' : ''}}">
+  <!-- 会员卡片 -->
   <view class="vip-card {{isVip ? 'vip-active' : 'vip-inactive'}}">
     <view class="vip-content">
       <view class="vip-header">
         <t-icon name="user-vip" size="40rpx" color="#ffffff" />
-        <text class="vip-title">{{isVip ? (lang==='cn' ? 'VIP 会员' : 'VIP ئەزا') : (lang==='cn' ? 'VIP 会员' : 'VIP ئەزا')}}</text>
+        <text class="vip-title">{{pageText.vipMember}}</text>
       </view>
-      <text class="vip-desc">{{isVip ? (lang==='cn' ? '尊享专属特权服务' : 'ئالاھىدە ھوقۇق مۇلازىمىتى') : (lang==='cn' ? '开通会员享受更多特权' : 'ئەزا بولۇڭ، تەۋرىرە نېمەت ئالڭ')}}</text>
+      <text class="vip-desc">{{isVip ? pageText.vipActiveDesc : pageText.vipInactiveDesc}}</text>
     </view>
     <view class="vip-status">
-      <text class="status-text">{{isVip ? (lang==='cn' ? '已激活' : 'ئېچىلغان') : (lang==='cn' ? '未开通' : 'ئېچىلمىغان')}}</text>
+      <text class="status-text">{{isVip ? pageText.vipActivated : pageText.vipNotActivated}}</text>
     </view>
   </view>
 
-  <!-- 数据卡片 -->
+  <!-- 统计卡片 -->
   <view class="data-cards">
-    <view class="data-card">
-      <text class="card-number {{!mbti ? 'empty-data' : ''}}">{{mbti || (lang==='cn' ? '未测试' : 'سىنالمىغان')}}</text>
-      <text class="card-label">{{lang==='cn' ? '人格类型' : 'شەخسىيەت تىپى'}}</text>
+    <view class="data-card" bindtap="goToTestResults">
+      <text class="card-number {{!mbti ? 'empty-data' : ''}}">{{mbti || pageText.notTested}}</text>
+      <text class="card-label">{{pageText.personalityType}}</text>
     </view>
-    <view class="data-card">
-      <text class="card-number {{favoritesCount === 0 ? 'empty-data' : ''}}">{{favoritesCount || (lang==='cn' ? '暂无' : 'يوق')}}</text>
-      <text class="card-label">{{lang==='cn' ? '收藏' : 'ياقتۇرغان'}}</text>
+    <view class="data-card" bindtap="goToFavorites">
+      <text class="card-number {{favoritesCount === 0 ? 'empty-data' : ''}}">{{favoritesCount || pageText.noFavorites}}</text>
+      <text class="card-label">{{pageText.favorites}}</text>
     </view>
   </view>
 
-  <!-- 个人信息卡片 -->
+  <!-- 信息卡片 -->
   <view class="info-list">
     <view class="info-item gender-item" data-gender="{{gender}}">
       <t-icon name="{{gender === 'male' ? 'gender-male' : 'gender-female'}}" size="36rpx" color="{{gender === 'male' ? '#3b82f6' : '#ec4899'}}" class="info-icon gender-icon" />
       <view class="info-content">
-        <text class="info-label">{{lang==='cn' ? '性别称呼' : 'جىنىس مۇخاتىپىسى'}}</text>
-        <text class="info-value gender-value">{{genderText || (lang==='cn' ? '优雅人士' : 'ئېسىل كىشى')}}</text>
+        <text class="info-label">{{pageText.genderTitle}}</text>
+        <text class="info-value gender-value">{{genderText}}</text>
       </view>
-      <text class="switch-text gender-switch" bindtap="switchGender">{{lang==='cn' ? '切换' : 'ئالماشتۇرۇش'}}</text>
+      <text class="switch-text gender-switch" bindtap="switchGender">{{pageText.switch}}</text>
     </view>
     
     <view class="info-item">
       <t-icon name="user-1" size="36rpx" color="#4c6ef5" class="info-icon" />
       <view class="info-content">
-        <text class="info-label">{{lang==='cn' ? '微信昵称' : 'ۋېچات لەقىمى'}}</text>
-        <text class="info-value {{nickname === (lang==='cn' ? '未设置昵称' : 'لەقەم تەڭشەلمىگەن') ? 'empty-data' : ''}}">{{nickname}}</text>
+        <text class="info-label">{{pageText.wechatNickname}}</text>
+        <text class="info-value {{!nickname ? 'empty-data' : ''}}">{{nickname || pageText.nicknameNotSet}}</text>
       </view>
-      <text class="edit-text" bindtap="editNickname">{{lang==='cn' ? '编辑' : 'تەھرىرلەش'}}</text>
+      <text class="edit-text" bindtap="editNickname">{{pageText.edit}}</text>
     </view>
     
     <view class="info-item">
       <t-icon name="mobile" size="36rpx" color="#10b981" class="info-icon" />
       <view class="info-content">
-        <text class="info-label">{{lang==='cn' ? '手机号码' : 'تېلېفون نۇمۇرى'}}</text>
-        <text class="info-value {{phone === (lang==='cn' ? '未绑定手机' : 'تېلېفون باغلانمىغان') ? 'empty-data' : ''}}">{{phone}}</text>
+        <text class="info-label">{{pageText.phoneNumber}}</text>
+        <text class="info-value {{!phone ? 'empty-data' : ''}}">{{phone || pageText.phoneNotBound}}</text>
       </view>
-      <text class="edit-text" bindtap="editPhone">{{lang==='cn' ? '编辑' : 'تەھرىرلەش'}}</text>
+      <text class="edit-text" bindtap="editPhone">{{pageText.bind}}</text>
     </view>
     
     <view class="info-item">
       <t-icon name="base-station" size="36rpx" color="#f59e0b" class="info-icon" />
       <view class="info-content">
-        <text class="info-label">{{lang==='cn' ? '用户ID' : 'ئىشلەتكۈچى ID'}}</text>
-        <text class="info-value {{userId === (lang==='cn' ? '暂无ID' : 'ID يوق') ? 'empty-data' : ''}}">{{userId}}</text>
+        <text class="info-label">{{pageText.userId}}</text>
+        <text class="info-value {{!userId ? 'empty-data' : ''}}">{{userId || pageText.noUserId}}</text>
       </view>
-      <text class="copy-text" bindtap="copyUserId">{{lang==='cn' ? '复制' : 'كۆچۈرۈش'}}</text>
+      <text class="copy-text" bindtap="copyUserId">{{pageText.copy}}</text>
     </view>
   </view>
 
   <!-- 退出登录 -->
   <view class="logout-section">
-    <text class="logout-btn" bindtap="logout">{{lang==='cn' ? '退出登录' : 'چىقىش'}}</text>
+    <text class="logout-btn" bindtap="logout">{{pageText.logout}}</text>
   </view>
 
   <!-- GenderBox 组件 -->

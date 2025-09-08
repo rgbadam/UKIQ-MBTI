@@ -28,7 +28,6 @@ Page({
 
     // 监听性别变更事件
     this.genderChangeCallback = (data) => {
-      console.log('接收到性别更改事件:', data);
       this.setData({
         gender: data.gender,
         genderData: data.genderData

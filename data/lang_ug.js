@@ -74,6 +74,30 @@ const pageTexts = {
     moreFun: "ئىلھاملار",
     cooperation: "ھەمكارلىق",
     quoteText: "ھەر ئىشتا بىر ھېكمەت بار."
+  },
+  profilePage: {
+    navBarTitle: "شەخسىي ئۇچۇرلار",
+    vipMember: "VIP ئەزالىق",
+    vipActiveDesc: "ئەتىۋا مۇلازىمەت تولۇق ئىمتىيازى ھازىردۇر",
+    vipInactiveDesc: "ئەزالىقتا تېخىمۇ كۆپ ئەتىۋا مۇلازىمەت ئىمتىيازى باردۇر",
+    vipActivated: "ئەتىۋا ئەزا",
+    vipNotActivated: "ئەزا بولاي",
+    personalityType: "خارەكتېر تىپى",
+    notTested: "نامەلۇم",
+    favorites: "ياقتۇرغان ئىسىم",
+    noFavorites: "يوق",
+    genderTitle: "سالاھىيەت",
+    wechatNickname: "نام ئاتاق",
+    nicknameNotSet: "تېخى قويۇلماپمىش",
+    phoneNumber: "ئالاقە نۇمۇر",
+    phoneNotBound: "تېخى باغلانماپمىش",
+    userId: "user ID",
+    noUserId: "تېخى تىزىملانماپمىش",
+    switch: "تاللاش",
+    edit: "ئاتاغلاش",
+    bind: "باغلاش",
+    copy: "كۆچۈرۈش",
+    logout: "تىزىمدىن چىقىش"
   }
 }
 

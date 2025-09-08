@@ -30,10 +30,6 @@ function changeTabBarTitle(langType) {
   })
   wx.setTabBarItem({
     index: 2,
-    "text": langPackage.pageTexts.typeList.tabBarTitle
-  })
-  wx.setTabBarItem({
-    index: 3,
     "text": langPackage.pageTexts.userCenter.tabBarTitle
   })
 }
