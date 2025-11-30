@@ -1,4 +1,5 @@
-const { mockAPI } = require('../../../utils/mockData');
+const app = getApp();
+const baseUrl = app.globalData.requestUrl;
 
 Page({
   data: {
@@ -61,11 +62,33 @@ Page({
   },
 
   loadNames() {
-    const names = mockAPI.getAllNames()
-    this.setData({ 
-      allNames: names
-    })
-    this.calculateLetterCounts(names)
+    wx.request({
+      url: `${baseUrl}/names/getAll`,
+      method: 'POST',
+      success: (res) => {
+        if (res.data.code === 200) {
+          const names = res.data.nameList || [];
+          this.setData({ 
+            allNames: names
+          });
+          this.calculateLetterCounts(names);
+        } else {
+          wx.showToast({
+            title: res.data.message || '获取数据失败',
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+        wx.showToast({
+          title: '网络错误，请稍后重试',
+          icon: 'none',
+          duration: 2000
+        });
+      }
+    });
   },
 
   calculateLetterCounts(names) {

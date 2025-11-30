@@ -50,9 +50,9 @@
     <view class="names-container" wx:if="{{!loading}}">
       <view class="name-card" 
             wx:for="{{displayNames}}" 
-            wx:key="_id"
+            wx:key="id"
             bindtap="navigateToDetail"
-            data-id="{{item._id}}">
+            data-id="{{item.id}}">
         <view class="avatar-container {{item.gender}}-avatar">
           <view class="avatar-letter">
             {{item.nameUyghur[0] === 'ئ' ? item.nameUyghur[0] + item.nameUyghur[1] : item.nameUyghur[0]}}

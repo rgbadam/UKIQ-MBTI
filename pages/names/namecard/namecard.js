@@ -1,4 +1,5 @@
-const { mockAPI } = require('../../../utils/mockData');
+const app = getApp();
+const baseUrl = app.globalData.requestUrl;
 
 Page({
   data: {
@@ -14,31 +15,51 @@ Page({
 
   onShow: function() {
     if (this.data.nameData) {
-      this.checkFavoriteStatus(this.data.nameData._id);
+      this.checkFavoriteStatus(this.data.nameData.id);
     }
   },
 
   loadNameData: function(nameId) {
-    const nameData = mockAPI.getNameById(nameId);
-    
-    if (nameData) {
-      this.setData({ nameData });
-      this.checkFavoriteStatus(nameId);
-    } else {
-      wx.showToast({
-        title: '无匹配信息',
-        icon: 'error',
-        duration: 2000
-      });
-      setTimeout(() => {
-        wx.navigateBack();
-      }, 2000);
-    }
+    wx.request({
+      url: `${baseUrl}/names/getById`,
+      method: 'POST',
+      data: { id: nameId },
+      success: (res) => {
+        if (res.data.code === 200) {
+          const nameData = res.data.name;
+          this.setData({ nameData });
+          this.checkFavoriteStatus(nameId);
+        } else if (res.data.code === 404) {
+          wx.showToast({
+            title: '名字不存在',
+            icon: 'error',
+            duration: 2000
+          });
+          setTimeout(() => {
+            wx.navigateBack();
+          }, 2000);
+        } else {
+          wx.showToast({
+            title: res.data.message || '获取数据失败',
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+        wx.showToast({
+          title: '网络错误，请稍后重试',
+          icon: 'none',
+          duration: 2000
+        });
+      }
+    });
   },
 
   checkFavoriteStatus: function(nameId) {
     const favorites = wx.getStorageSync('favoriteNames') || [];
-    const isFavorite = favorites.some(fav => fav._id === nameId);
+    const isFavorite = favorites.some(fav => fav.id === nameId);
     this.setData({ isFavorite });
   },
 
@@ -47,15 +68,17 @@ Page({
   },
 
   toggleFavorite: function() {
-    const nameId = this.data.nameData._id;
+    if (!this.data.nameData) return;
+    
+    const nameId = this.data.nameData.id;
     const name = this.data.nameData.nameUyghur;
     
     let favorites = wx.getStorageSync('favoriteNames') || [];
-    const index = favorites.findIndex(item => item._id === nameId);
+    const index = favorites.findIndex(item => item.id === nameId);
     
     if (index === -1) {
       favorites.push({
-        _id: nameId,
+        id: nameId,
         name: name,
         date: new Date().getTime()
       });
@@ -69,6 +92,8 @@ Page({
   },
 
   copyName: function() {
+    if (!this.data.nameData) return;
+    
     const { nameUyghur, nameLatin, nameChinese } = this.data.nameData;
     const textToCopy = `${nameUyghur}\r\n${nameLatin}\r\n${nameChinese}`;
     
@@ -85,18 +110,24 @@ Page({
   },
 
   onShareAppMessage: function() {
-    const { nameUyghur, nameLatin, nameChinese, _id } = this.data.nameData;
+    if (!this.data.nameData) {
+      return { title: 'ئىسىملار قامۇسى · 起名小助手', path: '/pages/names/homepage/homepage' };
+    }
+    const { nameUyghur, nameLatin, nameChinese, id } = this.data.nameData;
     return {
       title: `${nameUyghur}｜${nameLatin}｜${nameChinese}`,
-      path: `/pages/names/namecard/namecard?id=${_id}`
+      path: `/pages/names/namecard/namecard?id=${id}`
     };
   },
 
   onShareTimeline: function() {
-    const { nameUyghur, nameLatin, nameChinese, _id } = this.data.nameData;
+    if (!this.data.nameData) {
+      return { title: 'ئىسىملار قامۇسى · 起名小助手', path: '/pages/names/homepage/homepage' };
+    }
+    const { nameUyghur, nameLatin, nameChinese, id } = this.data.nameData;
     return {
       title: `${nameUyghur}｜${nameLatin}｜${nameChinese}`,
-      path: `/pages/names/namecard/namecard?id=${_id}`
+      path: `/pages/names/namecard/namecard?id=${id}`
     };
   }
 }); 

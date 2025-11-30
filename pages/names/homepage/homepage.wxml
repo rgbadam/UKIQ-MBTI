@@ -6,11 +6,12 @@
 
   <block wx:else>
     <!-- Navbar Section -->
-    <view class="navbar">
-      <icon class="nav-search" type="search" size="16" color="#ffffff" bindtap="navigateToSearch" />
-      <view class="nav-title">ئىسىملار قامۇسى</view>
-      <view style="width: 100rpx;"></view>
-    </view>
+    <t-navbar t-class-placeholder="t-navbar-placeholder" t-class-content="t-navbar-content" t-class-center="nav-title-wrapper" class="custom-navbar">
+      <view slot="left" class="nav-left">
+        <icon class="nav-search" type="search" size="16" color="#ffffff" bindtap="navigateToSearch" />
+      </view>
+      <view slot="title" class="nav-title">ئىسىملار قامۇسى</view>
+    </t-navbar>
 
     <!-- Stacked Card Section -->
     <view class="card-stack">
@@ -47,7 +48,7 @@
             bindtouchend="handleTouchEnd"
             animation="{{animationCurrent}}">
         
-        <view class="name-card {{currentCard.gender === 'male' ? 'male-card' : 'female-card'}}" bindtap="navigateToDetail" data-id="{{currentCard._id}}">
+        <view class="name-card {{currentCard.gender === 'male' ? 'male-card' : 'female-card'}}" bindtap="navigateToDetail" data-id="{{currentCard.id}}">
           <view class="card-decoration"></view>
           <view class="name-card-content">
             <text class="name-text">{{currentCard.nameUyghur || ''}}</text>

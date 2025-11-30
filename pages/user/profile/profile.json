@@ -2,7 +2,8 @@
   "usingComponents": {
     "t-icon": "tdesign-miniprogram/icon/icon",
     "t-popup": "tdesign-miniprogram/popup/popup",
-    "GenderBox": "/components/GenderBox/GenderBox"
+    "GenderBox": "/components/GenderBox/GenderBox",
+    "login-popup": "/components/LoginBox/LoginBox"
   }
 }
 

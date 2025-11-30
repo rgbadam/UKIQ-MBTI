@@ -1,4 +1,6 @@
 const { getLangPackage } = require('../../../utils/languageUtil.js')
+const { handleLoginFail } = require('../../../utils/loginErrorHandler.js')
+const app = getApp()
 
 Page({
   data: {
@@ -14,12 +16,23 @@ Page({
     favoritesCount: 0,
     showGenderPopup: false,
     canCloseGenderBox: true,
+    showLoginPopup: false,
+    isLoggedIn: false,
     pageText: {}
   },
 
   onShow() {
     this.initLanguage();
-    this.loadUserData();
+    // 检查登录状态并获取用户信息
+    const token = wx.getStorageSync('token');
+    const userInfo = wx.getStorageSync('userInfo');
+    if (token && userInfo) {
+      this.setData({ isLoggedIn: true });
+      this.getUserInfo();
+    } else {
+      this.setData({ isLoggedIn: false });
+      this.loadUserData();
+    }
   },
 
   initLanguage() {
@@ -54,15 +67,116 @@ Page({
     });
   },
 
+  checkLogin() {
+    wx.getStorage({
+      key: 'userInfo',
+      success: (res) => {
+        this.setData({ isLoggedIn: true });
+      },
+      fail: () => {
+        this.setData({ isLoggedIn: false });
+      }
+    });
+  },
+
+  getUserInfo() {
+    const token = wx.getStorageSync('token');
+    const userInfo = wx.getStorageSync('userInfo');
+    
+    // 如果没有token或userInfo，直接返回
+    if (!token || !userInfo) {
+      this.setData({ 
+        isLoggedIn: false,
+        showLoginPopup: true 
+      });
+      return;
+    }
+
+    wx.request({
+      url: `${app.globalData.requestUrl}/auth/userInfo`,
+      method: 'GET',
+      header: {
+        'Authorization': `Bearer ${token}`
+      },
+      success: (res) => {
+        if (res.data.code === 200) {
+          // 更新用户信息
+          const userData = res.data.data;
+          const updatedUserInfo = {
+            ...userInfo,
+            id: userData.id,
+            user_id: userData.user_id,
+            openid: userData.openid,
+            phone: userData.phone,
+            nickname: userData.nickname,
+            last_login_at: userData.last_login_at,
+            created_at: userData.created_at
+          };
+          
+          // 保存更新后的用户信息
+          wx.setStorage({
+            key: 'userInfo',
+            data: updatedUserInfo,
+            success: () => {
+              // 更新页面数据
+              this.setData({ 
+                isLoggedIn: true,
+                userId: userData.user_id,
+                phone: userData.phone || '',
+                nickname: userData.nickname || ''
+              });
+              // 加载其他用户数据
+              this.loadUserData();
+            }
+          });
+        } else if (res.data.code === 401) {
+          // Token无效或过期，清除存储并显示登录弹窗
+          wx.removeStorageSync('token');
+          wx.removeStorageSync('userInfo');
+          this.setData({ 
+            isLoggedIn: false,
+            showLoginPopup: true
+          });
+        } else if (res.data.code === 404) {
+          // 用户不存在，清除存储并显示登录弹窗
+          wx.removeStorageSync('token');
+          wx.removeStorageSync('userInfo');
+          this.setData({ 
+            isLoggedIn: false,
+            showLoginPopup: true
+          });
+        } else {
+          this.loadUserData();
+        }
+      },
+      fail: (err) => {
+        console.error('获取用户信息失败:', err);
+        this.loadUserData();
+      }
+    });
+  },
+
   editNickname() {
+    if (!this.data.isLoggedIn) {
+      this.setData({ showLoginPopup: true });
+      return;
+    }
     if (!this.data.nickname) return;
   },
 
   editPhone() {
+    if (!this.data.isLoggedIn) {
+      this.setData({ showLoginPopup: true });
+      return;
+    }
     if (this.data.phone) return;
   },
 
   copyUserId() {
+    if (!this.data.isLoggedIn) {
+      this.setData({ showLoginPopup: true });
+      return;
+    }
     if (!this.data.userId) return;
     wx.setClipboardData({
       data: this.data.userId,
@@ -138,6 +252,31 @@ Page({
     });
   },
 
+  closeLoginBox() {
+    this.setData({ showLoginPopup: false });
+  },
+
+  onLoginSuccess(e) {
+    const userInfo = e.detail;
+    this.setData({ 
+      isLoggedIn: true,
+      showLoginPopup: false
+    });
+    // 登录成功后获取最新用户信息
+    this.getUserInfo();
+    // 触发登录事件，通知其他页面
+    if (app.globalData.eventBus) {
+      app.globalData.eventBus.emit('login', userInfo);
+    }
+  },
+
+  onLoginFail(e) {
+    this.setData({ showLoginPopup: false });
+    handleLoginFail(e, () => {
+      this.setData({ showLoginPopup: true });
+    });
+  },
+
   // 退出登录
   logout() {
     wx.showModal({
@@ -150,6 +289,8 @@ Page({
           wx.removeStorageSync('userAuth');
           wx.removeStorageSync('localUser');
           wx.removeStorageSync('userInfo');
+          
+          this.setData({ isLoggedIn: false });
           
           setTimeout(() => {
             wx.reLaunch({

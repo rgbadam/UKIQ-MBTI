@@ -1,5 +1,6 @@
 // pages/names/homepage/homepage.js
-const { mockAPI } = require('../../../utils/mockData');
+const app = getApp();
+const baseUrl = app.globalData.requestUrl;
 
 // 动画常量配置
 const ANIMATION_CONFIG = {
@@ -65,27 +66,38 @@ Page({
   },
 
   getRandomNames: function() {
-    const allNames = mockAPI.getAllNames();
-    
-    let randomNames = [];
-    let usedIndices = new Set();
-    
-    const numToShow = Math.min(10, allNames.length);
-    
-    while (randomNames.length < numToShow) {
-      const randomIndex = Math.floor(Math.random() * allNames.length);
-      if (!usedIndices.has(randomIndex)) {
-        usedIndices.add(randomIndex);
-        randomNames.push(allNames[randomIndex]);
+    wx.request({
+      url: `${baseUrl}/names/random`,
+      method: 'POST',
+      data: { count: 10 },
+      success: (res) => {
+        if (res.data.code === 200) {
+          const randomNames = res.data.nameList || [];
+          this.setData({
+            randomNames,
+            currentIndex: 0,
+            loading: false
+          }, () => {
+            this.updateCardData();
+          });
+        } else {
+          wx.showToast({
+            title: res.data.message || '获取数据失败',
+            icon: 'none',
+            duration: 2000
+          });
+          this.setData({ loading: false });
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+        wx.showToast({
+          title: '网络错误，请稍后重试',
+          icon: 'none',
+          duration: 2000
+        });
+        this.setData({ loading: false });
       }
-    }
-    
-    this.setData({
-      randomNames,
-      currentIndex: 0,
-      loading: false
-    }, () => {
-      this.updateCardData();
     });
   },
   

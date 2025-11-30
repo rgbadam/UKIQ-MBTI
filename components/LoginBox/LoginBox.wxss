@@ -6,6 +6,28 @@
   padding: 48rpx 32rpx 32rpx;
   box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
   font-family: sans-serif, '黑体', 'Alpsoft Esliye';
+  position: relative;
+}
+
+.popup-close {
+  position: absolute;
+  right: 24rpx;
+  top: 24rpx;
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  z-index: 9;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.popup-close:active {
+  background: rgba(0, 0, 0, 0.05);
+  transform: scale(0.9);
 }
 
 .login-content {

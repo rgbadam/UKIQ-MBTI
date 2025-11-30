@@ -1,4 +1,5 @@
-const { mockAPI } = require('../../../utils/mockData');
+const app = getApp();
+const baseUrl = app.globalData.requestUrl;
 
 Page({
   data: {
@@ -17,24 +18,46 @@ Page({
   },
 
   loadNames: function(letter) {
-    const allNames = mockAPI.getAllNames();
-    const names = allNames.filter(name => {
-      // 支持双字母（如ئا、ئە等）
-      if (letter.length === 2) {
-        return name.nameUyghur.startsWith(letter);
-      } else {
-        return name.nameUyghur.startsWith(letter);
+    this.setData({ loading: true });
+    
+    wx.request({
+      url: `${baseUrl}/names/getAll`,
+      method: 'POST',
+      success: (res) => {
+        if (res.data.code === 200) {
+          const allNames = res.data.nameList || [];
+          const names = allNames.filter(name => {
+            // 支持双字母（如ئا、ئە等）
+            return name.nameUyghur.startsWith(letter);
+          });
+          const totalCount = names.length;
+          const maleCount = names.filter(n => n.gender === 'male').length;
+          const femaleCount = names.filter(n => n.gender === 'female').length;
+          this.setData({
+            names,
+            totalCount,
+            maleCount,
+            femaleCount,
+            loading: false
+          });
+        } else {
+          wx.showToast({
+            title: res.data.message || '获取数据失败',
+            icon: 'none',
+            duration: 2000
+          });
+          this.setData({ loading: false });
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+        wx.showToast({
+          title: '网络错误，请稍后重试',
+          icon: 'none',
+          duration: 2000
+        });
+        this.setData({ loading: false });
       }
-    });
-    const totalCount = names.length;
-    const maleCount = names.filter(n => n.gender === 'male').length;
-    const femaleCount = names.filter(n => n.gender === 'female').length;
-    this.setData({
-      names,
-      totalCount,
-      maleCount,
-      femaleCount,
-      loading: false
     });
   },
 

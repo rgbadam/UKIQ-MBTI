@@ -1,5 +1,5 @@
-// pages/search/search.js
-const { mockAPI } = require('../../../utils/mockData');
+const app = getApp();
+const baseUrl = app.globalData.requestUrl;
 
 Page({
   data: {
@@ -8,24 +8,50 @@ Page({
     displayNames: [],
     loading: true,
     isFocused: false,
-    searchText: ''
+    searchText: '',
+    total: 0
   },
 
   onLoad: function() {
     this.loadData();
   },
 
-  loadData: function() {
-    // Get all names
-    const allNames = mockAPI.getAllNames();
+  loadData: function(keyword = '') {
+    this.setData({ loading: true });
     
-    // Sort names by Uyghur name
-    allNames.sort((a, b) => a.nameUyghur.localeCompare(b.nameUyghur));
-    
-    this.setData({
-      allNames,
-      displayNames: allNames,
-      loading: false
+    wx.request({
+      url: `${baseUrl}/names/getAll`,
+      method: 'POST',
+      data: keyword ? { keyword } : {},
+      success: (res) => {
+        if (res.data.code === 200) {
+          const nameList = res.data.nameList || [];
+          
+          // Sort names by Uyghur name
+          nameList.sort((a, b) => a.nameUyghur.localeCompare(b.nameUyghur));
+          
+          this.setData({
+            allNames: nameList,
+            displayNames: nameList,
+            total: res.data.total || 0,
+            loading: false
+          });
+        } else {
+          wx.showToast({
+            title: res.data.message || '获取数据失败',
+            icon: 'none'
+          });
+          this.setData({ loading: false });
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+        wx.showToast({
+          title: '网络错误，请稍后重试',
+          icon: 'none'
+        });
+        this.setData({ loading: false });
+      }
     });
   },
 
@@ -33,33 +59,71 @@ Page({
     const query = e.detail.value;
     this.setData({ query });
     
-    // Filter names based on query
-    this.filterNames(query);
+    // 使用防抖优化搜索
+    if (this.searchTimer) {
+      clearTimeout(this.searchTimer);
+    }
+    
+    this.searchTimer = setTimeout(() => {
+      this.filterNames(query);
+    }, 300);
   },
 
   filterNames: function(query) {
-    if (!query) {
-      this.setData({ displayNames: this.data.allNames });
+    // 如果查询为空，重新加载所有数据
+    if (!query || query.trim() === '') {
+      this.loadData();
       return;
     }
     
-    const lowerQuery = query.toLowerCase();
+    // 调用 API 进行搜索
+    this.setData({ loading: true });
     
-    const filteredNames = this.data.allNames.filter(name => 
-      name.nameUyghur.includes(lowerQuery) ||
-      name.nameChinese.includes(lowerQuery) ||
-      name.nameLatin.toLowerCase().includes(lowerQuery)
-    );
-    
-    this.setData({ displayNames: filteredNames });
+    wx.request({
+      url: `${baseUrl}/names/getAll`,
+      method: 'POST',
+      data: { keyword: query.trim() },
+      success: (res) => {
+        if (res.data.code === 200) {
+          const nameList = res.data.nameList || [];
+          
+          // Sort names by Uyghur name
+          nameList.sort((a, b) => a.nameUyghur.localeCompare(b.nameUyghur));
+          
+          this.setData({
+            displayNames: nameList,
+            total: res.data.total || 0,
+            loading: false
+          });
+        } else {
+          wx.showToast({
+            title: res.data.message || '搜索失败',
+            icon: 'none'
+          });
+          this.setData({ loading: false });
+        }
+      },
+      fail: (err) => {
+        console.error('搜索失败:', err);
+        wx.showToast({
+          title: '网络错误，请稍后重试',
+          icon: 'none'
+        });
+        this.setData({ loading: false });
+      }
+    });
   },
 
   clearSearch: function() {
+    if (this.searchTimer) {
+      clearTimeout(this.searchTimer);
+    }
     this.setData({
       query: '',
-      searchText: '',
-      displayNames: this.data.allNames
+      searchText: ''
     });
+    // 重新加载所有数据
+    this.loadData();
   },
 
   navigateToDetail: function(e) {
@@ -80,7 +144,15 @@ Page({
   onSearchInput: function(e) {
     const searchText = e.detail.value;
     this.setData({ searchText });
-    this.filterNames(searchText);
+    
+    // 使用防抖优化搜索
+    if (this.searchTimer) {
+      clearTimeout(this.searchTimer);
+    }
+    
+    this.searchTimer = setTimeout(() => {
+      this.filterNames(searchText);
+    }, 300);
   },
 
   navigateBack: function() {

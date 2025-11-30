@@ -12,7 +12,6 @@
   <view class="profile-container">
     <view class="profile-illust-container">
       <image class="profile-illust" src="{{gender==='male'?'/images/illust/male.png':'/images/illust/female.png'}}" mode="aspectFill" />
-      <view class="profile-floating-dots"></view>
     </view>
     
     <view class="profile-info">
@@ -42,9 +41,9 @@
         </view>
       </view>
     </view>
-    <view class="quote-box">
-      <text class="text">{{pageText.quoteText}}</text>
-    </view>
+    <navigator target="miniProgram" app-id="wx3f59cbafe3b37dcd" class="quote-box">
+      <text class="text {{lang === 'ug' ? 'rtl' : 'ltr'}}">{{quoteText}}</text>
+    </navigator>
   </view>
 
   <!-- 二维码弹窗 -->

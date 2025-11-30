@@ -46,9 +46,9 @@
     <view class="names-container">
       <view class="name-card" 
             wx:for="{{displayNames}}" 
-            wx:key="_id"
+            wx:key="id"
             bindtap="navigateToDetail"
-            data-id="{{item._id}}">
+            data-id="{{item.id}}">
         <view class="avatar-container {{item.gender}}-avatar">
           <text class="avatar-letter">{{item.nameUyghur[0] === 'ئ' ? item.nameUyghur[0] + item.nameUyghur[1] : item.nameUyghur[0]}}</text>
         </view>
@@ -58,7 +58,7 @@
         </view>
         <view class="name-actions">
           <text class="save-time {{item.gender}}-time">{{item.saveTimeText}}</text>
-          <view class="unfavorite-btn" catchtap="removeFavorite" data-id="{{item._id}}">
+          <view class="unfavorite-btn" catchtap="removeFavorite" data-id="{{item.id}}">
             <image class="unfavorite-icon" src="/images/icons/unlike.svg" mode="aspectFit" />
           </view>
         </view>

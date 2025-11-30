@@ -24,52 +24,70 @@ Component({
       }
     },
 
-    easyLogin(e) {
-      if (e.detail.errMsg !== 'getPhoneNumber:ok') {
-        this.triggerEvent('login-fail', { reason: 'phone_auth_denied' });
-        return;
-      }
+    onClose() {
+      this.triggerEvent('close');
+    },
 
+    easyLogin() {
       this.setData({ isLoggingIn: true });
-      // wx.login({
-      //   success: (res) => {
-      //     wx.request({
-      //       url: `${app.globalData.requestUrl}/auth/wechat/login`,
-      //       method: 'POST',
-      //       data: {
-      //         code: res.code,
-      //         iv: e.detail.iv,
-      //         encryptedData: e.detail.encryptedData
-      //       },
-      //       success: (res) => {
-      //         if (res.statusCode === 200) {
-      //           wx.setStorage({
-      //             key: 'userInfo',
-      //             data: res.data,
-      //             success: () => {
-      //               this.triggerEvent('login-success', res.data);
-      //             }
-      //           });
-      //         } else {
-      //           wx.showToast({ title: '登录失败', icon: 'none' });
-      //           this.triggerEvent('login-fail', { reason: 'server-error' });
-      //         }
-      //       },
-      //       fail: () => {
-      //         wx.showToast({ title: '网络错误', icon: 'none' });
-      //         this.triggerEvent('login-fail', { reason: 'network-error' });
-      //       },
-      //       complete: () => {
-      //         this.setData({ isLoggingIn: false });
-      //       }
-      //     });
-      //   },
-      //   fail: () => {
-      //     this.setData({ isLoggingIn: false });
-      //     wx.showToast({ title: '获取登录码失败', icon: 'none' });
-      //     this.triggerEvent('login-fail', { reason: 'wx_login_failed' });
-      //   }
-      // });
+      wx.login({
+        success: (res) => {
+          if (res.code) {
+            // 调用登录接口
+            wx.request({
+              url: `${app.globalData.requestUrl}/auth/login`,
+              method: 'POST',
+              header: {
+                'content-type': 'application/json'
+              },
+              data: {
+                code: res.code
+              },
+              success: (loginRes) => {
+                if (loginRes.data.code === 200) {
+                  const { token, openid, is_new_user, user_id, id } = loginRes.data.data;
+                  
+                  // 保存token到本地存储
+                  wx.setStorageSync('token', token);
+                  
+                  // 保存完整的用户信息到本地存储
+                  const userInfo = {
+                    token,
+                    openid,
+                    is_new_user,
+                    user_id,
+                    id
+                  };
+                  wx.setStorage({
+                    key: 'userInfo',
+                    data: userInfo,
+                    success: () => {
+                      console.log('登录成功', loginRes.data.data);
+                      this.triggerEvent('login-success', userInfo);
+                    }
+                  });
+                } else {
+                  this.triggerEvent('login-fail', { reason: 'server-error' });
+                }
+              },
+              fail: () => {
+                wx.showToast({ title: '网络错误', icon: 'none' });
+                this.triggerEvent('login-fail', { reason: 'network-error' });
+              },
+              complete: () => {
+                this.setData({ isLoggingIn: false });
+              }
+            });
+          } else {
+            this.setData({ isLoggingIn: false });
+            this.triggerEvent('login-fail', { reason: 'wx_login_failed' });
+          }
+        },
+        fail: () => {
+          this.setData({ isLoggingIn: false });
+          this.triggerEvent('login-fail', { reason: 'wx_login_failed' });
+        }
+      });
     }
   }
 }); 

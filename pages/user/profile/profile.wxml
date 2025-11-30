@@ -77,5 +77,14 @@
              canClose="{{canCloseGenderBox}}"
              bind:close="closeGenderBox"
              bind:confirm="confirmGender" />
+
+  <!-- 登录弹窗 -->
+  <login-popup
+    lang="{{lang}}"
+    visible="{{showLoginPopup}}"
+    bind:close="closeLoginBox"
+    bind:login-success="onLoginSuccess"
+    bind:login-fail="onLoginFail"
+  />
 </view>
 

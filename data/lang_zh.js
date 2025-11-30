@@ -72,8 +72,7 @@ const pageTexts = {
     myProfile: "我的资料",
     shareToFriend: "分享好友",
     moreFun: "更多好玩",
-    cooperation: "我要合作",
-    quoteText: "成功属于坚持到最后的人。"
+    cooperation: "我要合作"
   },
   profilePage: {
     navBarTitle: "个人资料",

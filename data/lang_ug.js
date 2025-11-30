@@ -72,8 +72,7 @@ const pageTexts = {
     myProfile: "ئۇچۇرۇم",
     shareToFriend: "تەۋسىيەلەش",
     moreFun: "ئىلھاملار",
-    cooperation: "ھەمكارلىق",
-    quoteText: "ھەر ئىشتا بىر ھېكمەت بار."
+    cooperation: "ھەمكارلىق"
   },
   profilePage: {
     navBarTitle: "شەخسىي ئۇچۇرلار",

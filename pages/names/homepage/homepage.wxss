@@ -69,49 +69,55 @@
 }
 
 /* Navbar styles */
-.navbar {
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9;
+.custom-navbar {
+  --td-navbar-bg-color: transparent;
   position: fixed;
-  padding-top: calc(env(safe-area-inset-top));
-  background: transparent;
+  z-index: 999;
+}
+
+.t-navbar-content {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 15rpx;
+}
+
+.nav-title-wrapper {
+  width: calc(100% - 200rpx) !important;
+  left: 100rpx !important;
 }
 
 .nav-title {
-  color: #fff;
   font-size: 35rpx;
-  padding: 15rpx 0;
   text-align: center;
   letter-spacing: 1rpx;
   font-family: "Shirkhan Egme";
-  background: linear-gradient(to right, #ffffff, #e0e6ff);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
+  color: #ffffff;
+  width: 100%;
+  display: block;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .nav-search {
-  position: relative;
-  left: 0;
-  bottom: 10rpx;
   padding: 17rpx;
-  margin-left: 20rpx;
   border-radius: 50rpx;
   background: rgba(255, 255, 255, 0.12);
   border: 1rpx solid rgba(255, 255, 255, 0.18);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-search:active {
+  transform: scale(0.95);
+  opacity: 0.8;
 }
 
 /* Stacked Card Section */
 .card-stack {
-  margin-top: calc(env(safe-area-inset-top) + 80rpx);
+  margin-top: 150rpx;
   height: 700rpx;
   position: relative;
   display: flex;

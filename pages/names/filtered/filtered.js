@@ -1,4 +1,5 @@
-const { mockAPI } = require('../../../utils/mockData');
+const app = getApp();
+const baseUrl = app.globalData.requestUrl;
 
 Page({
   data: {
@@ -30,13 +31,37 @@ Page({
   loadNamesByGender: function() {
     this.setData({ loading: true });
     
-    const names = mockAPI.getNamesByGender(this.data.gender);
-    
-    const sortedNames = this.sortNames(names, this.data.sortOrder);
-    
-    this.setData({
-      names: sortedNames,
-      loading: false
+    wx.request({
+      url: `${baseUrl}/names/getAll`,
+      method: 'POST',
+      data: { gender: this.data.gender },
+      success: (res) => {
+        if (res.data.code === 200) {
+          const names = res.data.nameList || [];
+          const sortedNames = this.sortNames(names, this.data.sortOrder);
+          
+          this.setData({
+            names: sortedNames,
+            loading: false
+          });
+        } else {
+          wx.showToast({
+            title: res.data.message || '获取数据失败',
+            icon: 'none',
+            duration: 2000
+          });
+          this.setData({ loading: false });
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+        wx.showToast({
+          title: '网络错误，请稍后重试',
+          icon: 'none',
+          duration: 2000
+        });
+        this.setData({ loading: false });
+      }
     });
   },
   

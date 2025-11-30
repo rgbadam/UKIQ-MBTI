@@ -1,4 +1,5 @@
-const { mockAPI } = require('../../../utils/mockData');
+const app = getApp();
+const baseUrl = app.globalData.requestUrl;
 
 Page({
   data: {
@@ -26,20 +27,60 @@ Page({
     
     const favorites = wx.getStorageSync('favoriteNames') || [];
     
-    const favoriteNames = favorites.map(fav => {
-      const nameDetails = mockAPI.getNameById(fav._id);
-      return {
-        ...nameDetails,
-        saveTime: fav.date,
-        saveTimeText: this.formatTime(fav.date)
-      };
+    if (favorites.length === 0) {
+      this.setData({
+        favoriteNames: [],
+        displayNames: [],
+        loading: false
+      });
+      return;
+    }
+    
+    // 并发获取所有收藏的名字详情
+    const requests = favorites.map(fav => {
+      return new Promise((resolve, reject) => {
+        wx.request({
+          url: `${baseUrl}/names/getById`,
+          method: 'POST',
+          data: { id: fav.id },
+          success: (res) => {
+            if (res.data.code === 200) {
+              resolve({
+                ...res.data.name,
+                saveTime: fav.date,
+                saveTimeText: this.formatTime(fav.date)
+              });
+            } else {
+              // 如果名字不存在，返回 null，后续过滤掉
+              resolve(null);
+            }
+          },
+          fail: (err) => {
+            console.error('获取名字详情失败:', err);
+            resolve(null);
+          }
+        });
+      });
     });
     
-    this.setData({
-      favoriteNames,
-      loading: false
-    }, () => {
-      this.filterAndSortNames();
+    Promise.all(requests).then(results => {
+      // 过滤掉获取失败的名字
+      const favoriteNames = results.filter(name => name !== null);
+      
+      this.setData({
+        favoriteNames,
+        loading: false
+      }, () => {
+        this.filterAndSortNames();
+      });
+    }).catch(err => {
+      console.error('批量获取失败:', err);
+      wx.showToast({
+        title: '获取收藏列表失败',
+        icon: 'none',
+        duration: 2000
+      });
+      this.setData({ loading: false });
     });
   },
 
@@ -103,7 +144,7 @@ Page({
     
     let favorites = wx.getStorageSync('favoriteNames') || [];
     
-    favorites = favorites.filter(fav => fav._id !== nameId);
+    favorites = favorites.filter(fav => fav.id !== nameId);
     
     wx.setStorageSync('favoriteNames', favorites);
     

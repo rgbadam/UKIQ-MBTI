@@ -13,7 +13,8 @@ Page({
     showCoderPopup: false,
     showGenderPopup: false,
     canCloseGenderBox: null,
-    pageText: {}
+    pageText: {},
+    quoteText: ''
   },
 
   onLoad() {
@@ -38,6 +39,11 @@ Page({
 
   onShow() {
     this.initLanguage()
+    this.loadQuote()
+    // 如果已登录，获取最新用户信息
+    if (this.data.isLoggedIn) {
+      this.getUserInfo()
+    }
   },
 
   initLanguage() {
@@ -45,6 +51,43 @@ Page({
     var langPackage = getLangPackage()
     let personalPage = langPackage.pageTexts.personalPage
     this.setData({ pageText: personalPage })
+  },
+
+  loadQuote() {
+    const langMap = {
+      'cn': 'zh',
+      'ug': 'ug'
+    };
+    const apiLang = langMap[this.data.lang] || 'zh';
+    const baseUrl = app.globalData.requestUrl;
+    
+    const defaultQuotes = {
+      'cn': '成功属于坚持到最后的人。',
+      'ug': 'ھەر ئىشتا بىر ھېكمەت بار.'
+    };
+    
+    wx.request({
+      url: `${baseUrl}/quotes/getQuote`,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        lang: apiLang
+      },
+      success: (res) => {
+        if (res.data.code === 200) {
+          const quote = res.data.quote;
+          this.setData({ quoteText: quote.content || '' });
+        } else {
+          this.setData({ quoteText: defaultQuotes[this.data.lang] || defaultQuotes['ug'] });
+        }
+      },
+      fail: (err) => {
+        console.error('获取名言失败:', err);
+        this.setData({ quoteText: defaultQuotes[this.data.lang] || defaultQuotes['ug'] });
+      }
+    });
   },
 
   checkLogin() {
@@ -55,7 +98,7 @@ Page({
         this.setData({ isLoggedIn: true, ...res.data })
       },
       fail: () => {
-        this.setData({ isLoggedIn: false, avatar: defaultAvatar })
+        this.setData({ isLoggedIn: false, avatar: defaultAvatar, showLoginPopup: true })
       }
     })
   },
@@ -80,6 +123,7 @@ Page({
   switchLanguage() {
     changeLanguage()
     this.initLanguage()
+    this.loadQuote()
   },
 
   goProfile() {
@@ -119,12 +163,13 @@ Page({
 
   onLoginSuccess(e) {
     const userInfo = e.detail;
-    this.getUserInfo()
     this.setData({ 
       isLoggedIn: true,
       showLoginPopup: false,
       ...userInfo
     });
+    // 登录成功后获取最新用户信息
+    this.getUserInfo();
   },
 
   onLoginFail(e) {
@@ -136,26 +181,82 @@ Page({
   },
 
   getUserInfo() {
-    // wx.request({
-    //   url: `${app.globalData.requestUrl}/auth/userinfo`,
-    //   method: 'GET',
-    //   header: {
-    //     'Authorization': `Bearer ${wx.getStorageSync('userInfo').token}`
-    //   },
-    //   success: (res) => {
-    //     if (res.statusCode === 200) {
-    //       this.setData({ userId: res.data.data.user_id })
-    //       this.setData({ phone: res.data.data.phone })
-    //     } else if (res.statusCode === 401) {
-    //       wx.removeStorage({ key: 'userInfo', success: () => {this.setData({ showLoginPopup: true })} })
-    //     } else {
-    //       wx.showToast({ title: res.data.message, icon: 'none' })
-    //     }
-    //   },
-    //   fail: (err) => {
-    //     console.error('user data fetch failed', err);
-    //   }
-    // })
+    const token = wx.getStorageSync('token');
+    const userInfo = wx.getStorageSync('userInfo');
+    
+    // 如果没有token或userInfo，直接返回
+    if (!token || !userInfo) {
+      this.setData({ 
+        isLoggedIn: false, 
+        showLoginPopup: true 
+      });
+      return;
+    }
+
+    wx.request({
+      url: `${app.globalData.requestUrl}/auth/userInfo`,
+      method: 'GET',
+      header: {
+        'Authorization': `Bearer ${token}`
+      },
+      success: (res) => {
+        if (res.data.code === 200) {
+          // 更新用户信息
+          const userData = res.data.data;
+          const updatedUserInfo = {
+            ...userInfo,
+            id: userData.id,
+            user_id: userData.user_id,
+            openid: userData.openid,
+            phone: userData.phone,
+            nickname: userData.nickname,
+            last_login_at: userData.last_login_at,
+            created_at: userData.created_at
+          };
+          
+          // 保存更新后的用户信息
+          wx.setStorage({
+            key: 'userInfo',
+            data: updatedUserInfo,
+            success: () => {
+              this.setData({ 
+                isLoggedIn: true,
+                ...updatedUserInfo
+              });
+            }
+          });
+        } else if (res.data.code === 401) {
+          // Token无效或过期，清除存储并显示登录弹窗
+          wx.removeStorageSync('token');
+          wx.removeStorageSync('userInfo');
+          this.setData({ 
+            isLoggedIn: false,
+            showLoginPopup: true
+          });
+        } else if (res.data.code === 404) {
+          // 用户不存在，清除存储并显示登录弹窗
+          wx.removeStorageSync('token');
+          wx.removeStorageSync('userInfo');
+          this.setData({ 
+            isLoggedIn: false,
+            showLoginPopup: true
+          });
+        } else {
+          wx.showToast({ 
+            title: res.data.message || '获取用户信息失败', 
+            icon: 'none' 
+          });
+        }
+      },
+      fail: (err) => {
+        console.error('获取用户信息失败:', err);
+        // 网络错误不强制退出登录，只提示
+        wx.showToast({ 
+          title: '网络错误，请稍后重试', 
+          icon: 'none' 
+        });
+      }
+    });
   },
 
   logout() {

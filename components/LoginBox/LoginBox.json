@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "t-popup": "tdesign-miniprogram/popup/popup",
-    "t-loading": "tdesign-miniprogram/loading/loading"
+    "t-loading": "tdesign-miniprogram/loading/loading",
+    "t-icon": "tdesign-miniprogram/icon/icon"
   }
 } 
