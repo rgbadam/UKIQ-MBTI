@@ -1,11 +1,13 @@
 <view class="container">
-  <view class="navbar">
-    <view class="back-btn" bindtap="navigateBack">
+  <t-navbar
+    t-class-content="alphabet-navbar-content"
+    class="alphabet-navbar"
+  >
+    <view slot="left" class="back-btn" bindtap="navigateBack">
       <image class="back-icon" src="/images/icons/goback-s.svg" mode="aspectFit" />
     </view>
-    <view class="nav-title">ئېلىپبە بويىچە ئىزدەش</view>
-    <view style="width: 90rpx;"></view>
-  </view>
+    <view slot="title" class="nav-title">ئېلىپبە بويىچە ئىزدەش</view>
+  </t-navbar>
 
   <view class="content-wrapper" bindtouchstart="touchStart" bindtouchmove="touchMove">
     <view class="features {{featuresClass}}">

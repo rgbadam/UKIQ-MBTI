@@ -1,4 +1,4 @@
-var languageUtil = require('../../../utils/languageUtil.js')
+var languageUtil = require('../../utils/languageUtil.js')
 
 Page({
   data: {
@@ -29,7 +29,7 @@ Page({
   },
 
   getStarted() {
-    wx.navigateTo({ url: '/pages/mbti/homepage/homepage' })
+    wx.navigateTo({ url: '/pages/mbti/mbti-test/mbti-test' })
   },
 
   jumpTypeList() {

@@ -50,12 +50,6 @@ Page({
         }
       },
       fail: (err) => {
-        console.error('请求失败:', err);
-        wx.showToast({
-          title: '网络错误，请稍后重试',
-          icon: 'none',
-          duration: 2000
-        });
         this.setData({ loading: false });
       }
     });
@@ -68,7 +62,7 @@ Page({
   navigateToDetail: function(e) {
     const nameId = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: `../namecard/namecard?id=${nameId}`
+      url: `/pages/names/namecard/namecard?id=${nameId}`
     });
   },
 

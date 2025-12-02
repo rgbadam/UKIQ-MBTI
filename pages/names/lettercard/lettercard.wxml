@@ -1,10 +1,14 @@
 <view class="lettercard">
   <!-- 顶部导航栏 -->
-  <view class="navbar">
-    <view class="back-btn" bindtap="navigateBack">
+  <t-navbar
+    t-class-placeholder="letter-navbar-placeholder"
+    t-class-content="letter-navbar-content"
+    class="letter-navbar"
+  >
+    <view slot="left" class="back-btn" bindtap="navigateBack">
       <image class="back-icon" src="/images/icons/goback-s.svg" mode="aspectFit" />
     </view>
-  </view>
+  </t-navbar>
 
   <!-- 头像区 -->
   <view class="letterbox-section">

@@ -1,4 +1,3 @@
-// pages/names/homepage/homepage.js
 const app = getApp();
 const baseUrl = app.globalData.requestUrl;
 
@@ -81,21 +80,10 @@ Page({
             this.updateCardData();
           });
         } else {
-          wx.showToast({
-            title: res.data.message || '获取数据失败',
-            icon: 'none',
-            duration: 2000
-          });
           this.setData({ loading: false });
         }
       },
-      fail: (err) => {
-        console.error('请求失败:', err);
-        wx.showToast({
-          title: '网络错误，请稍后重试',
-          icon: 'none',
-          duration: 2000
-        });
+      fail: () => {
         this.setData({ loading: false });
       }
     });
@@ -484,14 +472,14 @@ Page({
 
   navigateToSearch: function() {
     wx.navigateTo({
-      url: '../search/search'
+      url: '/pages/names/search/search'
     });
   },
 
   navigateToDetail: function(e) {
     const nameId = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: `../namecard/namecard?id=${nameId}`
+      url: `/pages/names/namecard/namecard?id=${nameId}`
     });
   },
 
@@ -500,16 +488,16 @@ Page({
     
     switch(category) {
       case 'male':
-        wx.navigateTo({ url: '../filtered/filtered?gender=male' });
+        wx.navigateTo({ url: '/pages/names/filtered/filtered?gender=male' });
         break;
       case 'female':
-        wx.navigateTo({ url: '../filtered/filtered?gender=female' });
+        wx.navigateTo({ url: '/pages/names/filtered/filtered?gender=female' });
         break;
       case 'alphabet':
-        wx.navigateTo({ url: '../alphabet/alphabet' });
+        wx.navigateTo({ url: '/pages/names/alphabet/alphabet' });
         break;
       case 'favorite':
-        wx.navigateTo({ url: '../favorites/favorites' });
+        wx.navigateTo({ url: '/pages/names/favorites/favorites' });
         break;
     }
   },

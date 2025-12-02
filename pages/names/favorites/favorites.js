@@ -154,27 +154,27 @@ Page({
   navigateToDetail: function(e) {
     const nameId = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: `../namecard/namecard?id=${nameId}`
+      url: `/pages/names/namecard/namecard?id=${nameId}`
     });
   },
 
   navigateToSearch: function() {
     wx.navigateTo({
-      url: '../search/search'
+      url: '/pages/names/search/search'
     });
   },
 
   onShareAppMessage: function() {
     return {
       title: 'ئىسىملار قامۇسى · 起名小助手',
-      path: '/pages/names/homepage/homepage'
+      path: '/views/home/home'
     };
   },
 
   onShareTimeline: function() {
     return {
       title: 'ئىسىملار قامۇسى · 起名小助手',
-      path: '/pages/names/homepage/homepage',
+      path: '/views/home/home',
       imageUrl: '/images/illust/magiccube.png'
     };
   }

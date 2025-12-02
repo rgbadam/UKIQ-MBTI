@@ -30,29 +30,19 @@ Page({
           this.setData({ nameData });
           this.checkFavoriteStatus(nameId);
         } else if (res.data.code === 404) {
-          wx.showToast({
-            title: '名字不存在',
-            icon: 'error',
-            duration: 2000
-          });
           setTimeout(() => {
             wx.navigateBack();
           }, 2000);
         } else {
-          wx.showToast({
-            title: res.data.message || '获取数据失败',
-            icon: 'none',
-            duration: 2000
-          });
+          setTimeout(() => {
+            wx.navigateBack();
+          }, 2000);
         }
       },
       fail: (err) => {
-        console.error('请求失败:', err);
-        wx.showToast({
-          title: '网络错误，请稍后重试',
-          icon: 'none',
-          duration: 2000
-        });
+        setTimeout(() => {
+          wx.navigateBack();
+        }, 2000);
       }
     });
   },
@@ -111,7 +101,7 @@ Page({
 
   onShareAppMessage: function() {
     if (!this.data.nameData) {
-      return { title: 'ئىسىملار قامۇسى · 起名小助手', path: '/pages/names/homepage/homepage' };
+      return { title: 'ئىسىملار قامۇسى · 起名小助手', path: '/views/home/home' };
     }
     const { nameUyghur, nameLatin, nameChinese, id } = this.data.nameData;
     return {
@@ -122,7 +112,7 @@ Page({
 
   onShareTimeline: function() {
     if (!this.data.nameData) {
-      return { title: 'ئىسىملار قامۇسى · 起名小助手', path: '/pages/names/homepage/homepage' };
+      return { title: 'ئىسىملار قامۇسى · 起名小助手', path: '/views/home/home' };
     }
     const { nameUyghur, nameLatin, nameChinese, id } = this.data.nameData;
     return {

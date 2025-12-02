@@ -1,10 +1,3 @@
-<view class="custom-nav">
-  <view class="nav-content">
-    <view class="lang-switch" bind:tap="switchLanguage">{{ pageContent.langSwitch }}</view>
-    <view class="nav-title">{{ pageContent.navBarTitle }}</view>
-  </view>
-</view>
-
 <view class="home-box {{isUg?'ug':'zh'}}">
   <view class="fontText">
     <view class="title {{isUg?'t-ug':'t-zh'}}">{{ pageContent.homeTitle }}</view>

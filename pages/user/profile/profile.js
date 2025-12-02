@@ -46,7 +46,7 @@ Page({
   goToTestResults() {
     if (!this.data.mbti) {
       wx.navigateTo({
-        url: '/pages/mbti/homepage/homepage' 
+        url: '/pages/mbti/mbti-test/mbti-test' 
       });
     }
     wx.navigateTo({
@@ -294,7 +294,7 @@ Page({
           
           setTimeout(() => {
             wx.reLaunch({
-              url: '/pages/tabs/tabs'
+              url: 'views/personal/personal'
             });
           }, 1000);
         }

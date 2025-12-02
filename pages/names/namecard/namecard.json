@@ -1,5 +1,7 @@
 {
   "navigationStyle": "custom",
   "backgroundColor": "#1e1e2e",
-  "usingComponents": {}
+  "usingComponents": {
+    "t-navbar": "tdesign-miniprogram/navbar/navbar"
+  }
 } 

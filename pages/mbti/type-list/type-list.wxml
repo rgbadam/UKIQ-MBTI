@@ -22,9 +22,6 @@
     </view>
   </view>
 
-  <view class="fontText">
-    <view class="{{isUg?'t-ug':'t-zh'}}">{{ pageContent.title }}</view>
-  </view>
   <view class="list">
     <view class="item" wx:for="{{ resultList }}" wx:key="item">
       <view class="{{isUg?'n-ug':'n-zh'}}">

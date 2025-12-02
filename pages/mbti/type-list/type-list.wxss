@@ -15,28 +15,15 @@
   font-family: '黑体';
 }
 
-.fontText .t-ug {
-  font-size: 22px;
-  text-align: center;
-  font-family: sans-serif, 'Alpsoft Esliye', '黑体';
-}
-
-.fontText .t-zh {
-  font-size: 27px;
-  text-align: center;
-  letter-spacing: 2px;
-  font-family: sans-serif, 'Alpsoft Esliye', '黑体';
-}
-
 .list {
-  margin: 25px 0px;
+  margin-bottom: 25px;
   padding: 0 5px;
 }
 
 .item {
   height: auto;
   padding: 20px;
-  margin: 15px 0px;
+  margin-bottom: 15px;
   overflow: hidden;
   border-radius: 12px;
   background: #fff;
@@ -86,7 +73,6 @@
 
 .selector-wrapper {
   height: 48px;
-  margin-bottom: 15px;
   border-radius: 50px;
   position: fixed;
   top: 0;

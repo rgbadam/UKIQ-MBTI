@@ -16,11 +16,15 @@
 
   <block wx:else>
     <!-- Navbar -->
-    <view class="navbar">
-      <view class="back-btn" bindtap="navigateBack">
+    <t-navbar
+      t-class-placeholder="favorites-navbar-placeholder"
+      t-class-content="favorites-navbar-content"
+      class="favorites-navbar"
+    >
+      <view slot="left" class="back-btn" bindtap="navigateBack">
         <image class="back-icon" src="/images/icons/goback-s.svg" mode="aspectFit" />
       </view>
-    </view>
+    </t-navbar>
 
     <!-- Header Actions -->
     <view class="header-actions">

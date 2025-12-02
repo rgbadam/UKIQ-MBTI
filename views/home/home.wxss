@@ -94,6 +94,7 @@
   color: #ffffff;
   width: 100%;
   display: block;
+  padding-top: 10rpx;
 }
 
 .nav-left {

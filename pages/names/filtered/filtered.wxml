@@ -6,11 +6,17 @@
 
   <block wx:else>
     <!-- Navbar Section -->
-    <view class="navbar {{gender}}-navbar {{theme === 'dark' ? 'dark' : ''}}">
-      <icon class="nav-search" type="search" size="16" color="{{theme === 'dark' ? '#e0e0e0' : '#424242'}}" bindtap="navigateToSearch" />
-      <view class="nav-title">{{gender === 'male' ? 'ئوغۇل بالا ئىسىملىرى' : 'قىز بالا ئىسىملىرى'}}</view>
-      <view style="width: 100rpx;"></view>
-    </view>
+    <t-navbar
+      t-class-content="filtered-navbar-content"
+      class="filtered-navbar {{gender}}-navbar {{theme === 'dark' ? 'dark' : ''}}"
+    >
+      <view slot="left" class="nav-left">
+        <icon class="nav-search" type="search" size="14" color="{{theme === 'dark' ? '#e0e0e0' : '#424242'}}" bindtap="navigateToSearch" />
+      </view>
+      <view slot="title" class="nav-title">
+        {{gender === 'male' ? 'ئوغۇل بالا ئىسىملىرى' : 'قىز بالا ئىسىملىرى'}}
+      </view>
+    </t-navbar>
 
     <!-- Function Area -->
     <view class="fun-area">

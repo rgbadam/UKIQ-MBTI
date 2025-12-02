@@ -320,7 +320,7 @@
 
 .quote-box {
   display: block;
-  margin: 20rpx 16rpx 0;
+  margin: 50rpx 16rpx 0;
   padding: 50rpx 100rpx;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15));
   border-radius: 32rpx;

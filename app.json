@@ -1,6 +1,8 @@
 {
   "pages": [
-    "pages/names/homepage/homepage",
+    "views/home/home",
+    "views/discover/discover",
+    "views/personal/personal",
     "pages/names/namecard/namecard",
     "pages/names/alphabet/alphabet",
     "pages/names/filtered/filtered",
@@ -8,13 +10,11 @@
     "pages/names/search/search",
     "pages/names/lettercard/lettercard",
     "pages/user/profile/profile",
-    "pages/mbti/homepage/homepage",
+    "pages/mbti/mbti-test/mbti-test",
     "pages/mbti/test-result/test-result",
     "pages/mbti/type-list/type-list",
     "pages/mbti/about-mbti/about-mbti",
-    "pages/mbti/question/question",
-    "pages/tabs/discover/discover",
-    "pages/tabs/personal/personal"
+    "pages/mbti/question/question"
   ],
   "window": {
     "backgroundColor": "#FFFFFF",
@@ -30,17 +30,17 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/names/homepage/homepage",
+        "pagePath": "views/home/home",
         "iconPath": "images/icons/name.png",
         "selectedIconPath": "images/icons/name-active.png"
       },
       {
-        "pagePath": "pages/tabs/discover/discover",
+        "pagePath": "views/discover/discover",
         "iconPath": "images/icons/quiz.png",
         "selectedIconPath": "images/icons/quiz-active.png"
       },
       {
-        "pagePath": "pages/tabs/personal/personal",
+        "pagePath": "views/personal/personal",
         "iconPath": "images/icons/user.png",
         "selectedIconPath": "images/icons/user-active.png"
       }

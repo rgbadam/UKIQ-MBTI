@@ -7,17 +7,13 @@
 
 /* Navbar Section */
 .navbar {
+  --td-navbar-bg-color: transparent;
   top: 0;
   left: 0;
   right: 0;
   z-index: 998;
   position: fixed;
-  padding-top: calc(env(safe-area-inset-top));
   border-radius: 0 0 40rpx 40rpx;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   padding-bottom: 300rpx;
   transition: padding-bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   background: linear-gradient(0deg, #ffffff 0%, #8e44ad 100%);
@@ -27,6 +23,13 @@
 
 .navbar.navbar-move {
   padding-bottom: 210rpx;
+}
+
+.navbar-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .nav-title {
@@ -53,12 +56,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 20rpx;
   border-radius: 50%;
   transition: all 0.3s ease;
   background: rgba(255, 255, 255, 0.15);
-  position: relative;
-  bottom: 10rpx;
 }
 
 .back-btn:active {
@@ -74,7 +74,7 @@
 /* Search Section */
 .search-section {
   position: fixed;
-  top: calc(env(safe-area-inset-top) + 80rpx);
+  top: 180rpx;
   left: 0;
   right: 0;
   gap: 20rpx;
@@ -181,12 +181,12 @@
 /* Results Section */
 .results-container {
   flex: 1;
-  margin-top: calc(env(safe-area-inset-top) + 300rpx);
+  margin-top: 400rpx;
   transition: margin-top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .results-container.results-move {
-  margin-top: calc(env(safe-area-inset-top) + 210rpx);
+  margin-top: 310rpx;
 }
 
 /* Loading State */

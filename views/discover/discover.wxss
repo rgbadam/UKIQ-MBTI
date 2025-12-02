@@ -98,7 +98,7 @@
 
 .main-card {
   margin: 0 24rpx;
-  margin-top: calc(env(safe-area-inset-top) + 120rpx);
+  margin-top: 210rpx;
   background: #fff;
   border-radius: 36rpx;
   box-shadow: 0 8rpx 32rpx rgba(91,61,227,0.08);

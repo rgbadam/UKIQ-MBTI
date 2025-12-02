@@ -80,14 +80,7 @@ Page({
           });
         }
       },
-      fail: (err) => {
-        console.error('请求失败:', err);
-        wx.showToast({
-          title: '网络错误，请稍后重试',
-          icon: 'none',
-          duration: 2000
-        });
-      }
+      fail: () => {}
     });
   },
 
@@ -130,14 +123,14 @@ Page({
   onShareAppMessage: function() {
     return {
       title: 'ئىسىملار قامۇسى · 起名小助手',
-      path: '/pages/names/homepage/homepage'
+      path: '/views/home/home'
     };
   },
 
   onShareTimeline: function() {
     return {
       title: 'ئىسىملار قامۇسى · 起名小助手',
-      path: '/pages/names/homepage/homepage',
+      path: '/views/home/home',
       imageUrl: '/images/illust/magiccube.png'
     };
   }

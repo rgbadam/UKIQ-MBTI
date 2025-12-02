@@ -1,7 +1,7 @@
 const app = getApp()
 const defaultAvatar = '/images/illust/magiccube.png'
-const { handleLoginFail } = require('../../../utils/loginErrorHandler.js')
-const { getLangPackage, changeLanguage } = require('../../../utils/languageUtil.js')
+const { handleLoginFail } = require('../../utils/loginErrorHandler.js')
+const { getLangPackage, changeLanguage } = require('../../utils/languageUtil.js')
 
 Page({
   data: {
@@ -83,8 +83,7 @@ Page({
           this.setData({ quoteText: defaultQuotes[this.data.lang] || defaultQuotes['ug'] });
         }
       },
-      fail: (err) => {
-        console.error('获取名言失败:', err);
+      fail: () => {
         this.setData({ quoteText: defaultQuotes[this.data.lang] || defaultQuotes['ug'] });
       }
     });
@@ -241,21 +240,9 @@ Page({
             isLoggedIn: false,
             showLoginPopup: true
           });
-        } else {
-          wx.showToast({ 
-            title: res.data.message || '获取用户信息失败', 
-            icon: 'none' 
-          });
-        }
+        } else {}
       },
-      fail: (err) => {
-        console.error('获取用户信息失败:', err);
-        // 网络错误不强制退出登录，只提示
-        wx.showToast({ 
-          title: '网络错误，请稍后重试', 
-          icon: 'none' 
-        });
-      }
+      fail: () => {}
     });
   },
 
@@ -296,14 +283,14 @@ Page({
   onShareAppMessage() {
     return {
       title: "ISIMZAR",
-      path: "/pages/tabs/personal/personal"
+      path: "/views/personal/personal"
     }
   },
 
   onShareTimeline() {
     return {
       title: "ISIMZAR",
-      path: "/pages/tabs/personal/personal"
+      path: "/views/personal/personal"
     }
   }
 })

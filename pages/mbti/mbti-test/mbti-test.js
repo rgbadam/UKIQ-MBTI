@@ -17,12 +17,6 @@ Page({
     this.initStyle()
   },
 
-  switchLanguage() {
-    languageUtil.changeLanguage()
-    this.initLanguage()
-    this.initStyle()
-  },
-
   initLanguage() {
     var langPackage = languageUtil.getLangPackage()
     this.setData({ questionList: langPackage.questions })
@@ -85,13 +79,13 @@ Page({
     const result = this.handleResult(this.data.selectAnswerList);
     wx.setStorageSync('mbti', result)
     wx.redirectTo({
-      url: '../test-result/test-result?type='+result,
+      url: '/pages/mbti/test-result/test-result?type='+result,
     })
   },
 
   goTypeList() {
     wx.switchTab({
-      url: '../type-list/type-list',
+      url: '/pages/mbti/type-list/type-list',
     })
   },
 

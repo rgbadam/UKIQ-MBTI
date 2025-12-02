@@ -1,12 +1,14 @@
 <view class="search-page">
   <!-- Navbar Section -->
-  <view class="navbar {{isFocused ? 'navbar-move' : ''}}">
-    <view class="back-btn" bindtap="navigateBack">
+  <t-navbar
+    class="navbar {{isFocused ? 'navbar-move' : ''}}"
+    t-class-content="navbar-content"
+  >
+    <view slot="left" class="back-btn" bindtap="navigateBack">
       <image class="back-icon" src="/images/icons/goback-s.svg" mode="aspectFit" />
     </view>
-    <view class="nav-title {{isFocused ? 'nav-title-show' : ''}}">ئىسىم ئىزدەش</view>
-    <view style="width: 90rpx;"></view>
-  </view>
+    <view slot="title" class="nav-title {{isFocused ? 'nav-title-show' : ''}}">ئىسىم ئىزدەش</view>
+  </t-navbar>
 
   <!-- Search Bar Section -->
   <view class="search-section">
@@ -44,7 +46,7 @@
           <view class="spinner-circle"></view>
         </view>
       </view>
-    </view>
+        </view>
 
     <!-- Names Section -->
     <view class="names-container" wx:if="{{!loading}}">

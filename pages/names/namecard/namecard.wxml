@@ -1,10 +1,14 @@
 <view class="detail-page">
   <!-- Custom Navigation Bar -->
-  <view class="custom-nav">
-    <view class="back-btn" bindtap="navigateBack">
+  <t-navbar
+    t-class-placeholder="namecard-navbar-placeholder"
+    t-class-content="namecard-navbar-content"
+    class="namecard-navbar"
+  >
+    <view slot="left" class="back-btn" bindtap="navigateBack">
       <image class="back-icon" src="/images/icons/goback.svg" mode="aspectFit" />
     </view>
-  </view>
+  </t-navbar>
 
   <!-- Main Content Section -->
   <view class="main-content">
@@ -15,7 +19,7 @@
 
     <!-- Name Section -->
     <view class="name-section">
-      <text class="name-uyghur">{{nameData.nameUyghur}}</text>
+      <text class="name-uyghur">{{nameData.nameUyghur || 'نامەلۇم'}}</text>
       <view class="sub-names">
         <text class="name-latin">{{nameData.nameLatin}}</text>
         <text class="name-chinese">{{nameData.nameChinese}}</text>

@@ -1,8 +1,7 @@
 .home-box {
-  min-height: 85vh;
+  min-height: 100vh;
   padding: 0 30rpx;
   background-color: #ffffff;
-  padding-top: calc(130rpx + env(safe-area-inset-top));
 }
 
 .fontText .title {
@@ -37,7 +36,7 @@
 }
 
 .fontText .s-zh {
-  font-size: 17px;
+  font-size: 15px;
   font-family: '黑体';
 }
 
@@ -208,51 +207,4 @@
 .zh {
   direction: ltr;
   font-family: '黑体';
-}
-
-.custom-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: #ffffff;
-  z-index: 999;
-  padding-top: calc(env(safe-area-inset-top));
-}
-
-.nav-content {
-  position: relative;
-  height: 65rpx;
-  display: flex;
-  align-items: center;
-  padding: 0 30rpx;
-}
-
-.lang-switch {
-  font-size: 28rpx;
-  color: #5B3DE3;
-  padding: 10rpx 24rpx;
-  background: rgba(91, 61, 227, 0.04);
-  border-radius: 32rpx;
-  font-weight: 500;
-  transition: all 0.25s ease;
-  display: flex;
-  align-items: center;
-  gap: 6rpx;
-  border: 1px solid rgba(91, 61, 227, 0.08);
-  font-family: 'Shirkhan Egme', '温暖童稚体' !important;
-}
-
-.lang-switch:active {
-  transform: scale(0.98);
-  background: rgba(91, 61, 227, 0.08);
-}
-
-.nav-title {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 32rpx;
-  font-weight: 600;
-  color: #333333;
 }

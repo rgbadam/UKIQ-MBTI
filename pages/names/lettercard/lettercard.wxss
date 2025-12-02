@@ -5,16 +5,21 @@
 }
 
 /* Navigation */
-.navbar {
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
+.letter-navbar {
+  --td-navbar-bg-color: transparent;
   position: fixed;
-  padding-top: calc(env(safe-area-inset-top));
+  width: 100%;
+  z-index: 999;
+}
+
+.letter-navbar-content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  padding-bottom: 12rpx;
+}
+
+.letter-navbar-placeholder {
+  height: 88rpx;
 }
 
 .back-btn {
@@ -23,11 +28,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 20rpx;
   border-radius: 50%;
   transition: all 0.3s ease;
   background: rgba(255,255,255,0.13);
-  position: relative;
 }
 
 .back-btn:active {
@@ -46,7 +49,7 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 30rpx;
-  padding-top: calc(env(safe-area-inset-top) + 50rpx);
+  padding-top: 180rpx;
 }
 
 .circle-box {

@@ -20,14 +20,14 @@ Page({
   onShareAppMessage() {
     return {
       title: this.data.isUg ? "MBTI · خارەكتىر سىنىقى" : "MBTI · 人格测试",
-      path: "/pages/tabs/discover/discover",
+      path: "/views/discover/discover",
       imageUrl: "/images/illust/mbti.svg"
     }
   },
   onShareTimeline() {
     return {
       title: this.data.isUg ? "MBTI - ئۆز خارەكتىرىنى چۈشىنىش" : "MBTI人格 - 终于被理解的感觉真好",
-      path: "/pages/tabs/discover/discover",
+      path: "/views/discover/discover",
       imageUrl: "/images/illust/mbti.svg"
     }
   }

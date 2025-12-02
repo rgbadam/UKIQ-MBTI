@@ -41,14 +41,14 @@ Page({
   onShareAppMessage() {
     return {
       title: this.data.isUg ? "MBTI · سىزمۇ سىناپ كۆرۈڭ" : "MBTI · 你也来测一测",
-      path: "/pages/tabs/discover/discover",
+      path: "/views/discover/discover",
       imageUrl: "/images/illust/mbti.svg"
     }
   },
   onShareTimeline() {
     return {
       title: this.data.isUg ? "MBTI - ئۆز خارەكتىرىنى چۈشىنىش" : "MBTI人格 - 终于被理解的感觉真好",
-      path: "/pages/tabs/discover/discover",
+      path: "/views/discover/discover",
       imageUrl: "/images/illust/mbti.svg"
     }
   }

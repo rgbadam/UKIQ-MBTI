@@ -8,7 +8,7 @@
     <!-- Navbar Section -->
     <t-navbar t-class-placeholder="t-navbar-placeholder" t-class-content="t-navbar-content" t-class-center="nav-title-wrapper" class="custom-navbar">
       <view slot="left" class="nav-left">
-        <icon class="nav-search" type="search" size="16" color="#ffffff" bindtap="navigateToSearch" />
+        <icon class="nav-search" type="search" size="14" color="#ffffff" bindtap="navigateToSearch" />
       </view>
       <view slot="title" class="nav-title">ئىسىملار قامۇسى</view>
     </t-navbar>
@@ -19,10 +19,10 @@
       <view class="name-card-wrapper prev-prev-card" animation="{{animationPrevPrev}}">
         <view class="name-card {{prevPrevCard.gender === 'male' ? 'male-card' : 'female-card'}}">
           <view class="name-card-content">
-            <text class="name-text">{{prevPrevCard.nameUyghur || ''}}</text>
-            <text class="name-latin">{{prevPrevCard.nameLatin || ''}}</text>
+            <text class="name-text">{{prevPrevCard.nameUyghur || 'نامەلۇم'}}</text>
+            <text class="name-latin">{{prevPrevCard.nameLatin || 'rgbadam'}}</text>
             <view class="meaning-container">
-              <text class="name-meaning">{{prevPrevCard.meaning || ''}}</text>
+              <text class="name-meaning">{{prevPrevCard.meaning || 'كاشىلا مەۋجۇد. (دىنازاۋۇر)'}}</text>
             </view>
           </view>
         </view>
@@ -32,10 +32,10 @@
       <view class="name-card-wrapper prev-card" animation="{{animationPrev}}">
         <view class="name-card {{prevCard.gender === 'male' ? 'male-card' : 'female-card'}}">
           <view class="name-card-content">
-            <text class="name-text">{{prevCard.nameUyghur || ''}}</text>
-            <text class="name-latin">{{prevCard.nameLatin || ''}}</text>
+            <text class="name-text">{{prevCard.nameUyghur || 'نامەلۇم'}}</text>
+            <text class="name-latin">{{prevCard.nameLatin || 'rgbadam'}}</text>
             <view class="meaning-container">
-              <text class="name-meaning">{{prevCard.meaning || ''}}</text>
+              <text class="name-meaning">{{prevCard.meaning || 'كاشىلا مەۋجۇد. (دىنازاۋۇر)'}}</text>
             </view>
           </view>
         </view>
@@ -51,10 +51,10 @@
         <view class="name-card {{currentCard.gender === 'male' ? 'male-card' : 'female-card'}}" bindtap="navigateToDetail" data-id="{{currentCard.id}}">
           <view class="card-decoration"></view>
           <view class="name-card-content">
-            <text class="name-text">{{currentCard.nameUyghur || ''}}</text>
-            <text class="name-latin">{{currentCard.nameLatin || ''}}</text>
+            <text class="name-text">{{currentCard.nameUyghur || 'نامەلۇم'}}</text>
+            <text class="name-latin">{{currentCard.nameLatin || 'rgbadam'}}</text>
             <view class="meaning-container">
-              <text class="name-meaning">{{currentCard.meaning || ''}}</text>
+              <text class="name-meaning">{{currentCard.meaning || 'كاشىلا مەۋجۇد. (دىنازاۋۇر)'}}</text>
             </view>
           </view>
         </view>
@@ -65,10 +65,10 @@
         <view class="name-card {{nextCard.gender === 'male' ? 'male-card' : 'female-card'}}">
           <view class="card-decoration"></view>
           <view class="name-card-content">
-            <text class="name-text">{{nextCard.nameUyghur || ''}}</text>
-            <text class="name-latin">{{nextCard.nameLatin || ''}}</text>
+            <text class="name-text">{{nextCard.nameUyghur || 'نامەلۇم'}}</text>
+            <text class="name-latin">{{nextCard.nameLatin || 'rgbadam'}}</text>
             <view class="meaning-container">
-              <text class="name-meaning">{{nextCard.meaning || ''}}</text>
+              <text class="name-meaning">{{nextCard.meaning || 'كاشىلا مەۋجۇد. (دىنازاۋۇر)'}}</text>
             </view>
           </view>
         </view>
@@ -78,10 +78,10 @@
       <view class="name-card-wrapper next-next-card" animation="{{animationNextNext}}">
         <view class="name-card {{nextNextCard.gender === 'male' ? 'male-card' : 'female-card'}}">
           <view class="name-card-content">
-            <text class="name-text">{{nextNextCard.nameUyghur || ''}}</text>
-            <text class="name-latin">{{nextNextCard.nameLatin || ''}}</text>
+            <text class="name-text">{{nextNextCard.nameUyghur || 'نامەلۇم'}}</text>
+            <text class="name-latin">{{nextNextCard.nameLatin || 'rgbadam'}}</text>
             <view class="meaning-container">
-              <text class="name-meaning">{{nextNextCard.meaning || ''}}</text>
+              <text class="name-meaning">{{nextNextCard.meaning || 'كاشىلا مەۋجۇد. (دىنازاۋۇر)'}}</text>
             </view>
           </view>
         </view>
