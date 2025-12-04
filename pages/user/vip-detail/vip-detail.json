@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "coder-popup": "/components/CoderBox/CoderBox",
+    "login-popup": "/components/LoginBox/LoginBox"
+  }
+}
+
+

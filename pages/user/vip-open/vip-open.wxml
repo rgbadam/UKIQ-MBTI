@@ -1,0 +1,131 @@
+<view class="vip-open-page {{lang === 'ug' ? 'rtl' : ''}}">
+  <view class="vip-hero">
+    <view class="hero-header">
+      <view class="vip-hero-icon">
+        <t-icon name="user-vip" size="40rpx" color="#ffffff" />
+      </view>
+      <view class="hero-texts">
+        <text class="vip-hero-title">{{pageText.title}}</text>
+        <text class="vip-hero-subtitle">{{pageText.subtitle}}</text>
+      </view>
+    </view>
+    <view class="capsule-list">
+      <view class="capsule-item">
+        <text class="capsule-text">{{pageText.benefit1}}</text>
+      </view>
+      <view class="capsule-item">
+        <text class="capsule-text">{{pageText.benefit2}}</text>
+      </view>
+      <view class="capsule-item">
+        <text class="capsule-text">{{pageText.benefit3}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 登录&信息完善 -->
+  <view class="vip-section" wx:if="{{!isLoggedIn || !infoReady}}">
+    <view class="section-title">{{pageText.infoTitle}}</view>
+
+    <view wx:if="{{!isLoggedIn}}" class="login-hint-row">
+      <view class="login-hint-texts">
+        <text class="login-hint-main">{{pageText.loginFirst}}</text>
+        <text class="login-hint-sub">{{pageText.fillTips}}</text>
+      </view>
+      <button class="login-btn" size="mini" bindtap="openLoginPopup">{{pageText.loginButton}}</button>
+    </view>
+
+    <view wx:elif="{{isLoggedIn}}" class="form-card">
+      <view class="form-content">
+        <view class="form-item">
+          <text class="form-label">{{pageText.phoneLabel}}</text>
+          <input
+            class="vip-edit-input {{phoneFocused ? 'focused' : ''}}"
+            type="number"
+            maxlength="11"
+            value="{{phoneInput}}"
+            placeholder="{{pageText.phoneLabel}}"
+            bindinput="onPhoneInput"
+            bindfocus="onPhoneFocus"
+            bindblur="onPhoneBlur"
+          />
+        </view>
+  
+        <view class="form-item">
+          <text class="form-label">{{pageText.nicknameLabel}}</text>
+          <input
+            class="vip-edit-input {{nicknameFocused ? 'focused' : ''}}"
+            type="text"
+            maxlength="20"
+            value="{{nicknameInput}}"
+            placeholder="{{pageText.nicknameLabel}}"
+            bindinput="onNicknameInput"
+            bindfocus="onNicknameFocus"
+            bindblur="onNicknameBlur"
+          />
+        </view>
+      </view>
+
+      <button class="primary-btn" bindtap="saveUserInfo">{{pageText.saveInfoButton}}</button>
+    </view>
+  </view>
+
+  <!-- 支付二维码 -->
+  <view class="vip-section" wx:if="{{isLoggedIn && infoReady}}">
+    <view class="section-title">{{pageText.payTitle}}</view>
+
+    <!-- 会员价格卡片 -->
+    <view class="price-card-wrapper" wx:if="{{vipTypes.length > 0}}">
+      <view class="price-card-grid">
+        <view class="price-card" wx:for="{{vipTypes}}" wx:key="id">
+          <view class="price-card-content">
+            <text class="price-card-name">{{lang === 'ug' ? item.name_ug : item.name_zh}}</text>
+            <view class="price-card-price">
+              <text wx:if="{{item.amount !== null && item.amount !== undefined}}" class="price-card-amount">
+                <text class="price-symbol">¥</text>
+                <text class="price-number">{{item.amount}}</text>
+              </text>
+              <text wx:else class="price-card-contact">{{pageText.contactService}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="qr-wrapper">
+      <image
+        class="qr-image"
+        src="/images/pics/feecode.jpg"
+        mode="aspectFit"
+        bindlongpress="onQrLongPress"
+      />
+      <text class="qr-hint">{{pageText.longPressHint}}</text>
+    </view>
+
+    <view wx:if="{{showPayActions}}" class="pay-actions">
+      <button class="primary-btn" bindtap="handlePaid" loading="{{isPaying}}" disabled="{{isPaying}}">
+        <text wx:if="{{!isPaying}}">{{pageText.paidButton}}</text>
+        <text wx:else>{{pageText.paidButton}}</text>
+      </button>
+      <button class="secondary-btn" bindtap="handleCancel">
+        {{pageText.cancelButton}}
+      </button>
+    </view>
+
+    <view wx:if="{{payMessage}}" class="pay-message">
+      <view class="pay-message-inner">
+        <view class="pay-dot"></view>
+        <text class="pay-message-text">{{payMessage}}</text>
+      </view>
+    </view>
+  </view>
+
+  <login-popup
+    lang="{{lang}}"
+    visible="{{showLoginPopup}}"
+    bind:close="closeLoginPopup"
+    bind:login-success="onLoginSuccess"
+    bind:login-fail="onLoginFail"
+  />
+</view>
+
+

@@ -91,10 +91,11 @@ Page({
 
   checkLogin() {
     wx.getStorage({
-      key: 'userInfo',
+      key: 'token',
       success: (res) => {
+        // 有 token，则认为已登录，走接口获取最新用户信息
         this.getUserInfo()
-        this.setData({ isLoggedIn: true, ...res.data })
+        this.setData({ isLoggedIn: true })
       },
       fail: () => {
         this.setData({ isLoggedIn: false, avatar: defaultAvatar, showLoginPopup: true })
@@ -103,7 +104,17 @@ Page({
   },
 
   checkGender() {
-    let userInfo = wx.getStorageSync('userinfo')
+    // 未登录时不弹出性别选择框，只处理登录逻辑
+    if (!this.data.isLoggedIn) {
+      this.setData({
+        showGenderPopup: false,
+        canCloseGenderBox: true
+      })
+      return
+    }
+
+    // 已登录时再检查本地是否有性别信息
+    let userInfo = wx.getStorageSync('userinfo') || {}
     if (userInfo.genderData && userInfo.gender) {
       this.setData({
         genderData: userInfo.genderData,
@@ -112,6 +123,7 @@ Page({
         canCloseGenderBox: true
       })
     } else {
+      // 登录完成后仍然没有性别信息，则弹出性别选择弹窗
       this.setData({
         showGenderPopup: true,
         canCloseGenderBox: false
@@ -167,7 +179,6 @@ Page({
       showLoginPopup: false,
       ...userInfo
     });
-    // 登录成功后获取最新用户信息
     this.getUserInfo();
   },
 
@@ -181,10 +192,8 @@ Page({
 
   getUserInfo() {
     const token = wx.getStorageSync('token');
-    const userInfo = wx.getStorageSync('userInfo');
     
-    // 如果没有token或userInfo，直接返回
-    if (!token || !userInfo) {
+    if (!token) {
       this.setData({ 
         isLoggedIn: false, 
         showLoginPopup: true 
@@ -195,39 +204,18 @@ Page({
     wx.request({
       url: `${app.globalData.requestUrl}/auth/userInfo`,
       method: 'GET',
-      header: {
-        'Authorization': `Bearer ${token}`
-      },
+      header: { 'Authorization': `Bearer ${token}` },
       success: (res) => {
         if (res.data.code === 200) {
-          // 更新用户信息
           const userData = res.data.data;
-          const updatedUserInfo = {
-            ...userInfo,
-            id: userData.id,
-            user_id: userData.user_id,
-            openid: userData.openid,
-            phone: userData.phone,
-            nickname: userData.nickname,
-            last_login_at: userData.last_login_at,
-            created_at: userData.created_at
-          };
-          
-          // 保存更新后的用户信息
-          wx.setStorage({
-            key: 'userInfo',
-            data: updatedUserInfo,
-            success: () => {
-              this.setData({ 
-                isLoggedIn: true,
-                ...updatedUserInfo
-              });
-            }
+          this.setData({ 
+            isLoggedIn: true,
+            ...userData
           });
+          this.checkGender()
         } else if (res.data.code === 401) {
           // Token无效或过期，清除存储并显示登录弹窗
           wx.removeStorageSync('token');
-          wx.removeStorageSync('userInfo');
           this.setData({ 
             isLoggedIn: false,
             showLoginPopup: true
@@ -235,7 +223,6 @@ Page({
         } else if (res.data.code === 404) {
           // 用户不存在，清除存储并显示登录弹窗
           wx.removeStorageSync('token');
-          wx.removeStorageSync('userInfo');
           this.setData({ 
             isLoggedIn: false,
             showLoginPopup: true

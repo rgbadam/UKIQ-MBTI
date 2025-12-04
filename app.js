@@ -1,7 +1,7 @@
 App({
   globalData: {
     requestUrl: 'http://localhost:3000/api/namzar/mini',
-    // requestUrl: 'https://popout.tech/api/namzar/mini/names',
+    // requestUrl: 'https://popout.tech/api/namzar/mini',
     eventBus: {
       listeners: {},
       emit: function(event, data) {

@@ -256,7 +256,7 @@
 .info-value {
   font-size: 30rpx;
   color: #0f172a;
-  font-weight: 500;
+  /* font-weight: 500; */
   letter-spacing: 0.5rpx;
 }
 
@@ -390,3 +390,96 @@
   font-family: sans-serif, '黑体', 'Shirkhan Egme';
 }
 .info-value { font-family: sans-serif, '黑体', 'Alpsoft Jurnal'; }
+
+/* 编辑输入框样式 */
+.edit-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  width: 100%;
+  margin-top: 8rpx;
+}
+
+.edit-input {
+  flex: 1;
+  font-size: 30rpx;
+  color: #0f172a;
+  padding: 16rpx 24rpx;
+  background: #ffffff;
+  border: 2rpx solid #4c6ef5;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(76, 110, 245, 0.1);
+  transition: all 0.3s ease;
+  font-family: sans-serif, '黑体', 'Alpsoft Jurnal';
+}
+
+.profile-page.rtl .edit-input {
+  font-size: 32rpx;
+  text-align: right;
+}
+
+.edit-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 4rpx 12rpx rgba(76, 110, 245, 0.15);
+  outline: none;
+}
+
+.edit-actions {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  flex-shrink: 0;
+}
+
+.action-btn {
+  width: 44rpx;
+  height: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999rpx;
+  border: 1rpx solid rgba(148, 163, 184, 0.4);
+  background: rgba(248, 250, 252, 0.9);
+  transition: all 0.2s ease;
+  box-shadow: 0 1rpx 3rpx rgba(15, 23, 42, 0.08);
+}
+
+.icon-text {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #475569;
+  line-height: 1;
+}
+
+.save-btn {
+  border-color: rgba(37, 99, 235, 0.35);
+  background: rgba(239, 246, 255, 0.95);
+}
+
+.save-btn:active {
+  transform: scale(0.95);
+  background: rgba(219, 234, 254, 0.95);
+  box-shadow: 0 1rpx 4rpx rgba(37, 99, 235, 0.16);
+}
+
+.cancel-btn {
+  border-color: rgba(148, 163, 184, 0.5);
+  background: rgba(248, 250, 252, 0.95);
+}
+
+.cancel-btn:active {
+  transform: scale(0.95);
+  background: rgba(226, 232, 240, 0.95);
+  box-shadow: 0 1rpx 4rpx rgba(148, 163, 184, 0.18);
+}
+
+/* 手机号输入框特殊样式 */
+.info-item:nth-child(3) .edit-input {
+  border-color: #10b981;
+  box-shadow: 0 2rpx 8rpx rgba(16, 185, 129, 0.1);
+}
+
+.info-item:nth-child(3) .edit-input:focus {
+  border-color: #059669;
+  box-shadow: 0 4rpx 12rpx rgba(16, 185, 129, 0.15);
+}

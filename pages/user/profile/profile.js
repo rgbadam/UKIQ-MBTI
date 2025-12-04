@@ -18,19 +18,29 @@ Page({
     canCloseGenderBox: true,
     showLoginPopup: false,
     isLoggedIn: false,
-    pageText: {}
+    pageText: {},
+    editingNickname: false,
+    editingPhone: false,
+    nicknameInput: '',
+    phoneInput: '',
+    originalNickname: '',
+    originalPhone: ''
   },
 
   onShow() {
     this.initLanguage();
-    // 检查登录状态并获取用户信息
     const token = wx.getStorageSync('token');
-    const userInfo = wx.getStorageSync('userInfo');
-    if (token && userInfo) {
+    if (token) {
       this.setData({ isLoggedIn: true });
       this.getUserInfo();
     } else {
-      this.setData({ isLoggedIn: false });
+      this.setData({ 
+        isLoggedIn: false,
+        nickname: '',
+        phone: '',
+        userId: '',
+        isVip: false
+      });
       this.loadUserData();
     }
   },
@@ -67,9 +77,14 @@ Page({
     });
   },
 
+  handleVipTap() {
+    const url = this.data.isVip ? '/pages/user/vip-detail/vip-detail' : '/pages/user/vip-open/vip-open';
+    wx.navigateTo({ url });
+  },
+
   checkLogin() {
     wx.getStorage({
-      key: 'userInfo',
+      key: 'token',
       success: (res) => {
         this.setData({ isLoggedIn: true });
       },
@@ -81,10 +96,9 @@ Page({
 
   getUserInfo() {
     const token = wx.getStorageSync('token');
-    const userInfo = wx.getStorageSync('userInfo');
     
-    // 如果没有token或userInfo，直接返回
-    if (!token || !userInfo) {
+    // 如果没有token，直接返回并提示登录
+    if (!token) {
       this.setData({ 
         isLoggedIn: false,
         showLoginPopup: true 
@@ -95,52 +109,27 @@ Page({
     wx.request({
       url: `${app.globalData.requestUrl}/auth/userInfo`,
       method: 'GET',
-      header: {
-        'Authorization': `Bearer ${token}`
-      },
+      header: { 'Authorization': `Bearer ${token}` },
       success: (res) => {
         if (res.data.code === 200) {
           // 更新用户信息
           const userData = res.data.data;
-          const updatedUserInfo = {
-            ...userInfo,
-            id: userData.id,
-            user_id: userData.user_id,
-            openid: userData.openid,
-            phone: userData.phone,
-            nickname: userData.nickname,
-            last_login_at: userData.last_login_at,
-            created_at: userData.created_at
-          };
-          
-          // 保存更新后的用户信息
-          wx.setStorage({
-            key: 'userInfo',
-            data: updatedUserInfo,
-            success: () => {
-              // 更新页面数据
-              this.setData({ 
-                isLoggedIn: true,
-                userId: userData.user_id,
-                phone: userData.phone || '',
-                nickname: userData.nickname || ''
-              });
-              // 加载其他用户数据
-              this.loadUserData();
-            }
+          this.setData({ 
+            isLoggedIn: true,
+            userId: userData.user_id,
+            phone: userData.phone || '',
+            nickname: userData.nickname || '',
+            isVip: userData.is_vip || false
           });
+          this.loadUserData();
         } else if (res.data.code === 401) {
-          // Token无效或过期，清除存储并显示登录弹窗
           wx.removeStorageSync('token');
-          wx.removeStorageSync('userInfo');
           this.setData({ 
             isLoggedIn: false,
             showLoginPopup: true
           });
         } else if (res.data.code === 404) {
-          // 用户不存在，清除存储并显示登录弹窗
           wx.removeStorageSync('token');
-          wx.removeStorageSync('userInfo');
           this.setData({ 
             isLoggedIn: false,
             showLoginPopup: true
@@ -156,12 +145,76 @@ Page({
     });
   },
 
+  updateUserInfo(data) {
+    const token = wx.getStorageSync('token');
+    if (!token) {
+      this.setData({ showLoginPopup: true });
+      return;
+    }
+
+    wx.request({
+      url: `${app.globalData.requestUrl}/auth/updateUserInfo`,
+      method: 'POST',
+      header: { 'Authorization': `Bearer ${token}` },
+      data: data,
+      success: (res) => {
+        if (res.data.code === 200) {
+          this.setData({
+            editingNickname: false,
+            editingPhone: false
+          });
+          this.getUserInfo();
+        } else {
+          console.error('更新用户信息失败:', res.data.message || '更新失败');
+        }
+      },
+      fail: (err) => {
+        console.error('更新用户信息失败:', err || '网络错误');
+      }
+    });
+  },
+
   editNickname() {
     if (!this.data.isLoggedIn) {
       this.setData({ showLoginPopup: true });
       return;
     }
-    if (!this.data.nickname) return;
+    
+    this.setData({
+      editingNickname: true,
+      nicknameInput: this.data.nickname || '',
+      originalNickname: this.data.nickname || ''
+    });
+  },
+
+  onNicknameInput(e) {
+    this.setData({
+      nicknameInput: e.detail.value
+    });
+  },
+
+  saveNickname() {
+    const nickname = this.data.nicknameInput.trim();
+    if (!nickname) {
+      wx.showToast({
+        title: this.data.lang === 'cn' ? '昵称不能为空' : 'ئىسىم قۇرۇق',
+        icon: 'none'
+      });
+      return;
+    }
+    
+    this.updateUserInfo({ nickname: nickname });
+    this.setData({
+      editingNickname: false,
+      nickname: nickname
+    });
+  },
+
+  cancelEditNickname() {
+    this.setData({
+      editingNickname: false,
+      nicknameInput: this.data.originalNickname
+    });
   },
 
   editPhone() {
@@ -169,7 +222,52 @@ Page({
       this.setData({ showLoginPopup: true });
       return;
     }
-    if (this.data.phone) return;
+    
+    this.setData({
+      editingPhone: true,
+      phoneInput: this.data.phone || '',
+      originalPhone: this.data.phone || ''
+    });
+  },
+
+  onPhoneInput(e) {
+    this.setData({
+      phoneInput: e.detail.value
+    });
+  },
+
+  savePhone() {
+    const phone = this.data.phoneInput.trim();
+    if (!phone) {
+      wx.showToast({
+        title: this.data.lang === 'cn' ? '手机号不能为空' : 'تېلېفون نومۇر قۇرۇق',
+        icon: 'none'
+      });
+      return;
+    }
+    
+    // 手机号验证
+    const phoneRegex = /^1[3-9]\d{9}$/;
+    if (!phoneRegex.test(phone)) {
+      wx.showToast({
+        title: this.data.lang === 'cn' ? '请输入正确的手机号' : 'تېلېفون نومۇر خاتا',
+        icon: 'none'
+      });
+      return;
+    }
+    
+    this.updateUserInfo({ phone: phone });
+    this.setData({
+      editingPhone: false,
+      phone: phone
+    });
+  },
+
+  cancelEditPhone() {
+    this.setData({
+      editingPhone: false,
+      phoneInput: this.data.originalPhone
+    });
   },
 
   copyUserId() {
@@ -218,33 +316,26 @@ Page({
         genderData: result.genderData
       });
     }
+
+    // 更新到后端，传递 gendervalue（即 genderData.value）
+    if (result.genderData && result.genderData.value) {
+      this.updateUserInfo({ gendervalue: result.genderData.value });
+    }
   },
 
   loadUserData() {
-    const userAuth = wx.getStorageSync('userInfo') || {};
-    const localUser = wx.getStorageSync('userinfo') || {};
     const favorites = wx.getStorageSync('favoriteNames') || [];
-
-    const nickname = userAuth.nickname || userAuth.nickName || localUser.nickname || localUser.nickName;
-    const phone = userAuth.phone;
-    const userId = userAuth.user_id || userAuth.userId;
     const mbti = wx.getStorageSync('mbti');
-    const isVip = !!(userAuth.isVip || userAuth.vip);
 
     let genderText = '';
-    let gender = localUser.gender;
-    let genderData = localUser.genderData || null;
-    
-    if (localUser.genderData) {
-      genderText = (this.data.lang === 'cn') ? (localUser.genderData.label_cn || '') : (localUser.genderData.label_ug || '');
+    let gender = wx.getStorageSync('userinfo').gender;
+    let genderData = wx.getStorageSync('userinfo').genderData || null;
+    if (genderData) {
+      genderText = (this.data.lang === 'cn') ? (genderData.label_cn || '') : (genderData.label_ug || '');
     }
 
     this.setData({
-      nickname,
-      phone,
-      userId,
       mbti,
-      isVip,
       genderText,
       gender,
       genderData,
@@ -262,9 +353,7 @@ Page({
       isLoggedIn: true,
       showLoginPopup: false
     });
-    // 登录成功后获取最新用户信息
     this.getUserInfo();
-    // 触发登录事件，通知其他页面
     if (app.globalData.eventBus) {
       app.globalData.eventBus.emit('login', userInfo);
     }

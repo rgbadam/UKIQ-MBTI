@@ -10,6 +10,8 @@
     "pages/names/search/search",
     "pages/names/lettercard/lettercard",
     "pages/user/profile/profile",
+    "pages/user/vip-detail/vip-detail",
+    "pages/user/vip-open/vip-open",
     "pages/mbti/mbti-test/mbti-test",
     "pages/mbti/test-result/test-result",
     "pages/mbti/type-list/type-list",

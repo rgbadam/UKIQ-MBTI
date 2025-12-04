@@ -47,10 +47,8 @@ Component({
                 if (loginRes.data.code === 200) {
                   const { token, openid, is_new_user, user_id, id } = loginRes.data.data;
                   
-                  // 保存token到本地存储
                   wx.setStorageSync('token', token);
                   
-                  // 保存完整的用户信息到本地存储
                   const userInfo = {
                     token,
                     openid,
@@ -58,14 +56,7 @@ Component({
                     user_id,
                     id
                   };
-                  wx.setStorage({
-                    key: 'userInfo',
-                    data: userInfo,
-                    success: () => {
-                      console.log('登录成功', loginRes.data.data);
-                      this.triggerEvent('login-success', userInfo);
-                    }
-                  });
+                  this.triggerEvent('login-success', userInfo);
                 } else {
                   this.triggerEvent('login-fail', { reason: 'server-error' });
                 }

@@ -1,0 +1,95 @@
+<view class="vip-detail-page {{lang === 'ug' ? 'rtl' : ''}}">
+  <view class="vip-hero {{isVip ? 'vip-active' : 'vip-inactive'}}">
+    <view class="hero-header">
+      <view class="hero-left">
+        <view class="vip-hero-icon">
+          <t-icon name="user-vip" size="40rpx" color="#FFFFFF" />
+        </view>
+        <view class="hero-texts">
+          <text class="vip-hero-title">{{pageText.title}}</text>
+          <text class="vip-hero-subtitle">{{pageText.subtitle}}</text>
+        </view>
+      </view>
+      <view class="status-chip {{isVip ? 'status-on' : 'status-off'}}">
+        {{isVip ? pageText.statusActive : pageText.statusInactive}}
+      </view>
+    </view>
+
+    <view class="capsule-list">
+      <view class="capsule-item">
+        <text class="capsule-text">{{pageText.benefit1}}</text>
+      </view>
+      <view class="capsule-item">
+        <text class="capsule-text">{{pageText.benefit2}}</text>
+      </view>
+      <view class="capsule-item">
+        <text class="capsule-text">{{pageText.benefit3}}</text>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="vip-section" wx:if="{{!isLoggedIn}}">
+    <view class="section-title">{{pageText.infoTitle}}</view>
+    <view class="login-hint-row">
+      <view class="login-hint-texts">
+        <text class="login-hint-main">{{pageText.loginFirst}}</text>
+        <text class="login-hint-sub">{{pageText.loginDesc}}</text>
+      </view>
+      <button class="login-btn" size="mini" bindtap="openLoginPopup">{{pageText.loginButton}}</button>
+    </view>
+  </view>
+
+  <view class="vip-section" wx:if="{{isLoggedIn}}">
+    <view class="section-title">{{pageText.currentPlan}}</view>
+    <view wx:if="{{activeMembership}}" class="membership-card">
+      <view class="membership-header">
+        <text class="membership-plan">{{activeMembership.typeLabel}}</text>
+        <text class="membership-status {{activeMembership.is_active ? 'history-active' : 'history-ended'}}">
+          {{activeMembership.is_active ? pageText.historyStatusActive : pageText.historyStatusExpired}}
+        </text>
+      </view>
+      <view class="membership-meta">
+        <text class="membership-label">{{pageText.planPeriod}}</text>
+        <text class="membership-value">{{activeMembership.startFormatted}} - {{activeMembership.endFormatted}}</text>
+      </view>
+      <view class="membership-meta">
+        <text class="membership-label">{{pageText.planAmount}}</text>
+        <text class="membership-value">¥{{activeMembership.amount || '--'}}</text>
+      </view>
+      <text wx:if="{{activeMembership.notes}}" class="membership-notes">{{activeMembership.notes}}</text>
+      <text class="membership-tip">{{pageText.contactDesc}}</text>
+    </view>
+    <view wx:else class="membership-empty">
+      <text class="membership-empty-title">{{pageText.noActiveMembership}}</text>
+      <text class="membership-empty-desc">{{pageText.contactDesc}}</text>
+      <button class="ghost-btn" bindtap="openCoderBox">{{pageText.contactService}}</button>
+    </view>
+  </view>
+
+  <view class="contact-inline">
+    <view class="contact-inline-texts">
+      <text class="contact-inline-title">{{pageText.contactService}}</text>
+      <text class="contact-inline-desc">{{pageText.contactDesc}}</text>
+    </view>
+    <button class="contact-inline-btn" bindtap="openCoderBox">
+      {{pageText.contactService}}
+    </button>
+  </view>
+
+  <coder-popup
+    lang="{{lang}}"
+    visible="{{showCoderPopup}}"
+    bind:close="closeCoderBox"
+  />
+
+  <login-popup
+    lang="{{lang}}"
+    visible="{{showLoginPopup}}"
+    bind:close="closeLoginPopup"
+    bind:login-success="onLoginSuccess"
+    bind:login-fail="onLoginFail"
+  />
+</view>
+
+
